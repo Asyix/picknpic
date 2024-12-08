@@ -6,6 +6,9 @@ module fr.polytech.picknpic {
 
 
     opens fr.polytech.picknpic to javafx.fxml;
+    opens fr.polytech.picknpic.ui to javafx.fxml;
     exports fr.polytech.picknpic;
-    exports fr.polytech.picknpic.login;
+    exports fr.polytech.picknpic.ui;
+    exports fr.polytech.picknpic.bl;
+    exports fr.polytech.picknpic.persist;
 }

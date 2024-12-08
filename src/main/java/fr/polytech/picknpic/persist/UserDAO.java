@@ -1,4 +1,6 @@
-package fr.polytech.picknpic.login;
+package fr.polytech.picknpic.persist;
+
+import fr.polytech.picknpic.bl.User;
 
 public interface UserDAO {
     /**

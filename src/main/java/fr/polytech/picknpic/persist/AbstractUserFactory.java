@@ -1,4 +1,4 @@
-package fr.polytech.picknpic.login;
+package fr.polytech.picknpic.persist;
 
 public abstract class AbstractUserFactory {
 
