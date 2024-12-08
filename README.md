@@ -10,7 +10,7 @@ SE practices project
 5 - once the branch is merged, go back to rule 2
 
 ## How to properly commit
-Your commit messsage should strictly follow these principles :\ 
+Your commit messsage should strictly follow these principles\
 **For added functionalities :** "feat : <brief and clear description>"\
 **For modified/fixed functionalities :** "fix : <brief and clear description>"\
 **If there currently are bugs in the code :** "bug/issues : <clear description>"
