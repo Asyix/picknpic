@@ -1,0 +1,2 @@
+# picknpic
+SE practices project
