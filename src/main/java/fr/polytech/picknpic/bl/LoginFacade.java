@@ -9,7 +9,7 @@ public class LoginFacade {
      * Constructeur qui crée le singleton AbstractFactory.
      */
     public LoginFacade() {
-        this.abstractFactory = AbstractFactory.createAbstractFactory();
+        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
     }
 
     public User login(String username, String password) {
