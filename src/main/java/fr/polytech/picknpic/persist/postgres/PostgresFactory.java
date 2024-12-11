@@ -1,4 +1,7 @@
-package fr.polytech.picknpic.persist;
+package fr.polytech.picknpic.persist.postgres;
+
+import fr.polytech.picknpic.persist.AbstractFactory;
+import fr.polytech.picknpic.persist.daos.UserDAO;
 
 public class PostgresFactory extends AbstractFactory {
 

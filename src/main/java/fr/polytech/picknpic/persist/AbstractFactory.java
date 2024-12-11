@@ -1,5 +1,8 @@
 package fr.polytech.picknpic.persist;
 
+import fr.polytech.picknpic.persist.daos.UserDAO;
+import fr.polytech.picknpic.persist.postgres.PostgresFactory;
+
 public abstract class AbstractFactory {
 
     // Singleton instance

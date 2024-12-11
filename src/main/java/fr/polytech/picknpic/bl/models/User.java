@@ -1,4 +1,4 @@
-package fr.polytech.picknpic.bl;
+package fr.polytech.picknpic.bl.models;
 
 public class User {
 

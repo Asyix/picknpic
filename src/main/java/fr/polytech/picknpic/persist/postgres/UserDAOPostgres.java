@@ -1,6 +1,8 @@
-package fr.polytech.picknpic.persist;
+package fr.polytech.picknpic.persist.postgres;
 
-import fr.polytech.picknpic.bl.User;
+import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.persist.JDBCConnector;
+import fr.polytech.picknpic.persist.daos.UserDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
