@@ -9,9 +9,9 @@ public abstract class AbstractFactory {
     protected AbstractFactory() {}
 
     // Static method to get the singleton instance
-    public static AbstractFactory createAbstractFactory() {
+    public static AbstractFactory getAbstractFactoryInstance() {
         if (abstractFactory == null) {
-            abstractFactory = PostgresFactory.createPostgresFactory(); // Default factory (PostgreSQL)
+            abstractFactory = PostgresFactory.getPostgresFactoryInstance(); // Default factory (PostgreSQL)
         }
         return abstractFactory;
     }
