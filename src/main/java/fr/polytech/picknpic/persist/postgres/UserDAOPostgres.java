@@ -9,8 +9,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * PostgreSQL implementation of the {@link UserDAO} interface.
+ * Provides methods for user authentication by interacting with the PostgreSQL database.
+ */
 public class UserDAOPostgres implements UserDAO {
 
+    /**
+     * Authenticates a user by their username and password.
+     * Queries the PostgreSQL database for a matching user and retrieves their information if authenticated.
+     *
+     * @param username The username of the user attempting to log in.
+     * @param password The password of the user attempting to log in.
+     * @return A {@link User} object containing the user's details if authentication is successful,
+     *         or {@code null} if no match is found.
+     */
     @Override
     public User login(String username, String password) {
         User user = null;
@@ -23,6 +36,7 @@ public class UserDAOPostgres implements UserDAO {
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                // Populate the User object with data from the database
                 user = new User();
                 user.setUsername(resultSet.getString("username"));
                 user.setEmail(resultSet.getString("email"));
@@ -32,6 +46,7 @@ public class UserDAOPostgres implements UserDAO {
                 user.setAdmin(resultSet.getBoolean("admin"));
             }
         } catch (SQLException e) {
+            // Log the exception for debugging purposes
             e.printStackTrace();
         }
 

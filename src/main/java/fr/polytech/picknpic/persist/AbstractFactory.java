@@ -3,15 +3,27 @@ package fr.polytech.picknpic.persist;
 import fr.polytech.picknpic.persist.daos.UserDAO;
 import fr.polytech.picknpic.persist.postgres.PostgresFactory;
 
+/**
+ * An abstract factory class for creating Data Access Object (DAO) instances.
+ * Implements the Singleton design pattern to ensure only one factory instance exists.
+ * Provides an abstraction for different database implementations (e.g., PostgreSQL).
+ */
 public abstract class AbstractFactory {
 
-    // Singleton instance
+    /** The singleton instance of the AbstractFactory. */
     private static AbstractFactory abstractFactory;
 
-    // Protected constructor to prevent direct instantiation
+    /**
+     * Protected constructor to prevent direct instantiation of the abstract class.
+     */
     protected AbstractFactory() {}
 
-    // Static method to get the singleton instance
+    /**
+     * Retrieves the singleton instance of the AbstractFactory.
+     * Defaults to a {@link PostgresFactory} implementation.
+     *
+     * @return The singleton instance of {@link AbstractFactory}.
+     */
     public static AbstractFactory getAbstractFactoryInstance() {
         if (abstractFactory == null) {
             abstractFactory = PostgresFactory.getPostgresFactoryInstance(); // Default factory (PostgreSQL)
@@ -19,6 +31,11 @@ public abstract class AbstractFactory {
         return abstractFactory;
     }
 
-    // Abstract method to create a UserDAO
+    /**
+     * Abstract method to create a {@link UserDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link UserDAO} instance.
+     */
     public abstract UserDAO createUserDAO();
 }
