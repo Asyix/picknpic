@@ -1,4 +1,5 @@
-package fr.polytech.picknpic.bl;
+package fr.polytech.picknpic.bl.facades.user;
+import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.persist.AbstractFactory;
 
 public class LoginFacade {

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="fr.polytech.picknpic.ui.LoginController"
+           fx:controller="fr.polytech.picknpic.ui.controllers.LoginController"
            style="-fx-background-color: #000; -fx-alignment: center; -fx-font-family: Arial, sans-serif;">
     <GridPane style="-fx-background-color: #333; -fx-padding: 30; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 4); -fx-alignment: center; -fx-vgap: 15; -fx-hgap: 10;">
         <!-- Titre -->

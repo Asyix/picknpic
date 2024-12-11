@@ -1,6 +1,6 @@
-package fr.polytech.picknpic.persist;
+package fr.polytech.picknpic.persist.daos;
 
-import fr.polytech.picknpic.bl.User;
+import fr.polytech.picknpic.bl.models.User;
 
 public interface UserDAO {
     /**
