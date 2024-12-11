@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/hello.fxml"));
         Scene scene = new Scene(loader.load());
 
-        HelloController controller = loader.getController();
+        MainController controller = loader.getController();
         controller.setSceneManager(sceneManager);
 
         primaryStage.setTitle("Hello Application");
