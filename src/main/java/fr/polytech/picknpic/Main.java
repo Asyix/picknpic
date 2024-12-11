@@ -1,6 +1,5 @@
 package fr.polytech.picknpic;
 
-import fr.polytech.picknpic.persist.UserPostgres;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Créer une instance de UserDAO (UserPostgres)
-        UserPostgres userPostgres = new UserPostgres();
 
         // Passer UserPostgres à SceneManager
-        SceneManager sceneManager = new SceneManager(primaryStage, userPostgres);
+        SceneManager sceneManager = new SceneManager(primaryStage);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/hello.fxml"));
         Scene scene = new Scene(loader.load());

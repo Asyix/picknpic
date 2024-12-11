@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="fr.polytech.picknpic.HelloController"
+      fx:controller="fr.polytech.picknpic.MainController"
       spacing="10" alignment="CENTER">
     <Label fx:id="welcomeLabel" text="Welcome!"/>
     <Button fx:id="loginButton" text="Login" onAction="#handleLogin"/>
