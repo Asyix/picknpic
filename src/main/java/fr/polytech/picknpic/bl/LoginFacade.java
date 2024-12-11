@@ -1,28 +1,19 @@
 package fr.polytech.picknpic.bl;
-
-import fr.polytech.picknpic.persist.UserDAO;
+import fr.polytech.picknpic.persist.AbstractFactory;
 
 public class LoginFacade {
 
-    private final UserDAO userDAO;
+    private final AbstractFactory abstractFactory;
 
     /**
-     * Constructeur qui accepte une implémentation de UserDAO.
-     *
-     * @param userDAO Une instance de UserDAO pour accéder aux données utilisateur.
+     * Constructeur qui crée le singleton AbstractFactory.
      */
-    public LoginFacade(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public LoginFacade() {
+        this.abstractFactory = AbstractFactory.createAbstractFactory();
     }
 
-    /**
-     * Authentifie un utilisateur.
-     *
-     * @param username Le nom d'utilisateur.
-     * @param password Le mot de passe.
-     * @return L'utilisateur authentifié, ou null si les identifiants sont incorrects.
-     */
     public User login(String username, String password) {
-        return userDAO.login(username, password);
+        return abstractFactory.createUserDAO().login(username, password);
     }
+
 }

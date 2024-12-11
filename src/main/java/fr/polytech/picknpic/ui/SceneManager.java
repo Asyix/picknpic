@@ -2,7 +2,6 @@ package fr.polytech.picknpic.ui;
 
 import fr.polytech.picknpic.bl.LoginFacade;
 import fr.polytech.picknpic.bl.User;
-import fr.polytech.picknpic.persist.UserDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,12 +9,12 @@ import javafx.stage.Stage;
 public class SceneManager {
 
     private final Stage primaryStage;
-    private final UserDAO userDAO;
+    private final LoginFacade loginFacade;
     private User currentUser;
 
-    public SceneManager(Stage primaryStage, UserDAO userDAO) {
+    public SceneManager(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.userDAO = userDAO;
+        this.loginFacade = new LoginFacade();
     }
 
     public boolean loadLoginScene(Stage loginStage) {
@@ -25,7 +24,7 @@ public class SceneManager {
             LoginController controller = loader.getController();
 
             // Passer l'instance de LoginFacade avec UserDAO injecté
-            controller.setLoginFacade(new LoginFacade(userDAO));
+            controller.setLoginFacade(loginFacade);
             controller.setSceneManager(this);
 
             loginStage.setScene(scene);

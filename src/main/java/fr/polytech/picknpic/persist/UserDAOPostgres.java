@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserPostgres implements UserDAO {
+public class UserDAOPostgres implements UserDAO {
 
     @Override
     public User login(String username, String password) {
