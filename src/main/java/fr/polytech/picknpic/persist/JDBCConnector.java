@@ -10,9 +10,9 @@ public class JDBCConnector {
     private static JDBCConnector instance;
 
     // JDBC URL, username, and password
-    private static final String URL = "jdbc:postgresql://localhost:5432/LoginDB";
+    private static final String URL = "jdbc:postgresql://cluster-ig4.igpolytech.fr:15949/picknpic";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "your_password";
+    private static final String PASSWORD = "8ca2dffcac6ae85f47d962d8fa76fd89";
 
     // Private constructor to prevent instantiation
     private JDBCConnector() {}

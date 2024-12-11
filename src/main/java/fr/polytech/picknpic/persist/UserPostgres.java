@@ -14,7 +14,7 @@ public class UserPostgres implements UserDAO {
         User user = null;
 
         try (Connection connection = JDBCConnector.getInstance().getConnection()) {
-            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            String query = "SELECT * FROM \"User\" WHERE username = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, password);
