@@ -420,7 +420,7 @@
 											"top": 196,
 											"width": 271.587890625,
 											"height": 13,
-											"text": "+void displayAllPhotos(User user)",
+											"text": "+Photo[] displayAllPhotos(int userId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -438,7 +438,7 @@
 											"top": 211,
 											"width": 271.587890625,
 											"height": 13,
-											"text": "+void publishPhoto()",
+											"text": "+void publishPhoto(Photo photo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -456,7 +456,7 @@
 											"top": 226,
 											"width": 271.587890625,
 											"height": 13,
-											"text": "+void updatePhoto()",
+											"text": "+void updatePhoto(Photo photo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -474,7 +474,7 @@
 											"top": 241,
 											"width": 271.587890625,
 											"height": 13,
-											"text": "+void deletePhoto()",
+											"text": "+void deletePhoto(int photoId)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -950,7 +950,7 @@
 											"width": 277.3642578125,
 											"height": 13,
 											"underline": true,
-											"text": "-PhotoDAOPostgres PhotoDAOPostgres",
+											"text": "-PhotoDAOPostgres photoDAOPostgres",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1292,6 +1292,24 @@
 									"subViews": [
 										{
 											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGTzECFZB5L2Wk=",
+											"_parent": {
+												"$ref": "AAAAAAGTl0Bjfd6QeSE="
+											},
+											"model": {
+												"$ref": "AAAAAAGTzECFUB5IfwQ="
+											},
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 749,
+											"top": 30,
+											"width": 171.89794921875,
+											"height": 13,
+											"text": "-int photo_id {id}",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGTl1EvnZId1dA=",
 											"_parent": {
 												"$ref": "AAAAAAGTl0Bjfd6QeSE="
@@ -1302,7 +1320,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 30,
+											"top": 45,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "-String title",
@@ -1320,7 +1338,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 45,
+											"top": 60,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "-String description",
@@ -1338,7 +1356,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 60,
+											"top": 75,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "-int price",
@@ -1356,10 +1374,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 75,
+											"top": 90,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "-User uploadedBy",
+											"text": "-int userId {readOnly}",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1374,7 +1392,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 90,
+											"top": 105,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "-Date uploadDate",
@@ -1392,7 +1410,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 105,
+											"top": 120,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "-String filePath",
@@ -1410,7 +1428,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 120,
+											"top": 135,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "-boolean isForSale",
@@ -1422,7 +1440,7 @@
 									"left": 744,
 									"top": 25,
 									"width": 181.89794921875,
-									"height": 113
+									"height": 128
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1712,10 +1730,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 145,
+											"top": 160,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getString title(): null",
+											"text": "+int getd()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1730,10 +1748,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 160,
+											"top": 175,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+setString title(value)",
+											"text": "+void setId()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1748,10 +1766,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 175,
+											"top": 190,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getString filePath(): null",
+											"text": "+String getTitle()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1766,10 +1784,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 190,
+											"top": 205,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+setString filePath(value)",
+											"text": "+void setTitle()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1784,10 +1802,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 205,
+											"top": 220,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getString description(): null",
+											"text": "+string getDescription()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1802,10 +1820,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 220,
+											"top": 235,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+setString description(value)",
+											"text": "+void setPrice()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1820,10 +1838,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 235,
+											"top": 250,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getInt price(): null",
+											"text": "+int getPrice()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1838,10 +1856,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 250,
+											"top": 265,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+setInt price(value)",
+											"text": "+void setPrice()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1856,10 +1874,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 265,
+											"top": 280,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getUser uploadedBy(): null",
+											"text": "+int getUserId()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1874,10 +1892,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 280,
+											"top": 295,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+setUser uploadedBy(value)",
+											"text": "+Date getDate()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1892,10 +1910,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 295,
+											"top": 310,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getBoolean isForSale(): null",
+											"text": "+void setDate()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1910,10 +1928,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 310,
+											"top": 325,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+setBoolean isForSale(value)",
+											"text": "+boolean getIsForSale()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1928,10 +1946,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 325,
+											"top": 340,
 											"width": 171.89794921875,
 											"height": 13,
-											"text": "+getDate uploadDate(): null",
+											"text": "+void setIsForSale()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1943,22 +1961,42 @@
 											"model": {
 												"$ref": "AAAAAAGTy6iSR5AO01I="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 749,
-											"top": 340,
+											"top": 355,
 											"width": 171.89794921875,
 											"height": 13,
 											"text": "+setDate uploadDate(value)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGTzERKzUA+wq4=",
+											"_parent": {
+												"$ref": "AAAAAAGTl0Bjfd6Rwcc="
+											},
+											"model": {
+												"$ref": "AAAAAAGTzERKyUA7TYc="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 749,
+											"top": 355,
+											"width": 171.89794921875,
+											"height": 13,
+											"text": "+Operation1()",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 744,
-									"top": 138,
+									"top": 153,
 									"width": 181.89794921875,
-									"height": 220
+									"height": 205
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2000,7 +2038,7 @@
 							"containerChangeable": true,
 							"left": 744,
 							"width": 180.89794921875,
-							"height": 358,
+							"height": 360,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTl0Bjfd6LldU="
 							},
@@ -2154,7 +2192,7 @@
 											"top": 520,
 											"width": 280.9951171875,
 											"height": 13,
-											"text": "+void displayAllPhotos(User user)",
+											"text": "+Photo[] displayAllPhotos(int userId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2172,7 +2210,7 @@
 											"top": 535,
 											"width": 280.9951171875,
 											"height": 13,
-											"text": "+void publishPhoto()",
+											"text": "+void publishPhoto(Photo photo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2190,7 +2228,7 @@
 											"top": 550,
 											"width": 280.9951171875,
 											"height": 13,
-											"text": "+void updatePhoto()",
+											"text": "+void updatePhoto(Photo photo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2208,7 +2246,7 @@
 											"top": 565,
 											"width": 280.9951171875,
 											"height": 13,
-											"text": "+void deletePhoto()",
+											"text": "+void deletePhoto(int photoId)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2322,7 +2360,7 @@
 											"parentStyle": true,
 											"left": 1085,
 											"top": 258,
-											"width": 271.587890625,
+											"width": 255,
 											"height": 13,
 											"text": "PhotoDAO"
 										},
@@ -2360,7 +2398,7 @@
 									"parentStyle": true,
 									"left": 1080,
 									"top": 251,
-									"width": 281.587890625,
+									"width": 265,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGTl0D8lN8Cea4="
@@ -2415,9 +2453,9 @@
 											"parentStyle": true,
 											"left": 1085,
 											"top": 281,
-											"width": 271.587890625,
+											"width": 255,
 											"height": 13,
-											"text": "+void displayAllPhotos(User user)",
+											"text": "+Photo[] displayAllPhotos(int userId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2433,9 +2471,9 @@
 											"parentStyle": true,
 											"left": 1085,
 											"top": 296,
-											"width": 271.587890625,
+											"width": 255,
 											"height": 13,
-											"text": "+void pulishPhoto()",
+											"text": "+void publishPhoto(Photo photo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2451,9 +2489,9 @@
 											"parentStyle": true,
 											"left": 1085,
 											"top": 311,
-											"width": 271.587890625,
+											"width": 255,
 											"height": 13,
-											"text": "+void updatePhoto()",
+											"text": "+void updatePhoto(Photo photo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2469,9 +2507,9 @@
 											"parentStyle": true,
 											"left": 1085,
 											"top": 326,
-											"width": 271.587890625,
+											"width": 255,
 											"height": 13,
-											"text": "+void deletePhoto()",
+											"text": "+void deletePhoto(int photoId)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2479,7 +2517,7 @@
 									"parentStyle": true,
 									"left": 1080,
 									"top": 276,
-									"width": 281.587890625,
+									"width": 265,
 									"height": 68
 								},
 								{
@@ -2521,9 +2559,9 @@
 							"parentStyle": false,
 							"containerChangeable": true,
 							"left": 1080,
-							"top": 224,
-							"width": 280.587890625,
-							"height": 120,
+							"top": 168,
+							"width": 264,
+							"height": 176,
 							"stereotypeDisplay": "icon",
 							"nameCompartment": {
 								"$ref": "AAAAAAGTl0D8lN8ByzQ="
@@ -2586,8 +2624,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1261,
-									"top": 383,
+									"left": 1260,
+									"top": 382,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2628,7 +2666,7 @@
 								"$ref": "AAAAAAGTl0CtX963y4Q="
 							},
 							"lineStyle": 1,
-							"points": "1176:479;1288:376;1225.8333333333333:251",
+							"points": "1176:479;1288:376;1229.2941176470588:251",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0E1AN8r3Ks="
@@ -2662,7 +2700,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1061,
+									"left": 1058,
 									"top": 243,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2684,8 +2722,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1058,
-									"top": 228,
+									"left": 1053,
+									"top": 229,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2706,7 +2744,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1066,
+									"left": 1069,
 									"top": 272,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -2726,7 +2764,7 @@
 								"$ref": "AAAAAAGTlzr2dt3NggM="
 							},
 							"lineStyle": 1,
-							"points": "803:447;1064:264;1206.7939453125:239.71613890735816",
+							"points": "803:447;1064:264;1170.5:225.84962406015038",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0Gy/t89ZcM="
@@ -2760,8 +2798,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 998,
-									"top": 233,
+									"left": 999,
+									"top": 221,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2782,8 +2820,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 994,
-									"top": 247,
+									"left": 996,
+									"top": 236,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2804,8 +2842,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1005,
-									"top": 204,
+									"left": 1004,
+									"top": 192,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2826,8 +2864,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1049,
-									"top": 247,
+									"left": 1050,
+									"top": 232,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -2848,8 +2886,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1044,
-									"top": 259,
+									"left": 1045,
+									"top": 245,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -2870,8 +2908,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1061,
-									"top": 222,
+									"left": 1060,
+									"top": 206,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -2892,8 +2930,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 947,
-									"top": 219,
+									"left": 948,
+									"top": 211,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -2913,8 +2951,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 945,
-									"top": 232,
+									"left": 948,
+									"top": 225,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -2934,8 +2972,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 950,
-									"top": 191,
+									"left": 949,
+									"top": 184,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -2983,7 +3021,7 @@
 								"$ref": "AAAAAAGTl0D8lN8Aqn8="
 							},
 							"lineStyle": 1,
-							"points": "1079:246;926:204",
+							"points": "1079:229;926:198",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0IaPt9SL2g="
@@ -3130,8 +3168,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 661,
-									"top": 151,
+									"left": 660,
+									"top": 152,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -3153,7 +3191,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 656,
-									"top": 192,
+									"top": 193,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -3175,7 +3213,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 716,
-									"top": 162,
+									"top": 163,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -3196,7 +3234,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 713,
-									"top": 149,
+									"top": 150,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -3265,7 +3303,7 @@
 								"$ref": "AAAAAAGTly7GD9yQVEw="
 							},
 							"lineStyle": 1,
-							"points": "634:187;743:183",
+							"points": "634:188;743:183",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0IrL+ATcdo="
@@ -5641,7 +5679,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void displayAllPhotos",
+							"name": "Photo[] displayAllPhotos",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5649,7 +5687,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTtR3Px3gXCXk="
 									},
-									"name": "User user"
+									"name": "int userId"
 								}
 							]
 						},
@@ -5659,7 +5697,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void publishPhoto"
+							"name": "void publishPhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEAGshsELbU=",
+									"_parent": {
+										"$ref": "AAAAAAGTy8AhwuXoFAE="
+									},
+									"name": "Photo photo",
+									"type": ""
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
@@ -5667,7 +5716,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void updatePhoto"
+							"name": "void updatePhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEAzWBwV/sU=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9Y4w/XoXYo="
+									},
+									"name": "Photo photo",
+									"type": ""
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
@@ -5675,7 +5735,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void deletePhoto"
+							"name": "void deletePhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEBrmh0mIVM=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9dOQfx386k="
+									},
+									"name": "int photoId",
+									"type": ""
+								}
+							]
 						}
 					]
 				},
@@ -5873,7 +5944,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTlz87Zd5A9SE="
 							},
-							"name": "PhotoDAOPostgres PhotoDAOPostgres",
+							"name": "PhotoDAOPostgres photoDAOPostgres",
 							"visibility": "private",
 							"isStatic": true
 						}
@@ -5906,6 +5977,16 @@
 					},
 					"name": "Photo",
 					"attributes": [
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGTzECFUB5IfwQ=",
+							"_parent": {
+								"$ref": "AAAAAAGTl0Bjfd6ImT4="
+							},
+							"name": "int photo_id",
+							"visibility": "private",
+							"isID": true
+						},
 						{
 							"_type": "UMLAttribute",
 							"_id": "AAAAAAGTl1Evl5IahCE=",
@@ -5942,9 +6023,9 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "User uploadedBy",
+							"name": "int userId",
 							"visibility": "private",
-							"type": ""
+							"isReadOnly": true
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6096,18 +6177,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getString title",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iQHoxTj6c=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iQHoxS/gs="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "int getd"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6115,18 +6185,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "setString title",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iQI4xVB3w=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iQIoxUY5w="
-									},
-									"name": "value",
-									"type": ""
-								}
-							]
+							"name": "void setId"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6134,18 +6193,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getString filePath",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iQmIzyQbg=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iQmIzxfq0="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "String getTitle"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6153,18 +6201,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "setString filePath",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iQmIz0wKw=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iQmIzz2sM="
-									},
-									"name": "value",
-									"type": ""
-								}
-							]
+							"name": "void setTitle"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6172,18 +6209,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getString description",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iQ8o2RRTE=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iQ8o2QPwg="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "string getDescription"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6191,18 +6217,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "setString description",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iQ8o2TWUA=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iQ8o2ScLg="
-									},
-									"name": "value",
-									"type": ""
-								}
-							]
+							"name": "void setPrice"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6210,18 +6225,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getInt price",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iRVo4weJ0=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iRVo4vcZ0="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "int getPrice"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6229,18 +6233,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "setInt price",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iRVo4ygSE=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iRVo4xcJQ="
-									},
-									"name": "value",
-									"type": ""
-								}
-							]
+							"name": "void setPrice"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6248,18 +6241,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getUser uploadedBy",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iRp47PmbA=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iRp47OE/0="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "int getUserId"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6267,18 +6249,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "setUser uploadedBy",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iRp47R3NM=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iRp47Qbz0="
-									},
-									"name": "value",
-									"type": ""
-								}
-							]
+							"name": "Date getDate"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6286,18 +6257,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getBoolean isForSale",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iR9Y9uaDk=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iR9Y9tvg0="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "void setDate"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6305,18 +6265,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "setBoolean isForSale",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iR9Y9wN6k=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iR9Y9vqGI="
-									},
-									"name": "value",
-									"type": ""
-								}
-							]
+							"name": "boolean getIsForSale"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6324,18 +6273,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "getDate uploadDate",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGTy6iSRpAN1kM=",
-									"_parent": {
-										"$ref": "AAAAAAGTy6iSRpAM3e4="
-									},
-									"type": "",
-									"direction": "return"
-								}
-							]
+							"name": "void setIsForSale"
 						},
 						{
 							"_type": "UMLOperation",
@@ -6355,6 +6293,14 @@
 									"type": ""
 								}
 							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGTzERKyUA7TYc=",
+							"_parent": {
+								"$ref": "AAAAAAGTl0Bjfd6ImT4="
+							},
+							"name": "Operation1"
 						}
 					]
 				},
@@ -6428,7 +6374,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "void displayAllPhotos",
+							"name": "Photo[] displayAllPhotos",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -6436,7 +6382,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTl2gCZDCyWzU="
 									},
-									"name": "User user"
+									"name": "int userId"
 								}
 							]
 						},
@@ -6446,7 +6392,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "void publishPhoto"
+							"name": "void publishPhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzENpXztFbPw=",
+									"_parent": {
+										"$ref": "AAAAAAGTy7r2h9mhmcQ="
+									},
+									"name": "Photo photo",
+									"type": ""
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
@@ -6454,7 +6411,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "void updatePhoto"
+							"name": "void updatePhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEN4YTz46J4=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9XcpPQNrFI="
+									},
+									"name": "Photo photo",
+									"type": ""
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
@@ -6462,7 +6430,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "void deletePhoto"
+							"name": "void deletePhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEORlT6Z+Cg=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9cJMvr2uYY="
+									},
+									"name": "int photoId",
+									"type": ""
+								}
+							]
 						}
 					]
 				},
@@ -6510,7 +6489,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "void displayAllPhotos",
+							"name": "Photo[] displayAllPhotos",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -6518,7 +6497,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTl2jQ/z7wlqM="
 									},
-									"name": "User user"
+									"name": "int userId"
 								}
 							]
 						},
@@ -6528,7 +6507,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "void pulishPhoto"
+							"name": "void publishPhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEMWqDSfv4g=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9gdIgK4BsA="
+									},
+									"name": "Photo photo",
+									"type": ""
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
@@ -6536,7 +6526,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "void updatePhoto"
+							"name": "void updatePhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEMolDZSIlA=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9hgtQTbA/k="
+									},
+									"name": "Photo photo",
+									"type": ""
+								}
+							]
 						},
 						{
 							"_type": "UMLOperation",
@@ -6544,7 +6545,18 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "void deletePhoto"
+							"name": "void deletePhoto",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGTzEM6zTfzf6Y=",
+									"_parent": {
+										"$ref": "AAAAAAGTy9iSVAaAsQw="
+									},
+									"name": "int photoId",
+									"type": ""
+								}
+							]
 						}
 					]
 				},
@@ -6621,7 +6633,8 @@
 								"$ref": "AAAAAAGTl0Jt/eFc/Y0="
 							},
 							"name": "PhotoFacade photoFacade",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6648,7 +6661,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTl2/047Sx6zs="
 									},
-									"name": "PhotoFacade photoFacade"
+									"name": "PhotoFacade photoFacade",
+									"type": ""
 								}
 							]
 						},
@@ -6872,7 +6886,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTl17iGw0o35Y="
 									},
-									"name": "Stage allPhotosStage"
+									"name": "Stage allPhotosStage",
+									"type": ""
 								}
 							]
 						},
@@ -6917,7 +6932,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy8BsJuk9UnU="
 									},
-									"name": "Stage publishPhotoStage"
+									"name": "Stage publishPhotoStage",
+									"type": ""
 								}
 							]
 						},
