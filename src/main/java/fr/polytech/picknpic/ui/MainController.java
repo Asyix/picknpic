@@ -1,8 +1,13 @@
 package fr.polytech.picknpic.ui;
 
+import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.ui.controllers.LoginController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * Controller for the main application view.
@@ -41,10 +46,33 @@ public class MainController {
 
     /**
      * Handles the login button action.
-     * Opens the login scene and waits for user interaction.
+     * Opens the login scene, waits for user interaction, and informs {@link SceneManager} if login is successful.
      */
     @FXML
     private void handleLogin() {
-        sceneManager.loadLoginScene();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/login.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            LoginController loginController = loader.getController();
+            loginController.setMainController(this);
+
+            Stage loginStage = new Stage();
+            loginStage.setScene(scene);
+            loginStage.setTitle("Login");
+            loginStage.showAndWait(); // Pause until login is complete
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Handles the successful login of a user.
+     * Updates the {@link SceneManager} with the logged-in user.
+     *
+     * @param user The successfully logged-in user.
+     */
+    public void onUserLoggedIn(User user) {
+        sceneManager.setCurrentUser(user);
     }
 }
