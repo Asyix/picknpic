@@ -46,12 +46,13 @@
 											"_parent": {
 												"$ref": "AAAAAAGTly7GD9yRHUM="
 											},
-											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 352,
-											"top": -96,
-											"height": 13
+											"left": 525,
+											"top": 165,
+											"width": 369.8876953125,
+											"height": 13,
+											"text": "«singleton»"
 										},
 										{
 											"_type": "LabelView",
@@ -62,10 +63,10 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 525,
-											"top": 167,
-											"width": 361.22314453125,
+											"top": 180,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "CommentFacade"
+											"text": "PostFacade"
 										},
 										{
 											"_type": "LabelView",
@@ -101,8 +102,8 @@
 									"parentStyle": true,
 									"left": 520,
 									"top": 160,
-									"width": 371.22314453125,
-									"height": 25,
+									"width": 379.8876953125,
+									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGTly7GD9ySin0="
 									},
@@ -138,8 +139,8 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 190,
-											"width": 361.22314453125,
+											"top": 203,
+											"width": 369.8876953125,
 											"height": 13,
 											"text": "-final AbstractFactory abstractFactory",
 											"horizontalAlignment": 0
@@ -148,8 +149,8 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 520,
-									"top": 185,
-									"width": 371.22314453125,
+									"top": 198,
+									"width": 379.8876953125,
 									"height": 23
 								},
 								{
@@ -174,10 +175,28 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 213,
-											"width": 361.22314453125,
+											"top": 226,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+CommentFacade()",
+											"text": "-PostFacade()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGT38ToEWh8H+g=",
+											"_parent": {
+												"$ref": "AAAAAAGTly7GENyXt9I="
+											},
+											"model": {
+												"$ref": "AAAAAAGT38Tn/Wh5Eqg="
+											},
+											"font": "Arial;13;0",
+											"parentStyle": true,
+											"left": 525,
+											"top": 241,
+											"width": 369.8876953125,
+											"height": 13,
+											"text": "+PostFacade getInstance()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -192,10 +211,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 228,
-											"width": 361.22314453125,
+											"top": 256,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+void addCommentOnPost(int postId, int userId, String text)",
+											"text": "+void createPost(int postId, int userId, String text, String image)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -226,10 +245,11 @@
 											"model": {
 												"$ref": "AAAAAAGTy0ME9tlJ4Qk="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 243,
+											"top": 271,
 											"width": 361.22314453125,
 											"height": 13,
 											"text": "+void addCommentOnPhoto(int photoId, int userId, String text)",
@@ -263,10 +283,11 @@
 											"model": {
 												"$ref": "AAAAAAGTy0bV2u3TW98="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 258,
+											"top": 271,
 											"width": 361.22314453125,
 											"height": 13,
 											"text": "+void replyToComment(int commentId, int userId, String text)",
@@ -303,10 +324,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 273,
-											"width": 361.22314453125,
+											"top": 271,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+void updateComment(int commentId, String text)",
+											"text": "+void updatePost(int postId, int userId, String text, String image)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -321,10 +342,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 288,
-											"width": 361.22314453125,
+											"top": 286,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+void deleteComment(int commentId)",
+											"text": "+void deletePost(int postId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -339,10 +360,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 303,
-											"width": 361.22314453125,
+											"top": 301,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getPostComments(int postId)",
+											"text": "+Post getPost(int postId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -357,10 +378,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 318,
-											"width": 361.22314453125,
+											"top": 316,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getPhotoComments(int photoId)",
+											"text": "+Post[] getUserPosts(int userId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -372,10 +393,11 @@
 											"model": {
 												"$ref": "AAAAAAGTy3HwZKXUMKo="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 333,
+											"top": 331,
 											"width": 361.22314453125,
 											"height": 13,
 											"text": "+Comment[] getCommentReplies(int commentId)",
@@ -390,10 +412,11 @@
 											"model": {
 												"$ref": "AAAAAAGTy3JIuKvKotc="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 525,
-											"top": 348,
+											"top": 331,
 											"width": 361.22314453125,
 											"height": 13,
 											"text": "+Comment[] getUserComments(int userId)",
@@ -403,9 +426,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 520,
-									"top": 208,
-									"width": 371.22314453125,
-									"height": 158
+									"top": 221,
+									"width": 379.8876953125,
+									"height": 113
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -447,8 +470,8 @@
 							"containerChangeable": true,
 							"left": 520,
 							"top": 160,
-							"width": 370.22314453125,
-							"height": 216,
+							"width": 378.8876953125,
+							"height": 176,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTly7GD9yRHUM="
 							},
@@ -661,7 +684,7 @@
 											"top": 688,
 											"width": 297.5751953125,
 											"height": 13,
-											"text": "+CommentDAO createCommentDAO()",
+											"text": "+PostDAO createPostDAO()",
 											"horizontalAlignment": 0
 										}
 									],
@@ -774,7 +797,7 @@
 											"parentStyle": true,
 											"left": 861,
 											"top": 855,
-											"width": 277.6943359375,
+											"width": 277.3642578125,
 											"height": 13,
 											"text": "PostgresFactory"
 										},
@@ -812,7 +835,7 @@
 									"parentStyle": true,
 									"left": 856,
 									"top": 848,
-									"width": 287.6943359375,
+									"width": 287.3642578125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGTlz87Zd5E2us="
@@ -850,7 +873,7 @@
 											"parentStyle": true,
 											"left": 861,
 											"top": 878,
-											"width": 277.6943359375,
+											"width": 277.3642578125,
 											"height": 13,
 											"underline": true,
 											"text": "-PostgresFactory postgresFactory",
@@ -869,10 +892,10 @@
 											"parentStyle": true,
 											"left": 861,
 											"top": 893,
-											"width": 277.6943359375,
+											"width": 277.3642578125,
 											"height": 13,
 											"underline": true,
-											"text": "-CommentDAOPostgres commentDAOPostgres",
+											"text": "-PostDAOPostgres postDAOPostgres",
 											"horizontalAlignment": 0
 										}
 									],
@@ -880,7 +903,7 @@
 									"parentStyle": true,
 									"left": 856,
 									"top": 873,
-									"width": 287.6943359375,
+									"width": 287.3642578125,
 									"height": 38
 								},
 								{
@@ -906,9 +929,9 @@
 											"parentStyle": true,
 											"left": 861,
 											"top": 916,
-											"width": 277.6943359375,
+											"width": 277.3642578125,
 											"height": 13,
-											"text": "+CommentDAO createCommentDAO()",
+											"text": "+PostDAO createPostDAO()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -924,7 +947,7 @@
 											"parentStyle": true,
 											"left": 861,
 											"top": 931,
-											"width": 277.6943359375,
+											"width": 277.3642578125,
 											"height": 13,
 											"underline": true,
 											"text": "+PostgresFactory getPostgresFactoryInstance()",
@@ -935,7 +958,7 @@
 									"parentStyle": true,
 									"left": 856,
 									"top": 911,
-									"width": 287.6943359375,
+									"width": 287.3642578125,
 									"height": 38
 								},
 								{
@@ -978,7 +1001,7 @@
 							"containerChangeable": true,
 							"left": 856,
 							"top": 848,
-							"width": 286.6943359375,
+							"width": 286.3642578125,
 							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTlz87Zd5DI74="
@@ -1124,7 +1147,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 736,
-											"top": -256,
+											"top": -208,
 											"height": 13
 										},
 										{
@@ -1136,7 +1159,7 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 87,
+											"top": 111,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "Comment"
@@ -1151,7 +1174,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 736,
-											"top": -256,
+											"top": -208,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -1166,7 +1189,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 736,
-											"top": -256,
+											"top": -208,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
@@ -1174,7 +1197,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 1016,
-									"top": 80,
+									"top": 104,
 									"width": 163.08984375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -1212,10 +1235,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 110,
+											"top": 134,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "-int comment_id {id}",
+											"text": "-int post_id {id}",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1230,7 +1253,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 125,
+											"top": 149,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-int user_id",
@@ -1248,10 +1271,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 140,
+											"top": 164,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "-int photo_id",
+											"text": "-string image",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1266,10 +1289,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 155,
+											"top": 179,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "-int post_id",
+											"text": "-int nbComments",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1281,10 +1304,11 @@
 											"model": {
 												"$ref": "AAAAAAGTl1I8Z5xNk8I="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 170,
+											"top": 218,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-int comment_id",
@@ -1303,7 +1327,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 121,
+											"top": 169,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-Int phone_number",
@@ -1322,7 +1346,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 121,
+											"top": 169,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-boolean admin",
@@ -1340,7 +1364,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 185,
+											"top": 194,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-int nbLikes",
@@ -1358,7 +1382,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 200,
+											"top": 209,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-String text",
@@ -1376,7 +1400,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 215,
+											"top": 224,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "-Date date",
@@ -1386,9 +1410,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 1016,
-									"top": 105,
+									"top": 129,
 									"width": 163.08984375,
-									"height": 128
+									"height": 113
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1412,7 +1436,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 238,
+											"top": 247,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+int getId()",
@@ -1427,10 +1451,11 @@
 											"model": {
 												"$ref": "AAAAAAGTl1X7zrNZraw="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 253,
+											"top": 286,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void setId()",
@@ -1448,7 +1473,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 268,
+											"top": 262,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+int getUserId()",
@@ -1463,10 +1488,11 @@
 											"model": {
 												"$ref": "AAAAAAGTl1YGGrTfP1I="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 283,
+											"top": 301,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void setUserId()",
@@ -1484,10 +1510,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 298,
+											"top": 277,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "+int getPhotoId()",
+											"text": "+string getImage()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1502,10 +1528,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 313,
+											"top": 292,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "+void setPhotoId()",
+											"text": "+void setImage()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1520,10 +1546,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 328,
+											"top": 307,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "+int getPostId()",
+											"text": "+int getNbComments()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1538,10 +1564,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 343,
+											"top": 322,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "+void setPostId()",
+											"text": "+void setNbComments()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1553,10 +1579,11 @@
 											"model": {
 												"$ref": "AAAAAAGTl1jlsMgjuSQ="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 358,
+											"top": 361,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+int getCommentId()",
@@ -1571,10 +1598,11 @@
 											"model": {
 												"$ref": "AAAAAAGTl1joAsjm514="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 373,
+											"top": 361,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void getCommentId()",
@@ -1593,7 +1621,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 279,
+											"top": 327,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+Int getPhoneNumber()",
@@ -1612,7 +1640,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 294,
+											"top": 342,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void setPhoneNulmber()",
@@ -1631,7 +1659,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 279,
+											"top": 327,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+boolean getAdmin()",
@@ -1650,7 +1678,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 324,
+											"top": 372,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+boolean setAdmin()",
@@ -1668,7 +1696,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 388,
+											"top": 337,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+int getNbLikes()",
@@ -1686,7 +1714,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 403,
+											"top": 352,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void setNbLikes()",
@@ -1704,7 +1732,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 418,
+											"top": 367,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+String getText()",
@@ -1722,7 +1750,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 433,
+											"top": 382,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void setText()",
@@ -1740,7 +1768,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 448,
+											"top": 397,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+Date getDate()",
@@ -1758,7 +1786,7 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1021,
-											"top": 463,
+											"top": 412,
 											"width": 153.08984375,
 											"height": 13,
 											"text": "+void setDate()",
@@ -1768,9 +1796,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 1016,
-									"top": 233,
+									"top": 242,
 									"width": 163.08984375,
-									"height": 248
+									"height": 188
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1785,7 +1813,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 368,
-									"top": -128,
+									"top": -104,
 									"width": 10,
 									"height": 10
 								},
@@ -1802,7 +1830,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 368,
-									"top": -128,
+									"top": -104,
 									"width": 10,
 									"height": 10
 								}
@@ -1811,9 +1839,9 @@
 							"parentStyle": false,
 							"containerChangeable": true,
 							"left": 1016,
-							"top": 80,
+							"top": 104,
 							"width": 162.08984375,
-							"height": 401,
+							"height": 328,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTl0Bjfd6LldU="
 							},
@@ -1873,9 +1901,9 @@
 											"parentStyle": true,
 											"left": 1253,
 											"top": 631,
-											"width": 283.8515625,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "CommentDAOPostgres"
+											"text": "PostDAOPostgres"
 										},
 										{
 											"_type": "LabelView",
@@ -1911,7 +1939,7 @@
 									"parentStyle": true,
 									"left": 1248,
 									"top": 624,
-									"width": 293.8515625,
+									"width": 379.8876953125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGTl0CtX9659/k="
@@ -1939,7 +1967,7 @@
 									"parentStyle": true,
 									"left": 1248,
 									"top": 649,
-									"width": 293.8515625,
+									"width": 379.8876953125,
 									"height": 10
 								},
 								{
@@ -1965,9 +1993,9 @@
 											"parentStyle": true,
 											"left": 1253,
 											"top": 664,
-											"width": 283.8515625,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comments[] getPostComments(int postId)",
+											"text": "+void createPost(int postId, int userId, String text, String image)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1983,9 +2011,9 @@
 											"parentStyle": true,
 											"left": 1253,
 											"top": 679,
-											"width": 283.8515625,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getPhotoComments(int photoId)",
+											"text": "+void updatePost(int postId, int userId, String text, String image)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2001,9 +2029,9 @@
 											"parentStyle": true,
 											"left": 1253,
 											"top": 694,
-											"width": 283.8515625,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getCommentReplies(int commentId)",
+											"text": "+void deletePost(int postId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2015,11 +2043,12 @@
 											"model": {
 												"$ref": "AAAAAAGTy2MriHT4uBk="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1253,
 											"top": 709,
-											"width": 283.8515625,
+											"width": 369.8876953125,
 											"height": 13,
 											"text": "+Comment[] getUserComments(int userId)",
 											"horizontalAlignment": 0
@@ -2036,10 +2065,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1253,
-											"top": 724,
-											"width": 283.8515625,
+											"top": 709,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+void createComment(Comment comment)",
+											"text": "+Post getPost(int postId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2054,10 +2083,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1253,
-											"top": 739,
-											"width": 283.8515625,
+											"top": 724,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+void updateComment(Comment comment)",
+											"text": "+Post[] getUserPosts(int userId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2069,11 +2098,12 @@
 											"model": {
 												"$ref": "AAAAAAGTy1j+30AdnAo="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1253,
-											"top": 754,
-											"width": 283.8515625,
+											"top": 739,
+											"width": 369.8876953125,
 											"height": 13,
 											"text": "+void deleteComment(int commentId)",
 											"horizontalAlignment": 0
@@ -2083,8 +2113,8 @@
 									"parentStyle": true,
 									"left": 1248,
 									"top": 659,
-									"width": 293.8515625,
-									"height": 113
+									"width": 379.8876953125,
+									"height": 83
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2098,8 +2128,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 360,
-									"top": 136,
+									"left": 392,
+									"top": 144,
 									"width": 10,
 									"height": 10
 								},
@@ -2115,8 +2145,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 360,
-									"top": 136,
+									"left": 392,
+									"top": 144,
 									"width": 10,
 									"height": 10
 								}
@@ -2126,8 +2156,8 @@
 							"containerChangeable": true,
 							"left": 1248,
 							"top": 624,
-							"width": 292.8515625,
-							"height": 148,
+							"width": 378.8876953125,
+							"height": 118,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTl0CtX964NuY="
 							},
@@ -2188,10 +2218,10 @@
 											"font": "Arial;13;1",
 											"parentStyle": true,
 											"left": 1277,
-											"top": 397,
-											"width": 367,
+											"top": 427,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "CommentDAO"
+											"text": "PostDAO"
 										},
 										{
 											"_type": "LabelView",
@@ -2226,8 +2256,8 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 1272,
-									"top": 390,
-									"width": 377,
+									"top": 420,
+									"width": 379.8876953125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGTl0D8lN8Cea4="
@@ -2281,10 +2311,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
-											"top": 420,
-											"width": 367,
+											"top": 450,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comments[] getPostComments(int postId)",
+											"text": "+void createPost(int postId, int userId, String text, String image)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2299,10 +2329,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
-											"top": 435,
-											"width": 367,
+											"top": 465,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getPhotoComments(int photoId)",
+											"text": "+void updatePost(int postId, int userId, String text, String image)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2317,10 +2347,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
-											"top": 450,
-											"width": 367,
+											"top": 480,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getCommentReplies(int commentId)",
+											"text": "+void deletePost(int postId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2335,10 +2365,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
-											"top": 465,
-											"width": 367,
+											"top": 495,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+Comment[] getUserComments(int userId)",
+											"text": "+Post getPost(int postId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2353,10 +2383,10 @@
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
-											"top": 480,
-											"width": 367,
+											"top": 510,
+											"width": 369.8876953125,
 											"height": 13,
-											"text": "+void createComment(Comment comment)",
+											"text": "+Post[] getUserPosts(int userId)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2368,11 +2398,12 @@
 											"model": {
 												"$ref": "AAAAAAGTy4GjO2XsnJw="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
 											"top": 495,
-											"width": 367,
+											"width": 369.8876953125,
 											"height": 13,
 											"text": "+void updateComment(Comment comment)",
 											"horizontalAlignment": 0
@@ -2386,11 +2417,12 @@
 											"model": {
 												"$ref": "AAAAAAGTy1cD6yjYxJ0="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 1277,
 											"top": 510,
-											"width": 367,
+											"width": 369.8876953125,
 											"height": 13,
 											"text": "+void deleteComment(int commentId)",
 											"horizontalAlignment": 0
@@ -2399,9 +2431,9 @@
 									"font": "Arial;13;0",
 									"parentStyle": true,
 									"left": 1272,
-									"top": 415,
-									"width": 377,
-									"height": 113
+									"top": 445,
+									"width": 379.8876953125,
+									"height": 83
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2443,7 +2475,7 @@
 							"containerChangeable": true,
 							"left": 1272,
 							"top": 296,
-							"width": 376,
+							"width": 378.8876953125,
 							"height": 232,
 							"stereotypeDisplay": "icon",
 							"nameCompartment": {
@@ -2485,8 +2517,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1417,
-									"top": 497,
+									"left": 1434,
+									"top": 513,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2507,8 +2539,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1402,
-									"top": 494,
+									"left": 1419,
+									"top": 512,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2529,8 +2561,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1446,
-									"top": 502,
+									"left": 1463,
+									"top": 516,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2549,7 +2581,7 @@
 								"$ref": "AAAAAAGTl0CtX963y4Q="
 							},
 							"lineStyle": 1,
-							"points": "1411:623;1453.1774193548388:390",
+							"points": "1442:623;1457.374269005848:420",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0E1AN8r3Ks="
@@ -2583,8 +2615,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1253,
-									"top": 468,
+									"left": 1246,
+									"top": 479,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2605,8 +2637,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1245,
-									"top": 456,
+									"left": 1238,
+									"top": 466,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2627,8 +2659,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1270,
-									"top": 493,
+									"left": 1263,
+									"top": 504,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2647,7 +2679,7 @@
 								"$ref": "AAAAAAGTlzr2dt3NggM="
 							},
 							"lineStyle": 1,
-							"points": "1111:591;1413:384.2804232804233",
+							"points": "1112:591;1399.44384765625:406.92094212582236",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0Gy/t89ZcM="
@@ -2681,8 +2713,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1220,
-									"top": 334,
+									"left": 1219,
+									"top": 325,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2703,8 +2735,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1215,
-									"top": 348,
+									"left": 1214,
+									"top": 339,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2725,8 +2757,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1229,
-									"top": 305,
+									"left": 1230,
+									"top": 298,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2748,7 +2780,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 1241,
-									"top": 342,
+									"top": 335,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -2770,7 +2802,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 1234,
-									"top": 354,
+									"top": 346,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -2791,8 +2823,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1254,
-									"top": 317,
+									"left": 1255,
+									"top": 311,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -2813,8 +2845,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1198,
-									"top": 326,
+									"left": 1197,
+									"top": 317,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -2834,8 +2866,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1196,
-									"top": 340,
+									"left": 1194,
+									"top": 330,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -2856,7 +2888,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 1203,
-									"top": 299,
+									"top": 290,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -2908,7 +2940,7 @@
 								"$ref": "AAAAAAGTl0D8lN8Aqn8="
 							},
 							"lineStyle": 1,
-							"points": "1271:343;1179:310",
+							"points": "1271:337;1179:300",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0IaPt9SL2g="
@@ -2967,8 +2999,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 953,
-									"top": 254,
+									"left": 957,
+									"top": 240,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2989,8 +3021,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 953,
-									"top": 239,
+									"left": 958,
+									"top": 225,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -3011,8 +3043,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 952,
-									"top": 283,
+									"left": 956,
+									"top": 269,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -3033,8 +3065,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 917,
-									"top": 253,
+									"left": 926,
+									"top": 238,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -3055,8 +3087,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 919,
-									"top": 240,
+									"left": 929,
+									"top": 225,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -3077,8 +3109,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 912,
-									"top": 281,
+									"left": 920,
+									"top": 265,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -3100,7 +3132,7 @@
 									"font": "Arial;13;0",
 									"parentStyle": false,
 									"left": 989,
-									"top": 255,
+									"top": 241,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -3120,8 +3152,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 987,
-									"top": 242,
+									"left": 988,
+									"top": 228,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -3141,8 +3173,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 993,
-									"top": 282,
+									"left": 992,
+									"top": 269,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -3194,7 +3226,7 @@
 								"$ref": "AAAAAAGTly7GD9yQVEw="
 							},
 							"lineStyle": 1,
-							"points": "891:274;1015:277",
+							"points": "900:258;1015:264",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0IrL+ATcdo="
@@ -3276,7 +3308,7 @@
 											"top": 511,
 											"width": 361.90234375,
 											"height": 13,
-											"text": "CommentController"
+											"text": "PostController"
 										},
 										{
 											"_type": "LabelView",
@@ -3352,7 +3384,7 @@
 											"top": 534,
 											"width": 361.90234375,
 											"height": 13,
-											"text": "-CommentFacade commentFacade",
+											"text": "-PostFace postFacade",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3406,7 +3438,7 @@
 											"top": 572,
 											"width": 361.90234375,
 											"height": 13,
-											"text": "+void setCommentFacade(CommentFacade commentFacade)",
+											"text": "+void setPostFacade(PostFacade postFacade)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3442,7 +3474,7 @@
 											"top": 602,
 											"width": 361.90234375,
 											"height": 13,
-											"text": "-void handleComment()",
+											"text": "-void handlePost()",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3494,7 +3526,7 @@
 							"left": 136,
 							"top": 504,
 							"width": 370.90234375,
-							"height": 161,
+							"height": 131,
 							"nameCompartment": {
 								"$ref": "AAAAAAGTl0Jt/uFfcp0="
 							},
@@ -3855,8 +3887,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1174,
-									"top": 790,
+									"left": 1210,
+									"top": 775,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -3877,8 +3909,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1167,
-									"top": 777,
+									"left": 1203,
+									"top": 762,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -3899,8 +3931,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1187,
-									"top": 817,
+									"left": 1223,
+									"top": 802,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -3921,7 +3953,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1127,
+									"left": 1131,
 									"top": 815,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -3943,7 +3975,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1122,
+									"left": 1127,
 									"top": 802,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -3965,7 +3997,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1135,
+									"left": 1139,
 									"top": 842,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -3987,8 +4019,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1222,
-									"top": 765,
+									"left": 1289,
+									"top": 735,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -4008,8 +4040,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1213,
-									"top": 755,
+									"left": 1280,
+									"top": 724,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -4029,8 +4061,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1238,
-									"top": 788,
+									"left": 1305,
+									"top": 757,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -4082,7 +4114,7 @@
 								"$ref": "AAAAAAGTlz87Zd5CyNI="
 							},
 							"lineStyle": 1,
-							"points": "1111:847;1252:773",
+							"points": "1115:847;1319:743",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0lJHQz9Lsw="
@@ -4141,8 +4173,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 486,
-									"top": 422,
+									"left": 491,
+									"top": 402,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -4163,8 +4195,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 477,
-									"top": 410,
+									"left": 481,
+									"top": 390,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -4185,8 +4217,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 505,
-									"top": 445,
+									"left": 510,
+									"top": 425,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -4207,7 +4239,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 429,
+									"left": 411,
 									"top": 468,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -4229,7 +4261,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 422,
+									"left": 404,
 									"top": 457,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -4251,7 +4283,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 443,
+									"left": 425,
 									"top": 492,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -4273,8 +4305,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 543,
-									"top": 375,
+									"left": 571,
+									"top": 336,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -4294,8 +4326,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 533,
-									"top": 367,
+									"left": 561,
+									"top": 327,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -4315,8 +4347,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 564,
-									"top": 394,
+									"left": 592,
+									"top": 354,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -4368,7 +4400,7 @@
 								"$ref": "AAAAAAGTl0Jt/uFeTBY="
 							},
 							"lineStyle": 1,
-							"points": "419:503;573:377",
+							"points": "401:503;601:337",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl0mm/A6QXEw="
@@ -4427,8 +4459,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1383,
-									"top": 795,
+									"left": 1407,
+									"top": 782,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -4449,8 +4481,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1398,
-									"top": 799,
+									"left": 1421,
+									"top": 788,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -4471,8 +4503,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1354,
-									"top": 788,
+									"left": 1380,
+									"top": 771,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -4491,7 +4523,7 @@
 								"$ref": "AAAAAAGTl0CtX963y4Q="
 							},
 							"lineStyle": 1,
-							"points": "1375:773;1363:823",
+							"points": "1411:743;1377:823",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGTl26Ubq9DyMQ="
@@ -4579,7 +4611,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CommentFacade",
+					"name": "PostFacade",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -4637,6 +4669,7 @@
 							}
 						}
 					],
+					"stereotype": "singleton",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -4656,7 +4689,16 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "CommentFacade"
+							"name": "PostFacade",
+							"visibility": "private"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGT38Tn/Wh5Eqg=",
+							"_parent": {
+								"$ref": "AAAAAAGTly7GD9yOsHM="
+							},
+							"name": "PostFacade getInstance"
 						},
 						{
 							"_type": "UMLOperation",
@@ -4664,7 +4706,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void addCommentOnPost",
+							"name": "void createPost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4691,6 +4733,15 @@
 										"$ref": "AAAAAAGTtR3Px3gXCXk="
 									},
 									"name": "String text",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38zmCKY4XbE=",
+									"_parent": {
+										"$ref": "AAAAAAGTtR3Px3gXCXk="
+									},
+									"name": "String image",
 									"type": ""
 								}
 							]
@@ -4859,7 +4910,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void updateComment",
+							"name": "void updatePost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4867,7 +4918,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy4k894p4GpE="
 									},
-									"name": "int commentId",
+									"name": "int postId",
 									"type": ""
 								},
 								{
@@ -4876,7 +4927,25 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy4k894p4GpE="
 									},
+									"name": "int userId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT384j5bG5Wlo=",
+									"_parent": {
+										"$ref": "AAAAAAGTy4k894p4GpE="
+									},
 									"name": "String text",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT384j5bG66pc=",
+									"_parent": {
+										"$ref": "AAAAAAGTy4k894p4GpE="
+									},
+									"name": "String image",
 									"type": ""
 								}
 							]
@@ -4887,7 +4956,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "void deleteComment",
+							"name": "void deletePost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4895,7 +4964,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy4nYtosRQzc="
 									},
-									"name": "int commentId",
+									"name": "int postId",
 									"type": ""
 								}
 							]
@@ -4906,7 +4975,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "Comment[] getPostComments",
+							"name": "Post getPost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4925,7 +4994,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTly7GD9yOsHM="
 							},
-							"name": "Comment[] getPhotoComments",
+							"name": "Post[] getUserPosts",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4933,7 +5002,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy3GXYKMrHfM="
 									},
-									"name": "int photoId",
+									"name": "int userId",
 									"type": ""
 								}
 							]
@@ -5090,7 +5159,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTlzr2dd3L8zA="
 							},
-							"name": "CommentDAO createCommentDAO",
+							"name": "PostDAO createPostDAO",
 							"isAbstract": true
 						}
 					]
@@ -5172,7 +5241,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTlz87Zd5A9SE="
 							},
-							"name": "CommentDAOPostgres commentDAOPostgres",
+							"name": "PostDAOPostgres postDAOPostgres",
 							"visibility": "private",
 							"isStatic": true,
 							"type": ""
@@ -5185,7 +5254,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTlz87Zd5A9SE="
 							},
-							"name": "CommentDAO createCommentDAO"
+							"name": "PostDAO createPostDAO"
 						},
 						{
 							"_type": "UMLOperation",
@@ -5212,7 +5281,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "int comment_id",
+							"name": "int post_id",
 							"visibility": "private",
 							"type": "",
 							"isID": true
@@ -5233,7 +5302,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "int photo_id",
+							"name": "string image",
 							"visibility": "private",
 							"type": ""
 						},
@@ -5243,7 +5312,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "int post_id",
+							"name": "int nbComments",
 							"visibility": "private",
 							"type": ""
 						},
@@ -5348,7 +5417,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "int getPhotoId"
+							"name": "string getImage"
 						},
 						{
 							"_type": "UMLOperation",
@@ -5356,7 +5425,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "void setPhotoId"
+							"name": "void setImage"
 						},
 						{
 							"_type": "UMLOperation",
@@ -5364,7 +5433,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "int getPostId"
+							"name": "int getNbComments"
 						},
 						{
 							"_type": "UMLOperation",
@@ -5372,7 +5441,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "void setPostId"
+							"name": "void setNbComments"
 						},
 						{
 							"_type": "UMLOperation",
@@ -5478,7 +5547,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CommentDAOPostgres",
+					"name": "PostDAOPostgres",
 					"ownedElements": [
 						{
 							"_type": "UMLInterfaceRealization",
@@ -5542,7 +5611,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "Comments[] getPostComments",
+							"name": "void createPost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5551,6 +5620,33 @@
 										"$ref": "AAAAAAGTl2gCZDCyWzU="
 									},
 									"name": "int postId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38+LKsOfsPY=",
+									"_parent": {
+										"$ref": "AAAAAAGTl2gCZDCyWzU="
+									},
+									"name": "int userId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38+LKsOgrF4=",
+									"_parent": {
+										"$ref": "AAAAAAGTl2gCZDCyWzU="
+									},
+									"name": "String text",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38+LKsOhxSI=",
+									"_parent": {
+										"$ref": "AAAAAAGTl2gCZDCyWzU="
+									},
+									"name": "String image",
 									"type": ""
 								}
 							]
@@ -5561,7 +5657,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "Comment[] getPhotoComments",
+							"name": "void updatePost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5569,7 +5665,34 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy1h95DWGcV8="
 									},
-									"name": "int photoId",
+									"name": "int postId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38+dQcVWfEI=",
+									"_parent": {
+										"$ref": "AAAAAAGTy1h95DWGcV8="
+									},
+									"name": "int userId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38+dQcVXhyI=",
+									"_parent": {
+										"$ref": "AAAAAAGTy1h95DWGcV8="
+									},
+									"name": "String text",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38+dQcVYLkU=",
+									"_parent": {
+										"$ref": "AAAAAAGTy1h95DWGcV8="
+									},
+									"name": "String image",
 									"type": ""
 								}
 							]
@@ -5580,7 +5703,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "Comment[] getCommentReplies",
+							"name": "void deletePost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5588,7 +5711,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy1iaezfh1U8="
 									},
-									"name": "int commentId",
+									"name": "int postId",
 									"type": ""
 								}
 							]
@@ -5618,7 +5741,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "void createComment",
+							"name": "Post getPost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5626,7 +5749,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy5kn/OskGOY="
 									},
-									"name": "Comment comment",
+									"name": "int postId",
 									"type": ""
 								}
 							]
@@ -5637,7 +5760,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0CtX9610lw="
 							},
-							"name": "void updateComment",
+							"name": "Post[] getUserPosts",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5645,7 +5768,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy1i7DTs4rqM="
 									},
-									"name": "Comment comment",
+									"name": "int userId",
 									"type": ""
 								}
 							]
@@ -5677,7 +5800,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CommentDAO",
+					"name": "PostDAO",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5715,7 +5838,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "Comments[] getPostComments",
+							"name": "void createPost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5724,6 +5847,33 @@
 										"$ref": "AAAAAAGTl2jQ/z7wlqM="
 									},
 									"name": "int postId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38yxTqU3YH0=",
+									"_parent": {
+										"$ref": "AAAAAAGTl2jQ/z7wlqM="
+									},
+									"name": "int userId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT38yxTqU4lBI=",
+									"_parent": {
+										"$ref": "AAAAAAGTl2jQ/z7wlqM="
+									},
+									"name": "String text",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT380OQajDnDg=",
+									"_parent": {
+										"$ref": "AAAAAAGTl2jQ/z7wlqM="
+									},
+									"name": "String image",
 									"type": ""
 								}
 							]
@@ -5734,7 +5884,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "Comment[] getPhotoComments",
+							"name": "void updatePost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5742,7 +5892,34 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy1YoISY1XKY="
 									},
-									"name": "int photoId",
+									"name": "int postId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT380muar69jI=",
+									"_parent": {
+										"$ref": "AAAAAAGTy1YoISY1XKY="
+									},
+									"name": "int userId",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT386SkrW8VKA=",
+									"_parent": {
+										"$ref": "AAAAAAGTy1YoISY1XKY="
+									},
+									"name": "String text",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGT386SkrW9dxk=",
+									"_parent": {
+										"$ref": "AAAAAAGTy1YoISY1XKY="
+									},
+									"name": "String image",
 									"type": ""
 								}
 							]
@@ -5753,7 +5930,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "Comment[] getCommentReplies",
+							"name": "void deletePost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5761,7 +5938,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy1ZhoycWRNo="
 									},
-									"name": "int commentId",
+									"name": "int postId",
 									"type": ""
 								}
 							]
@@ -5772,7 +5949,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "Comment[] getUserComments",
+							"name": "Post getPost",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5780,7 +5957,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy2IfYG9l9tQ="
 									},
-									"name": "int userId",
+									"name": "int postId",
 									"type": ""
 								}
 							]
@@ -5791,7 +5968,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0D8k97+pRY="
 							},
-							"name": "void createComment",
+							"name": "Post[] getUserPosts",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5799,7 +5976,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTy1amNyf32oI="
 									},
-									"name": "Comment comment",
+									"name": "int userId",
 									"type": ""
 								}
 							]
@@ -5850,7 +6027,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CommentController",
+					"name": "PostController",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -5916,7 +6093,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Jt/eFc/Y0="
 							},
-							"name": "CommentFacade commentFacade",
+							"name": "PostFace postFacade",
 							"visibility": "private",
 							"type": ""
 						},
@@ -5937,7 +6114,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Jt/eFc/Y0="
 							},
-							"name": "void setCommentFacade",
+							"name": "void setPostFacade",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -5945,7 +6122,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGTl2/047Sx6zs="
 									},
-									"name": "CommentFacade commentFacade",
+									"name": "PostFacade postFacade",
 									"type": ""
 								}
 							]
@@ -5975,7 +6152,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Jt/eFc/Y0="
 							},
-							"name": "void handleComment",
+							"name": "void handlePost",
 							"visibility": "private"
 						}
 					]
@@ -6203,6 +6380,14 @@
 							"name": "User getCurrentUser"
 						}
 					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAGT39Mbm+MxTDk=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "SceneManager"
 				}
 			]
 		},

@@ -1140,7 +1140,7 @@
 											"top": 87,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "Comment"
+											"text": "Like"
 										},
 										{
 											"_type": "LabelView",
@@ -1216,7 +1216,7 @@
 											"top": 110,
 											"width": 153.08984375,
 											"height": 13,
-											"text": "-int comment_id {id}",
+											"text": "-int like_id {id}",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1876,7 +1876,7 @@
 											"top": 631,
 											"width": 283.8515625,
 											"height": 13,
-											"text": "CommentDAOPostgres"
+											"text": "LikeDAOPostgres"
 										},
 										{
 											"_type": "LabelView",
@@ -2174,7 +2174,7 @@
 											"top": 412,
 											"width": 367,
 											"height": 13,
-											"text": "CommentDAO"
+											"text": "LikeDAO"
 										},
 										{
 											"_type": "LabelView",
@@ -5152,7 +5152,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Comment",
+					"name": "Like",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -5160,9 +5160,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGTl0Bjfd6ImT4="
 							},
-							"name": "int comment_id",
+							"name": "int like_id",
 							"visibility": "private",
-							"type": "",
 							"isID": true
 						},
 						{
@@ -5426,7 +5425,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CommentDAOPostgres",
+					"name": "LikeDAOPostgres",
 					"ownedElements": [
 						{
 							"_type": "UMLInterfaceRealization",
@@ -5606,7 +5605,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CommentDAO",
+					"name": "LikeDAO",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
