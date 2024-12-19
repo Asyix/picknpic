@@ -1,10 +1,8 @@
-package fr.polytech.picknpic;
+package fr.polytech.picknpic.ui;
 
-import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 /**
  * Controller for the main application view.
@@ -20,7 +18,7 @@ public class MainController {
     @FXML
     private Label welcomeLabel;
 
-    /** The scene manager for managing scene transitions and user state. */
+    /** The scene manager for managing scene transitions. */
     private SceneManager sceneManager;
 
     /**
@@ -33,19 +31,20 @@ public class MainController {
     }
 
     /**
+     * Updates the welcome message on the screen.
+     *
+     * @param message The message to display on the welcome label.
+     */
+    public void updateWelcomeMessage(String message) {
+        welcomeLabel.setText(message);
+    }
+
+    /**
      * Handles the login button action.
-     * Opens the login scene in a new stage, waits for user interaction,
-     * and updates the welcome message upon successful login.
+     * Opens the login scene and waits for user interaction.
      */
     @FXML
     private void handleLogin() {
-        // Open the login scene in a new stage
-        Stage loginStage = new Stage();
-        boolean success = sceneManager.loadLoginScene(loginStage);
-
-        // Update the welcome label if login is successful
-        if (success && sceneManager.getCurrentUser() != null) {
-            welcomeLabel.setText("Hello " + sceneManager.getCurrentUser().getUsername() + "!");
-        }
+        sceneManager.loadLoginScene();
     }
 }

@@ -28,19 +28,10 @@ public class LoginController {
     private Label messageLabel;
 
     /** The facade for handling user login operations. */
-    private LoginFacade loginFacade;
+    private final LoginFacade loginFacade = new LoginFacade();
 
     /** The scene manager for transitioning between application views. */
     private SceneManager sceneManager;
-
-    /**
-     * Sets the {@link LoginFacade} for handling login operations.
-     *
-     * @param loginFacade The {@link LoginFacade} instance to set.
-     */
-    public void setLoginFacade(LoginFacade loginFacade) {
-        this.loginFacade = loginFacade;
-    }
 
     /**
      * Sets the {@link SceneManager} for managing scene transitions.
@@ -53,10 +44,7 @@ public class LoginController {
 
     /**
      * Handles the login button action.
-     * Retrieves the username and password from the input fields,
-     * attempts to authenticate the user, and updates the view accordingly.
-     * If authentication succeeds, the current user is set and the login window closes.
-     * If authentication fails, an error message is displayed.
+     * Authenticates the user and updates the application state based on the result.
      */
     @FXML
     private void handleLogin() {
