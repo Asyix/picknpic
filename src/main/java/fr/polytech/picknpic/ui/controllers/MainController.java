@@ -1,7 +1,8 @@
-package fr.polytech.picknpic.ui;
+package fr.polytech.picknpic.ui.controllers;
 
 import fr.polytech.picknpic.bl.models.User;
-import fr.polytech.picknpic.ui.controllers.LoginController;
+import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

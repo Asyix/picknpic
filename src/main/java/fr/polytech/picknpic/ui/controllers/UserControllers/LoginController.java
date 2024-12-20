@@ -1,8 +1,9 @@
-package fr.polytech.picknpic.ui.controllers;
+package fr.polytech.picknpic.ui.controllers.UserControllers;
 
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.facades.user.UserFacade;
 import fr.polytech.picknpic.bl.models.User;
-import fr.polytech.picknpic.ui.MainController;
+import fr.polytech.picknpic.ui.controllers.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -28,10 +29,14 @@ public class LoginController {
     private Label messageLabel;
 
     /** The facade for handling user login operations. */
-    private final LoginFacade loginFacade = new LoginFacade();
+    private final UserFacade userFacade;
 
     /** The main controller for updating the application state after login. */
     private MainController mainController;
+
+    public LoginController() {
+        this.userFacade = UserFacade.getUserFacadeInstance();
+    }
 
     /**
      * Sets the {@link MainController} for managing the application state after login.
@@ -51,7 +56,7 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        User user = loginFacade.login(username, password);
+        User user = userFacade.login(username, password);
 
         if (user != null) {
             // Successful login: Inform MainController and close the login window
