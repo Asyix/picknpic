@@ -1,6 +1,7 @@
 package fr.polytech.picknpic.ui;
 
 import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.ui.controllers.MainController;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
