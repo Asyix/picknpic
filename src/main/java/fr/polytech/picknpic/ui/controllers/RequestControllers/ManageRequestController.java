@@ -68,11 +68,10 @@ public class ManageRequestController {
         String status = "waiting";
 
         try {
-            Request request = requestFacade.createRequest(id_user_buyer, id_service, id_chat, message, image, status);
+            requestFacade.createRequest(id_user_buyer, id_service, id_chat, message, image, status);
 
             // Notify the user that the request has been created
-            showAlert("Request Created", "Request successfully created!",
-                    "Request ID: " + request.getIdRequest() + "\nStatus: " + request.getStatus());
+            showAlert("Request Created", "Request successfully created!", "Request ID: ");
         } catch (Exception e) {
             showAlert("Error", "Failed to create request.", "Reason: " + e.getMessage());
         }
@@ -88,11 +87,10 @@ public class ManageRequestController {
         String newStatus = "accepted waiting";
 
         try {
-            Request request = requestFacade.changeRequestStatus(id_request, newStatus);
+            requestFacade.changeRequestStatus(id_request, newStatus);
 
             // Notify the user that the request status has been updated
-            showAlert("Request Updated", "Request status successfully updated!",
-                    "Request ID: " + request.getIdRequest() + "\nNew Status: " + request.getStatus());
+            showAlert("Request Updated", "Request status successfully updated!", "Request ID: ");
         } catch (Exception e) {
             showAlert("Error", "Failed to update request status.", "Reason: " + e.getMessage());
         }

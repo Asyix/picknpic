@@ -24,7 +24,7 @@ public class Main extends Application {
     }
 
     /**
-     * The main method to launch the application.
+     * The main method  to launch the application.
      *
      * @param args Command-line arguments passed to the application.
      */
