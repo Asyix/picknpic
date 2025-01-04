@@ -18,6 +18,7 @@ module fr.polytech.picknpic {
     exports fr.polytech.picknpic.bl.models;
     exports fr.polytech.picknpic.ui.controllers;
     opens fr.polytech.picknpic.ui.controllers to javafx.fxml;
+    opens fr.polytech.picknpic.ui.controllers.RequestControllers to javafx.fxml;
     exports fr.polytech.picknpic.bl.facades.user;
     exports fr.polytech.picknpic.ui.controllers.UserControllers;
     opens fr.polytech.picknpic.ui.controllers.UserControllers to javafx.fxml;

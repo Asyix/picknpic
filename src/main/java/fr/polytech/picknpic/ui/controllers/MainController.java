@@ -3,6 +3,7 @@ package fr.polytech.picknpic.ui.controllers;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
+import fr.polytech.picknpic.ui.controllers.RequestControllers.ManageRequestController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +24,14 @@ public class MainController {
     /** The label for displaying a welcome message. */
     @FXML
     private Label welcomeLabel;
+
+    // temporary create request navigation button
+    @FXML
+    private Button createRequestButton;
+
+    // temporary change request status navigation button
+    @FXML
+    private Button changeRequestStatusButton;
 
     /** The scene manager for managing scene transitions. */
     private SceneManager sceneManager;
@@ -76,4 +85,41 @@ public class MainController {
     public void onUserLoggedIn(User user) {
         sceneManager.setCurrentUser(user);
     }
+
+    @FXML
+    public void handleCreateRequest() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Request/createRequest.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageRequestController requestController = loader.getController();
+            requestController.setMainController(this);
+
+            Stage requestStage = new Stage();
+            requestStage.setScene(scene);
+            requestStage.setTitle("Create Request");
+            requestStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleChangeRequestStatus() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Request/changeRequestStatus.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageRequestController requestController = loader.getController();
+            requestController.setMainController(this);
+
+            Stage requestStage = new Stage();
+            requestStage.setScene(scene);
+            requestStage.setTitle("Change Request Status");
+            requestStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

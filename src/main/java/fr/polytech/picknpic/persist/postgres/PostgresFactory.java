@@ -2,6 +2,7 @@ package fr.polytech.picknpic.persist.postgres;
 
 import fr.polytech.picknpic.persist.AbstractFactory;
 import fr.polytech.picknpic.persist.daos.UserDAO;
+import fr.polytech.picknpic.persist.daos.RequestDAO;
 
 /**
  * A factory class for creating PostgreSQL-specific DAO implementations.
@@ -14,6 +15,9 @@ public class PostgresFactory extends AbstractFactory {
 
     /** Singleton instance of the PostgreSQL-specific UserDAO implementation. */
     private static UserDAOPostgres userDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific RequestDAO implementation. */
+    private static RequestDAOPostgres requestDAOPostgres;
 
     /**
      * Private constructor to ensure controlled instantiation of the factory.
@@ -44,4 +48,18 @@ public class PostgresFactory extends AbstractFactory {
         }
         return userDAOPostgres;
     }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link RequestDAO}.
+     *
+     * @return A {@link RequestDAOPostgres} instance.
+     */
+    @Override
+    public RequestDAO createRequestDAO() {
+        if (requestDAOPostgres == null) {
+            requestDAOPostgres = new RequestDAOPostgres();
+        }
+        return requestDAOPostgres;
+    }
+
 }
