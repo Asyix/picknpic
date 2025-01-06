@@ -5,6 +5,7 @@ import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
 import fr.polytech.picknpic.ui.controllers.RequestControllers.ManageRequestController;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.ManageServicesController;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.ManageGradesController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -186,6 +187,42 @@ public class MainController {
             servicesStage.setScene(scene);
             servicesStage.setTitle("Delete Service");
             servicesStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleCreateGrade() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageGradesController gradesController = loader.getController();
+            gradesController.setMainController(this);
+
+            Stage gradesStage = new Stage();
+            gradesStage.setScene(scene);
+            gradesStage.setTitle("Create Grade");
+            gradesStage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleDeleteGrade () {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/deleteGrade.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageGradesController gradesController = loader.getController();
+            gradesController.setMainController(this);
+
+            Stage gradesStage = new Stage();
+            gradesStage.setScene(scene);
+            gradesStage.setTitle("Delete Grade");
+            gradesStage.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
