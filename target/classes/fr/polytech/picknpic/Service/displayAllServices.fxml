@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController">
+   <children>
+      <Pane id="headerPane" prefHeight="38.0" prefWidth="600.0" />
+      <Pane id="darkGreyPane" layoutX="66.0" layoutY="64.0" prefHeight="87.0" prefWidth="79.0" />
+      <Pane id="darkGreyPane" layoutX="66.0" layoutY="168.0" prefHeight="24.0" prefWidth="148.0" />
+      <Pane id="paleGreyPane" layoutX="402.0" layoutY="209.0" prefHeight="79.0" prefWidth="148.0" />
+      <Pane id="paleGreyPane" layoutX="66.0" layoutY="209.0" prefHeight="79.0" prefWidth="148.0" />
+      <Pane id="paleGreyPane" layoutX="234.0" layoutY="209.0" prefHeight="79.0" prefWidth="148.0" />
+   </children>
+</AnchorPane>

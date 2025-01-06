@@ -1,8 +1,9 @@
-package fr.polytech.picknpic.ui.controllers;
+package fr.polytech.picknpic.ui.controllers.UserControllers;
 
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.facades.user.UserFacade;
 import fr.polytech.picknpic.bl.models.User;
-import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.ui.controllers.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -28,46 +29,38 @@ public class LoginController {
     private Label messageLabel;
 
     /** The facade for handling user login operations. */
-    private LoginFacade loginFacade;
+    private final UserFacade userFacade;
 
-    /** The scene manager for transitioning between application views. */
-    private SceneManager sceneManager;
+    /** The main controller for updating the application state after login. */
+    private MainController mainController;
 
-    /**
-     * Sets the {@link LoginFacade} for handling login operations.
-     *
-     * @param loginFacade The {@link LoginFacade} instance to set.
-     */
-    public void setLoginFacade(LoginFacade loginFacade) {
-        this.loginFacade = loginFacade;
+    public LoginController() {
+        this.userFacade = UserFacade.getUserFacadeInstance();
     }
 
     /**
-     * Sets the {@link SceneManager} for managing scene transitions.
+     * Sets the {@link MainController} for managing the application state after login.
      *
-     * @param sceneManager The {@link SceneManager} instance to set.
+     * @param mainController The {@link MainController} instance to set.
      */
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 
     /**
      * Handles the login button action.
-     * Retrieves the username and password from the input fields,
-     * attempts to authenticate the user, and updates the view accordingly.
-     * If authentication succeeds, the current user is set and the login window closes.
-     * If authentication fails, an error message is displayed.
+     * Authenticates the user and updates the application state based on the result.
      */
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        User user = loginFacade.login(username, password);
+        User user = userFacade.login(username, password);
 
         if (user != null) {
-            // Successful login: Set the current user and close the window
-            sceneManager.setCurrentUser(user);
+            // Successful login: Inform MainController and close the login window
+            mainController.onUserLoggedIn(user);
             ((Stage) usernameField.getScene().getWindow()).close();
         } else {
             // Failed login: Display an error message

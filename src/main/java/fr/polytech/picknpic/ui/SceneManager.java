@@ -1,80 +1,79 @@
 package fr.polytech.picknpic.ui;
 
-import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
-import fr.polytech.picknpic.ui.controllers.LoginController;
+import fr.polytech.picknpic.ui.controllers.MainController;
+import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 /**
  * Manages scenes and user interactions within the application.
- * Handles navigation between different application views and maintains the current user state.
+ * Handles navigation between different views and maintains the current user state.
  */
 public class SceneManager {
 
     /** The primary stage of the application. */
     private final Stage primaryStage;
 
-    /** The facade responsible for managing user login operations. */
-    private final LoginFacade loginFacade;
-
     /** The currently logged-in user. */
     private User currentUser;
 
+    /** The main controller responsible for the main scene. */
+    private MainController mainController;
+
     /**
-     * Constructs a new SceneManager instance.
+     * Constructs a new {@link SceneManager} instance.
      *
      * @param primaryStage The primary stage of the application.
      */
     public SceneManager(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.loginFacade = new LoginFacade();
     }
 
     /**
-     * Loads the login scene and displays it in the specified stage.
-     * The method initializes the {@link LoginController} and sets required dependencies.
-     *
-     * @param loginStage The stage where the login scene will be displayed.
-     * @return {@code true} if a user successfully logs in, {@code false} otherwise.
-     */
-    public boolean loadLoginScene(Stage loginStage) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/login.fxml"));
-            Scene scene = new Scene(loader.load());
-            LoginController controller = loader.getController();
-
-            // Inject the LoginFacade and SceneManager into the LoginController
-            controller.setLoginFacade(loginFacade);
-            controller.setSceneManager(this);
-
-            loginStage.setScene(scene);
-            loginStage.setTitle("Login");
-            loginStage.showAndWait();
-
-            return currentUser != null; // Return true if a user is logged in
-        } catch (Exception e) {
-            e.printStackTrace(); // Log exceptions for debugging
-            return false;
-        }
-    }
-
-    /**
-     * Sets the currently logged-in user.
+     * Sets the currently logged-in user and updates the main controller's welcome message.
      *
      * @param user The user to set as the currently logged-in user.
      */
     public void setCurrentUser(User user) {
         this.currentUser = user;
+        updateMainControllerWelcomeMessage("Hello " + user.getUsername() + "!");
     }
 
     /**
      * Retrieves the currently logged-in user.
      *
-     * @return The currently logged-in {@link User}, or {@code null} if no user is logged in.
+     * @return The current {@link User}, or {@code null} if no user is logged in.
      */
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     * Loads the initial main scene and initializes the {@link MainController}.
+     *
+     * @throws Exception If an error occurs during the scene loading process.
+     */
+    public void loadInitialScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/hello.fxml"));
+        Scene scene = new Scene(loader.load());
+
+        mainController = loader.getController();
+        mainController.setSceneManager(this);
+
+        primaryStage.setTitle("Welcome");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    /**
+     * Updates the main controller's welcome message.
+     *
+     * @param message The message to display on the main screen.
+     */
+    private void updateMainControllerWelcomeMessage(String message) {
+        if (mainController != null) {
+            mainController.updateWelcomeMessage(message);
+        }
     }
 }

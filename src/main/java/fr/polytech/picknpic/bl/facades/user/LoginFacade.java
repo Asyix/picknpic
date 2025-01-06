@@ -9,15 +9,36 @@ import fr.polytech.picknpic.persist.AbstractFactory;
  */
 public class LoginFacade {
 
+    /** The authenticated user.
+     * This field is used to store the user object after a successful login operation.
+     * It is then used to manage the user's session and permissions throughout the application.
+     */
+    public User currentUser;
+
     /** The abstract factory used to create DAO instances. */
     private final AbstractFactory abstractFactory;
+
+    /** The singleton instance of the LoginFacade. */
+    private static LoginFacade loginFacade;
 
     /**
      * Constructs a new LoginFacade instance.
      * Initializes the {@link AbstractFactory} singleton for DAO creation.
      */
-    public LoginFacade() {
+    private LoginFacade() {
         this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+    }
+
+    /**
+     * Retrieves the singleton instance of the LoginFacade.
+     * Ensures that only one instance of the LoginFacade exists throughout the application.
+     * @return The singleton instance of the LoginFacade.
+     */
+    public static LoginFacade getLoginFacadeInstance() {
+        if (loginFacade == null) {
+            loginFacade = new LoginFacade(); // Default factory (PostgreSQL)
+        }
+        return loginFacade;
     }
 
     /**
@@ -30,6 +51,15 @@ public class LoginFacade {
      *         or {@code null} if the credentials are invalid.
      */
     public User login(String username, String password) {
-        return abstractFactory.createUserDAO().login(username, password);
+        this.currentUser = abstractFactory.createUserDAO().login(username, password);
+        return currentUser;
+    }
+
+    /**
+     * Retrieves the authenticated user.
+     * @return The authenticated user.
+     */
+    public User getCurrentUser() {
+        return currentUser;
     }
 }
