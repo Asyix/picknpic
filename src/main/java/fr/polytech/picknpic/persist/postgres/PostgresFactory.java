@@ -3,6 +3,8 @@ package fr.polytech.picknpic.persist.postgres;
 import fr.polytech.picknpic.persist.AbstractFactory;
 import fr.polytech.picknpic.persist.daos.UserDAO;
 import fr.polytech.picknpic.persist.daos.RequestDAO;
+import fr.polytech.picknpic.persist.daos.ServiceDAO;
+import fr.polytech.picknpic.persist.daos.GradeDAO;
 
 /**
  * A factory class for creating PostgreSQL-specific DAO implementations.
@@ -18,6 +20,12 @@ public class PostgresFactory extends AbstractFactory {
 
     /** Singleton instance of the PostgreSQL-specific RequestDAO implementation. */
     private static RequestDAOPostgres requestDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific ServiceDAO implementation. */
+    private static ServiceDAOPostgres serviceDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific GradeDAO implementation. */
+    private static GradeDAOPostgres gradeDAOPostgres;
 
     /**
      * Private constructor to ensure controlled instantiation of the factory.
@@ -60,6 +68,32 @@ public class PostgresFactory extends AbstractFactory {
             requestDAOPostgres = new RequestDAOPostgres();
         }
         return requestDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link ServiceDAO}.
+     *
+     * @return A {@link ServiceDAOPostgres} instance.
+     */
+    @Override
+    public ServiceDAO createServiceDAO() {
+        if (serviceDAOPostgres == null) {
+            serviceDAOPostgres = new ServiceDAOPostgres();
+        }
+        return serviceDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link GradeDAO}.
+     *
+     * @return A {@link GradeDAOPostgres} instance.
+     */
+    @Override
+    public GradeDAO createGradeDAO() {
+        if (gradeDAOPostgres == null) {
+            gradeDAOPostgres = new GradeDAOPostgres();
+        }
+        return gradeDAOPostgres;
     }
 
 }
