@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.picknpic.ui.controllers.GradeControllers.ManageGradesController">
+   <children>
+      <Pane id="paleGreyPane" layoutX="100.0" layoutY="74.0" prefHeight="245.0" prefWidth="398.0">
+         <children>
+            <Button id="greenButton" layoutX="102.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="91.0" text="YES" onAction="#handleDeleteGrade" />
+            <Button id="purpleButton" layoutX="215.0" layoutY="154.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="91.0" text="NO" />
+            <Label layoutX="56.0" layoutY="60.0" prefHeight="39.0" prefWidth="286.0" text="ARE YOU SURE YOU WANT TO DELETE THIS GRADE?" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

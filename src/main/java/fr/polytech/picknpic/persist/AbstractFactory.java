@@ -1,6 +1,9 @@
 package fr.polytech.picknpic.persist;
 
 import fr.polytech.picknpic.persist.daos.UserDAO;
+import fr.polytech.picknpic.persist.daos.RequestDAO;
+import fr.polytech.picknpic.persist.daos.ServiceDAO;
+import fr.polytech.picknpic.persist.daos.GradeDAO;
 import fr.polytech.picknpic.persist.postgres.PostgresFactory;
 
 /**
@@ -38,4 +41,29 @@ public abstract class AbstractFactory {
      * @return A {@link UserDAO} instance.
      */
     public abstract UserDAO createUserDAO();
+
+    /**
+     * Abstract method to create a {@link RequestDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link RequestDAO} instance.
+     */
+    public abstract RequestDAO createRequestDAO();
+
+    /**
+     * Abstract method to create a {@link ServiceDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link ServiceDAO} instance.
+     */
+    public abstract ServiceDAO createServiceDAO();
+
+    /**
+     * Abstract method to create a {@link GradeDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link GradeDAO} instance.
+     */
+    public abstract GradeDAO createGradeDAO();
+
 }
