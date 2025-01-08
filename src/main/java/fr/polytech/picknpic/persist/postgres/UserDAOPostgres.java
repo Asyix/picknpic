@@ -29,24 +29,24 @@ public class UserDAOPostgres implements UserDAO {
     @Override
     public User login(String username, String password) {
         User user = null;
+        String query = "SELECT * FROM \"User\" WHERE username = ? AND password = ?";
 
-        try (Connection connection = JDBCConnector.getInstance().getConnection()) {
-            String query = "SELECT * FROM \"User\" WHERE username = ? AND password = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);) {
             statement.setString(1, username);
             statement.setString(2, password);
 
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                // Populate the User object with data from the database
-                user = new User(resultSet.getString("email"),
-                        resultSet.getString("password"),
-                        resultSet.getString("username"),
-                        resultSet.getString("first_name"),
-                        resultSet.getString("last_name"),
-                        resultSet.getInt("phone_number"),
-                        resultSet.getBoolean("admin"));
-
+            try (ResultSet resultSet = statement.executeQuery();) {
+                if (resultSet.next()) {
+                    // Populate the User object with data from the database
+                    user = new User(resultSet.getString("email"),
+                            resultSet.getString("password"),
+                            resultSet.getString("username"),
+                            resultSet.getString("first_name"),
+                            resultSet.getString("last_name"),
+                            resultSet.getInt("phone_number"),
+                            resultSet.getBoolean("admin"));
+                }
             }
         } catch (SQLException e) {
             // Log the exception for debugging purposes
@@ -74,8 +74,8 @@ public class UserDAOPostgres implements UserDAO {
         User user = null;
         String query = "INSERT INTO \"User\" (email, password, username, first_name, last_name, phone_number) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = JDBCConnector.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
             statement.setString(2, password);
             statement.setString(3, username);
@@ -83,16 +83,17 @@ public class UserDAOPostgres implements UserDAO {
             statement.setString(5, lastName);
             statement.setInt(6, phoneNumber);
 
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                // Populate the User object with data from the database
-                user = new User(resultSet.getString("email"),
-                        resultSet.getString("password"),
-                        resultSet.getString("username"),
-                        resultSet.getString("first_name"),
-                        resultSet.getString("last_name"),
-                        resultSet.getInt("phone_number"),
-                        resultSet.getBoolean("admin"));
+            try (ResultSet resultSet = statement.executeQuery();) {
+                if (resultSet.next()) {
+                    // Populate the User object with data from the database
+                    user = new User(resultSet.getString("email"),
+                            resultSet.getString("password"),
+                            resultSet.getString("username"),
+                            resultSet.getString("first_name"),
+                            resultSet.getString("last_name"),
+                            resultSet.getInt("phone_number"),
+                            resultSet.getBoolean("admin"));
+                }
             }
         }
         catch (SQLException e) {
@@ -100,5 +101,96 @@ public class UserDAOPostgres implements UserDAO {
         }
 
         return user;
+    }
+
+    @Override
+    public User createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+        User user = null;
+        String query = "INSERT INTO \"User\" (email, password, username, first_name, last_name, phone_number, admin) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+            statement.setString(3, username);
+            statement.setString(4, firstName);
+            statement.setString(5, lastName);
+            statement.setInt(6, phoneNumber);
+            statement.setBoolean(7, admin);
+
+            try (ResultSet resultSet = statement.executeQuery();) {
+                if (resultSet.next()) {
+                    // Populate the User object with data from the database
+                    user = new User(resultSet.getString("email"),
+                            resultSet.getString("password"),
+                            resultSet.getString("username"),
+                            resultSet.getString("first_name"),
+                            resultSet.getString("last_name"),
+                            resultSet.getInt("phone_number"),
+                            resultSet.getBoolean("admin"));
+                }
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+
+        return user;
+    }
+
+    @Override
+    public User readUser(int id) {
+        User user = null;
+        String query = "SELECT * FROM \"User\" WHERE id = ?";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery();) {
+                if (resultSet.next()) {
+                    user = new User(resultSet.getString("email"),
+                            resultSet.getString("password"),
+                            resultSet.getString("username"),
+                            resultSet.getString("first_name"),
+                            resultSet.getString("last_name"),
+                            resultSet.getInt("phone_number"),
+                            resultSet.getBoolean("admin"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return user;
+    }
+
+    @Override
+    public void updateUser(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber) {
+        String query = "UPDATE \"User\" SET email = ?, password = ?, username = ?, first_name = ?, last_name = ?, phone_number = ? WHERE id = ?";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+            statement.setString(3, username);
+            statement.setString(4, firstName);
+            statement.setString(5, lastName);
+            statement.setInt(6, phoneNumber);
+            statement.setInt(7, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        String query = "DELETE FROM \"User\" WHERE id = ?";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

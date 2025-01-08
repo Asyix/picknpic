@@ -18,4 +18,14 @@ public interface UserDAO {
      */
     User login(String username, String password);
     User register(String email, String password, String username, String firstName, String lastName, int phoneNumber);
+
+    User createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin);
+
+    User readUser(int id);
+
+    void updateUser(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber);
+
+    void deleteUser(int id);
+
+
 }
