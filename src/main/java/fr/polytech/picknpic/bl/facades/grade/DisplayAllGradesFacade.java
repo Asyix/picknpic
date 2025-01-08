@@ -21,7 +21,7 @@ public class DisplayAllGradesFacade {
      * Sets the abstract factory instance.
      */
     private DisplayAllGradesFacade() {
-        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        this.abstractFactory = AbstractFactory.getInstance();
     }
 
     /**

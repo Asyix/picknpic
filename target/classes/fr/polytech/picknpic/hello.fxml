@@ -5,8 +5,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="fr.polytech.picknpic.ui.controllers.MainController"
       spacing="10" alignment="CENTER">
-    <Label fx:id="welcomeLabel" text="Welcome!"/>
-    <Button fx:id="loginButton" text="Login" onAction="#handleLogin"/>
+    <Label fx:id="welcomeLabel"/>
     <Button fx:id="createRequestButton" text="Request" onAction="#handleCreateRequest"/> <!-- Temporary request navigation button -->
     <Button fx:id="changeRequestStatusButton" text="Manage Request" onAction="#handleChangeRequestStatus"/> <!-- Temporary manage request navigation button -->
     <Button fx:id="createServiceButton" text="Create Service" onAction="#handleCreateService"/>

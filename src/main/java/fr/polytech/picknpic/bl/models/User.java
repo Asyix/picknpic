@@ -28,6 +28,21 @@ public class User {
     /** Indicates whether the user has admin privileges. */
     private boolean admin;
 
+
+    public User(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.admin = admin;
+    }
+
+    public User() {
+        this.admin = false;
+    };
+
     /**
      * Gets the user's email address.
      *

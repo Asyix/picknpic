@@ -22,7 +22,7 @@ public class ManageServicesFacade {
      * Initializes the {@link AbstractFactory} for DAO creation.
      */
     private ManageServicesFacade() {
-        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        this.abstractFactory = AbstractFactory.getInstance();
     }
 
     /**

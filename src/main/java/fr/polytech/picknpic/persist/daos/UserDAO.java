@@ -17,4 +17,5 @@ public interface UserDAO {
      *         or {@code null} if the credentials are invalid.
      */
     User login(String username, String password);
+    User register(String email, String password, String username, String firstName, String lastName, int phoneNumber);
 }

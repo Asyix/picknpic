@@ -24,7 +24,7 @@ public class DisplayAllServicesFacade {
      * Initializes the {@link AbstractFactory} for DAO creation.
      */
     private DisplayAllServicesFacade() {
-        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        this.abstractFactory = AbstractFactory.getInstance();
     }
 
     /**

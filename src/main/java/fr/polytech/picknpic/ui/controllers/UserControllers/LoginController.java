@@ -3,7 +3,9 @@ package fr.polytech.picknpic.ui.controllers.UserControllers;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.facades.user.UserFacade;
 import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.ui.controllers.MainController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -31,20 +33,11 @@ public class LoginController {
     /** The facade for handling user login operations. */
     private final UserFacade userFacade;
 
-    /** The main controller for updating the application state after login. */
-    private MainController mainController;
+    /** The scene manager for managing scene transitions. */
+    private SceneManager sceneManager;
 
     public LoginController() {
-        this.userFacade = UserFacade.getUserFacadeInstance();
-    }
-
-    /**
-     * Sets the {@link MainController} for managing the application state after login.
-     *
-     * @param mainController The {@link MainController} instance to set.
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+        this.userFacade = UserFacade.getInstance();
     }
 
     /**
@@ -60,12 +53,22 @@ public class LoginController {
 
         if (user != null) {
             // Successful login: Inform MainController and close the login window
-            mainController.onUserLoggedIn(user);
+            sceneManager.updateCurrentUser();
+            sceneManager.loadMainScene();
             ((Stage) usernameField.getScene().getWindow()).close();
         } else {
             // Failed login: Display an error message
             messageLabel.setText("Invalid username or password.");
             messageLabel.setStyle("-fx-text-fill: red;");
         }
+    }
+
+    public void loadRegister() {
+        sceneManager.loadRegisterScene();
+        ((Stage) usernameField.getScene().getWindow()).close();
+    }
+
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 }

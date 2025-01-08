@@ -2,7 +2,6 @@ package fr.polytech.picknpic.bl.facades.grade;
 
 import fr.polytech.picknpic.bl.models.Grade;
 import fr.polytech.picknpic.persist.AbstractFactory;
-import fr.polytech.picknpic.persist.daos.GradeDAO;
 
 /**
  * Facade for managing grade-related operations.
@@ -25,7 +24,7 @@ public class GradeFacade {
      * Uses the singleton instances of ManageGradesFacade and DisplayAllGradesFacade.
      */
     private GradeFacade() {
-        AbstractFactory abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        AbstractFactory abstractFactory = AbstractFactory.getInstance();
         this.manageGradesFacade = ManageGradesFacade.getInstance();
         this.displayAllGradesFacade = DisplayAllGradesFacade.getInstance();
     }

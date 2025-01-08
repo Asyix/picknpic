@@ -24,6 +24,8 @@ public class UserDAOPostgres implements UserDAO {
      * @return A {@link User} object containing the user's details if authentication is successful,
      *         or {@code null} if no match is found.
      */
+
+
     @Override
     public User login(String username, String password) {
         User user = null;
@@ -37,17 +39,64 @@ public class UserDAOPostgres implements UserDAO {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 // Populate the User object with data from the database
-                user = new User();
-                user.setUsername(resultSet.getString("username"));
-                user.setEmail(resultSet.getString("email"));
-                user.setFirstName(resultSet.getString("first_name"));
-                user.setLastName(resultSet.getString("last_name"));
-                user.setPhoneNumber(resultSet.getInt("phone_number"));
-                user.setAdmin(resultSet.getBoolean("admin"));
+                user = new User(resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("username"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getInt("phone_number"),
+                        resultSet.getBoolean("admin"));
+
             }
         } catch (SQLException e) {
             // Log the exception for debugging purposes
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return user;
+    }
+
+    /**
+     * Registers a new user with the specified details.
+     * Inserts a new user record into the PostgreSQL database with the provided information.
+     *
+     * @param email The email address of the user.
+     * @param password The password of the user.
+     * @param username The username of the user.
+     * @param firstName The first name of the user.
+     * @param lastName The last name of the user.
+     * @param phoneNumber The phone number of the user.
+     * @return A {@link User} object containing the user's details if registration is successful,
+     *         or {@code null} if the operation fails.
+     */
+    @Override
+    public User register(String email, String password, String username, String firstName, String lastName, int phoneNumber) {
+        User user = null;
+        String query = "INSERT INTO \"User\" (email, password, username, first_name, last_name, phone_number) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = JDBCConnector.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, email);
+            statement.setString(2, password);
+            statement.setString(3, username);
+            statement.setString(4, firstName);
+            statement.setString(5, lastName);
+            statement.setInt(6, phoneNumber);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                // Populate the User object with data from the database
+                user = new User(resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("username"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getInt("phone_number"),
+                        resultSet.getBoolean("admin"));
+            }
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return user;
