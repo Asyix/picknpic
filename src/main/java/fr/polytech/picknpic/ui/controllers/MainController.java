@@ -49,6 +49,10 @@ public class MainController {
     @FXML
     private Button displayAllServicesButton;
 
+    /** Temporary buttons to navigate to hello.fxml */
+    @FXML
+    private Button returnToInitialSceneButton;
+
     /** The scene manager for managing scene transitions. */
     private SceneManager sceneManager;
 
@@ -68,6 +72,19 @@ public class MainController {
      */
     public void updateWelcomeMessage(String message) {
         welcomeLabel.setText(message);
+    }
+
+    /**
+     * Handles the return to initial scene button action.
+     * Opens the initial scene.
+     */
+    @FXML
+    private void handleReturnToInitialScene() {
+        try {
+            sceneManager.loadInitialScene();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -102,130 +119,41 @@ public class MainController {
         sceneManager.setCurrentUser(user);
     }
 
-    @FXML
     public void handleCreateRequest() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Request/createRequest.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageRequestController requestController = loader.getController();
-            requestController.setMainController(this);
-
-            Stage requestStage = new Stage();
-            requestStage.setScene(scene);
-            requestStage.setTitle("Create Request");
-            requestStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sceneManager.loadCreateRequestScene();
     }
 
-    @FXML
     public void handleChangeRequestStatus() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Request/changeRequestStatus.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageRequestController requestController = loader.getController();
-            requestController.setMainController(this);
-
-            Stage requestStage = new Stage();
-            requestStage.setScene(scene);
-            requestStage.setTitle("Change Request Status");
-            requestStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sceneManager.loadChangeRequestStatusScene();
     }
 
-    @FXML
     public void handleCreateService() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/createService.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageServicesController servicesController = loader.getController();
-            servicesController.setMainController(this);
-
-            Stage servicesStage = new Stage();
-            servicesStage.setScene(scene);
-            servicesStage.setTitle("Create Service");
-            servicesStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sceneManager.loadCreateServiceScene();
     }
 
-    @FXML
     public void handleUpdateService() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/updateService.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageServicesController servicesController = loader.getController();
-            servicesController.setMainController(this);
-
-            Stage servicesStage = new Stage();
-            servicesStage.setScene(scene);
-            servicesStage.setTitle("Update Service");
-            servicesStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sceneManager.loadUpdateServiceScene();
     }
 
-    @FXML
     public void handleDeleteService() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/deleteService.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageServicesController servicesController = loader.getController();
-            servicesController.setMainController(this);
-
-            Stage servicesStage = new Stage();
-            servicesStage.setScene(scene);
-            servicesStage.setTitle("Delete Service");
-            servicesStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sceneManager.loadDeleteServiceScene();
     }
 
-    @FXML
     public void handleCreateGrade() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageGradesController gradesController = loader.getController();
-            gradesController.setMainController(this);
-
-            Stage gradesStage = new Stage();
-            gradesStage.setScene(scene);
-            gradesStage.setTitle("Create Grade");
-            gradesStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        sceneManager.loadCreateGradeScene();
     }
 
-    @FXML
-    public void handleDeleteGrade () {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/deleteGrade.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageGradesController gradesController = loader.getController();
-            gradesController.setMainController(this);
-
-            Stage gradesStage = new Stage();
-            gradesStage.setScene(scene);
-            gradesStage.setTitle("Delete Grade");
-            gradesStage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void handleDeleteGrade() {
+        sceneManager.loadDeleteGradeScene();
     }
+
+    public void handleDisplayAllServices() {
+        sceneManager.loadDisplayAllServicesScene();
+    }
+
+    public void handleDisplayAllGrades() {
+        sceneManager.loadDisplayAllGradesScene();
+    }
+
 
 }

@@ -1,6 +1,9 @@
 package fr.polytech.picknpic.persist.daos;
 
 import fr.polytech.picknpic.bl.models.Grade;
+import fr.polytech.picknpic.bl.models.Service;
+
+import java.util.List;
 
 /**
  * Interface for performing data access operations related to grades.
@@ -36,5 +39,5 @@ public interface GradeDAO {
      * @param id_user The ID of the user for whom grades are retrieved.
      * @return The retrieved {@link Grade} object.
      */
-    Grade getAllGrades(int id_user);
+    List<Grade> getAllGrades(int id_user);
 }

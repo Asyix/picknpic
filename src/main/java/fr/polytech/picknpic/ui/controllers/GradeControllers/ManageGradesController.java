@@ -2,7 +2,9 @@ package fr.polytech.picknpic.ui.controllers.GradeControllers;
 
 import fr.polytech.picknpic.bl.facades.grade.GradeFacade;
 import fr.polytech.picknpic.ui.controllers.MainController;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import fr.polytech.picknpic.ui.SceneManager;
 
 /**
  * Controller for managing grades.
@@ -13,8 +15,8 @@ public class ManageGradesController {
     /** Facade for grade-related operations. */
     private final GradeFacade gradeFacade;
 
-    /** The main controller for the application. */
-    private MainController mainController;
+    /** The scene manager for managing scene transitions. */
+    private SceneManager sceneManager;
 
     /**
      * Constructs a new `ManageGradesController` instance.
@@ -25,12 +27,11 @@ public class ManageGradesController {
     }
 
     /**
-     * Sets the {@link MainController} instance.
-     *
-     * @param mainController The main controller to set.
+     * Sets the {@link SceneManager instance}.
+     * @param sceneManager The scene manager to set.
      */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
     /**
@@ -80,9 +81,19 @@ public class ManageGradesController {
         try {
             gradeFacade.deleteGrade(id_grade);
             showAlert("Grade Deleted", "Grade successfully deleted", "The grade has been deleted successfully.");
+            loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to delete grade", "An error occurred while deleting the grade.");
         }
+    }
+
+    /**
+     * Loads the main scene.
+     * This method will be triggered when the user clicks "NO" in the confirm delete dialog.
+     */
+    @FXML
+    public void loadMainScene() throws Exception {
+        sceneManager.loadInitialScene();
     }
 
 }

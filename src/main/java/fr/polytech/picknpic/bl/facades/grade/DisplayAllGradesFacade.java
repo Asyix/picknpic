@@ -4,6 +4,8 @@ import fr.polytech.picknpic.bl.models.Grade;
 import fr.polytech.picknpic.persist.AbstractFactory;
 import fr.polytech.picknpic.persist.daos.GradeDAO;
 
+import java.util.List;
+
 /**
  * Singleton facade for displaying grades.
  * Provides a simplified interface for retrieving all grades for a specific user.
@@ -42,7 +44,7 @@ public class DisplayAllGradesFacade {
      * @param id_user The ID of the user whose grades are to be retrieved.
      * @return The Grade object containing all the user's grades.
      */
-    public Grade getAllGrades(int id_user) {
+    public List<Grade> getAllGrades(int id_user) {
         GradeDAO gradeDAO = abstractFactory.createGradeDAO();
         return gradeDAO.getAllGrades(id_user);
     }

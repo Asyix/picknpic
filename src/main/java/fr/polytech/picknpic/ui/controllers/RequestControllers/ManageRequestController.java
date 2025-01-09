@@ -5,6 +5,7 @@ import fr.polytech.picknpic.bl.models.Request;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import fr.polytech.picknpic.ui.SceneManager;
 
 /**
  * Controller for managing requests.
@@ -17,10 +18,8 @@ public class ManageRequestController {
      */
     private final RequestFacade requestFacade;
 
-    /**
-     * The main controller for the application.
-     */
-    private MainController mainController;
+    /** The scene manager for managing scene transitions. */
+    private SceneManager sceneManager;
 
     /**
      * Constructs a new `ManageRequestController` instance.
@@ -31,12 +30,11 @@ public class ManageRequestController {
     }
 
     /**
-     * Sets the {@link MainController} instance.
-     *
-     * @param mainController The main controller to set.
+     * Sets the {@link SceneManager instance}.
+     * @param sceneManager The scene manager to set.
      */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
     /**
