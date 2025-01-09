@@ -35,5 +35,9 @@ public interface UserDAO {
 
     boolean unfollowUser(int idFollowed, int idFollower);
 
+    boolean deleteAccount(int id, String password);
+
+    boolean updateAccount(User user);
+
 
 }

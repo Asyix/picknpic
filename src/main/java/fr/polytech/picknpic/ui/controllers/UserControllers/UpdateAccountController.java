@@ -1,0 +1,81 @@
+package fr.polytech.picknpic.ui.controllers.UserControllers;
+
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.facades.user.ManageAccountFacade;
+import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.ui.SceneManager;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+
+public class UpdateAccountController {
+
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField phoneNumberField;
+
+    private SceneManager sceneManager;
+
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
+        loadUserData();
+    }
+
+    private void loadUserData() {
+        User currentUser = LoginFacade.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            emailField.setText(currentUser.getEmail());
+            usernameField.setText(currentUser.getUsername());
+            firstNameField.setText(currentUser.getFirstName());
+            lastNameField.setText(currentUser.getLastName());
+            phoneNumberField.setText(String.valueOf(currentUser.getPhoneNumber()));
+        }
+    }
+
+    @FXML
+    private void handleUpdateAccount() {
+        User currentUser = LoginFacade.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String email = emailField.getText();
+            String username = usernameField.getText();
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String phoneNumber = phoneNumberField.getText();
+
+            try {
+                int phone = Integer.parseInt(phoneNumber);
+                User updatedUser = new User(currentUser.getId(), email, currentUser.getPassword(), username, firstName, lastName, phone, currentUser.isAdmin());
+                boolean success = ManageAccountFacade.getInstance().updateAccount(updatedUser);
+                if (success) {
+                    LoginFacade.getInstance().setCurrentUser(updatedUser);
+                    showAlert("Success", "Profile updated successfully.");
+                    sceneManager.loadProfileScene();
+                } else {
+                    showAlert("Error", "Profile update failed.");
+                }
+            } catch (NumberFormatException e) {
+                showAlert("Error", "Invalid phone number.");
+            }
+        }
+    }
+
+    @FXML
+    private void loadProfile() {
+        sceneManager.loadProfileScene();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
