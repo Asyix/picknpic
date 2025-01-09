@@ -27,7 +27,8 @@
         <!-- Lien pour inscription -->
         <Hyperlink text="No account? Register now"
                    style="-fx-text-fill: #bbb; -fx-font-size: 14; -fx-alignment: center-right;"
-                   GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2" />
+                   GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2"
+                   onAction="#loadRegister"/>
 
         <!-- Bouton de connexion -->
         <Button text="Log in"

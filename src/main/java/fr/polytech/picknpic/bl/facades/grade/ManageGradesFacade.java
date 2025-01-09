@@ -21,7 +21,7 @@ public class ManageGradesFacade {
      * Sets the abstract factory instance.
      */
     private ManageGradesFacade() {
-        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        this.abstractFactory = AbstractFactory.getInstance();
     }
 
     /**

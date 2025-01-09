@@ -13,20 +13,20 @@ public class LoginFacade {
      * This field is used to store the user object after a successful login operation.
      * It is then used to manage the user's session and permissions throughout the application.
      */
-    public User currentUser;
+    private User currentUser;
 
     /** The abstract factory used to create DAO instances. */
     private final AbstractFactory abstractFactory;
 
     /** The singleton instance of the LoginFacade. */
-    private static LoginFacade loginFacade;
+    private static LoginFacade loginFacade = null;
 
     /**
      * Constructs a new LoginFacade instance.
      * Initializes the {@link AbstractFactory} singleton for DAO creation.
      */
     private LoginFacade() {
-        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        this.abstractFactory = AbstractFactory.getInstance();
     }
 
     /**
@@ -34,7 +34,7 @@ public class LoginFacade {
      * Ensures that only one instance of the LoginFacade exists throughout the application.
      * @return The singleton instance of the LoginFacade.
      */
-    public static LoginFacade getLoginFacadeInstance() {
+    public static LoginFacade getInstance() {
         if (loginFacade == null) {
             loginFacade = new LoginFacade(); // Default factory (PostgreSQL)
         }
@@ -61,5 +61,8 @@ public class LoginFacade {
      */
     public User getCurrentUser() {
         return currentUser;
+    }
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
     }
 }

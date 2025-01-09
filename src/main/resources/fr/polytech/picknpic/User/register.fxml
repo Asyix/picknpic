@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController"
+            prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../styles.css">
+    <GridPane fx:id="registerPane" alignment="CENTER" hgap="10" vgap="10" layoutX="100" layoutY="50">
+        <Label text="Register" styleClass="whiteText" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+
+        <TextField fx:id="emailField" promptText="Email" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2"/>
+
+        <TextField fx:id="usernameField" promptText="Username" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+
+        <PasswordField fx:id="passwordField" promptText="Password" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+
+        <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
+
+        <TextField fx:id="firstNameField" promptText="First Name" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+
+        <TextField fx:id="lastNameField" promptText="Last Name" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2"/>
+
+        <TextField fx:id="phoneNumberField" promptText="Phone Number" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="2"/>
+
+        <Button text="Register" onAction="#handleRegister" styleClass="greenButton" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="2"/>
+        <Button text="Back" onAction="#loadLogin" styleClass="redButton" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="2"/>
+    </GridPane>
+
+</AnchorPane>

@@ -27,7 +27,7 @@ public abstract class AbstractFactory {
      *
      * @return The singleton instance of {@link AbstractFactory}.
      */
-    public static AbstractFactory getAbstractFactoryInstance() {
+    public static AbstractFactory getInstance() {
         if (abstractFactory == null) {
             abstractFactory = PostgresFactory.getPostgresFactoryInstance(); // Default factory (PostgreSQL)
         }

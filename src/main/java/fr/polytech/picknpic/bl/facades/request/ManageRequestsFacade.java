@@ -21,7 +21,7 @@ public class ManageRequestsFacade {
      * Initializes the {@link AbstractFactory} singleton for DAO creation.
      */
     private ManageRequestsFacade() {
-        this.abstractFactory = AbstractFactory.getAbstractFactoryInstance();
+        this.abstractFactory = AbstractFactory.getInstance();
     }
 
     /**
