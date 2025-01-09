@@ -221,4 +221,34 @@ public class UserDAOPostgres implements UserDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean followUser(int idFollowed, int idFollower) {
+        String query = "INSERT INTO \"Follow\" (id_followed, id_follower) VALUES (?, ?)";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idFollowed);
+            statement.setInt(2, idFollower);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean unfollowUser(int idFollowed, int idFollower) {
+        String query = "DELETE FROM \"Follow\" WHERE id_followed = ? AND id_follower = ?";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idFollowed);
+            statement.setInt(2, idFollower);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
+    }
 }

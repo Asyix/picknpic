@@ -31,5 +31,9 @@ public interface UserDAO {
 
     void deleteUser(int id);
 
+    boolean followUser(int idFollowed, int idFollower);
+
+    boolean unfollowUser(int idFollowed, int idFollower);
+
 
 }
