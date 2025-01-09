@@ -29,7 +29,7 @@ public interface UserDAO {
 
     boolean updateUser(User user);
 
-    void deleteUser(int id);
+    boolean deleteUser(int id);
 
     boolean followUser(int idFollowed, int idFollower);
 

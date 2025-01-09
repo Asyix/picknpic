@@ -51,7 +51,7 @@ public class ManageUsersFacade {
      *
      * @param id The ID of the user to delete.
      */
-    public void deleteUser(int id) {
-        abstractFactory.createUserDAO().deleteUser(id);
+    public boolean deleteUser(int id) {
+        return abstractFactory.createUserDAO().deleteUser(id);
     }
 }

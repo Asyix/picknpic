@@ -40,7 +40,8 @@ public class UserDAOPostgres implements UserDAO {
             try (ResultSet resultSet = statement.executeQuery();) {
                 if (resultSet.next()) {
                     // Populate the User object with data from the database
-                    user = new User(resultSet.getString("email"),
+                    user = new User(resultSet.getInt("id"),
+                            resultSet.getString("email"),
                             resultSet.getString("password"),
                             resultSet.getString("username"),
                             resultSet.getString("first_name"),
@@ -211,7 +212,7 @@ public class UserDAOPostgres implements UserDAO {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public boolean deleteUser(int id) {
         String query = "DELETE FROM \"User\" WHERE id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -220,6 +221,8 @@ public class UserDAOPostgres implements UserDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        return true;
     }
 
     @Override
