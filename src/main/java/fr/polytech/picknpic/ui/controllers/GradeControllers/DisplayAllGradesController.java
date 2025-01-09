@@ -1,8 +1,15 @@
+
 package fr.polytech.picknpic.ui.controllers.GradeControllers;
 
 import fr.polytech.picknpic.bl.facades.grade.GradeFacade;
-import fr.polytech.picknpic.ui.controllers.MainController;
-import javafx.scene.control.Alert;
+import fr.polytech.picknpic.bl.models.Grade;
+import fr.polytech.picknpic.ui.SceneManager;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
+import java.util.List;
 
 /**
  * Controller for displaying all grades.
@@ -10,56 +17,76 @@ import javafx.scene.control.Alert;
  */
 public class DisplayAllGradesController {
 
-    /** Facade for grade-related operations. */
     private final GradeFacade gradeFacade;
 
-    /** The main controller for the application. */
-    private MainController mainController;
+    @FXML
+    private VBox gradesContainer;
 
-    /**
-     * Constructs a new `DisplayAllGradesController` instance.
-     * Initializes the {@link GradeFacade} singleton.
-     */
+    private SceneManager sceneManager;
+
     public DisplayAllGradesController() {
         this.gradeFacade = GradeFacade.getGradeFacadeInstance();
     }
 
-    /**
-     * Sets the {@link MainController} instance.
-     *
-     * @param mainController The main controller to set.
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
-    /**
-     * Displays an alert with the given title, header, and message.
-     *
-     * @param title   The title of the alert.
-     * @param header  The header text of the alert.
-     * @param message The message text of the alert.
-     */
-    private void showAlert(String title, String header, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(message);
-        alert.showAndWait();
+    @FXML
+    public void initialize() {
+        //handleGetAllGrades();
     }
 
-    /**
-     * Handles user interaction for retrieving all grades.
-     * This method is triggered when the user requests to view all grades for a specific user.
-     *
-     * @param id_user The ID of the user whose grades should be retrieved.
-     */
-    public void handleGetAllGrades(int id_user) {
-        try {
-            gradeFacade.getAllGrades(id_user);
-            showAlert("Grades Retrieved", "Grades successfully retrieved", "All grades for user ID: " + id_user + " have been retrieved.");
-        } catch (Exception e) {
-            showAlert("Error", "Failed to retrieve grades", "An error occurred while retrieving grades for user ID: " + id_user);
+    public void handleGetAllGrades() {
+        int id_user = sceneManager.getCurrentUser().getId();
+        System.out.println("user id" + id_user);
+        List<Grade> grades = gradeFacade.getAllGrades(id_user);
+
+        gradesContainer.getChildren().clear(); // Clear existing children
+
+        for (Grade grade : grades) {
+            Pane gradePane = createGradePane(grade);
+            gradesContainer.getChildren().add(gradePane);
         }
+    }
+
+    private Pane createGradePane(Grade grade) {
+        Pane pane = new Pane();
+        pane.setPrefSize(450, 100);
+        pane.setStyle("-fx-background-color: #3E3E3E; -fx-border-color: white; -fx-padding: 10;");
+
+        Label userGradedLabel = new Label("User Graded ID: " + grade.getIdUserGraded());
+        userGradedLabel.setLayoutX(10);
+        userGradedLabel.setLayoutY(10);
+        userGradedLabel.setStyle("-fx-text-fill: white;");
+
+        Label serviceGradedLabel = new Label("Service Graded ID: " + grade.getIdServiceGraded());
+        serviceGradedLabel.setLayoutX(10);
+        serviceGradedLabel.setLayoutY(30);
+        serviceGradedLabel.setStyle("-fx-text-fill: white;");
+
+        Label friendlinessLabel = new Label("Friendliness: " + grade.getFriendliness());
+        friendlinessLabel.setLayoutX(10);
+        friendlinessLabel.setLayoutY(50);
+        friendlinessLabel.setStyle("-fx-text-fill: white;");
+
+        Label rapidityLabel = new Label("Rapidity: " + grade.getRapidity());
+        rapidityLabel.setLayoutX(10);
+        rapidityLabel.setLayoutY(70);
+        rapidityLabel.setStyle("-fx-text-fill: white;");
+
+        Label qualityLabel = new Label("Quality: " + grade.getQuality());
+        qualityLabel.setLayoutX(10);
+        qualityLabel.setLayoutY(90);
+        qualityLabel.setStyle("-fx-text-fill: white;");
+
+        Label avgGradeLabel = new Label("Average Grade: " + grade.getAvgGrade());
+        avgGradeLabel.setLayoutX(10);
+        avgGradeLabel.setLayoutY(110);
+        avgGradeLabel.setStyle("-fx-text-fill: white;");
+
+        pane.getChildren().addAll(userGradedLabel, serviceGradedLabel, friendlinessLabel, rapidityLabel, qualityLabel, avgGradeLabel);
+
+        return pane;
     }
 }

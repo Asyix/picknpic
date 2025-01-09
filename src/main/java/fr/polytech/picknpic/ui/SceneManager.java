@@ -7,9 +7,13 @@ import fr.polytech.picknpic.ui.controllers.UserControllers.AddUserController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.ManageUsersController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController;
+import fr.polytech.picknpic.ui.controllers.ServiceControllers.*;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.*;
+import fr.polytech.picknpic.ui.controllers.RequestControllers.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.fxml.FXML;
 
 /**
  * Manages scenes and user interactions within the application.
@@ -122,6 +126,196 @@ public class SceneManager {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Pick'n'Pic");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    // The following methods are related to the Request use-case
+
+    /**
+     * Loads the create request scene.
+     */
+    @FXML
+    public void loadCreateRequestScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Request/createRequest.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageRequestController requestController = loader.getController();
+            requestController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Create Request");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /**
+     * Loads the update request scene.
+     */
+    @FXML
+    public void loadChangeRequestStatusScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Request/changeRequestStatus.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageRequestController requestController = loader.getController();
+            requestController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Change Request Status");
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // The following methods are related to the Service use-case
+
+    /**
+     * Loads the delete request scene.
+     */
+    @FXML
+    public void loadCreateServiceScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/createService.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageServicesController servicesController = loader.getController();
+            servicesController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Create Service");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the update service scene.
+     */
+    @FXML
+    public void loadUpdateServiceScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/updateService.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageServicesController servicesController = loader.getController();
+            servicesController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Update Service");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the delete service scene.
+     */
+    @FXML
+    public void loadDeleteServiceScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/deleteService.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageServicesController servicesController = loader.getController();
+            servicesController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Delete Service");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the display all services scene.
+     */
+    @FXML
+    public void loadDisplayAllServicesScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Service/displayAllServices.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            DisplayAllServicesController servicesController = loader.getController();
+            servicesController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Display All Services");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // The following methods are related to the Grade use-case
+
+    /**
+     * Loads the create grade scene.
+     */
+    @FXML
+    public void loadCreateGradeScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageGradesController gradesController = loader.getController();
+            gradesController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Create Grade");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the update grade scene.
+     */
+    @FXML
+    public void loadDeleteGradeScene () {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/deleteGrade.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageGradesController gradesController = loader.getController();
+            gradesController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Delete Grade");
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the display all grades scene.
+     */
+    @FXML
+    public void loadDisplayAllGradesScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Grade/displayAllGrades.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            DisplayAllGradesController gradesController = loader.getController();
+            gradesController.setSceneManager(this);
+
+            gradesController.handleGetAllGrades();
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Display All Grades");
             primaryStage.show();
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -47,6 +47,7 @@ public class UserDAOPostgres implements UserDAO {
                             resultSet.getString("last_name"),
                             resultSet.getInt("phone_number"),
                             resultSet.getBoolean("admin"));
+                    user.setId(resultSet.getInt("id"));
                 }
             }
         } catch (SQLException e) {

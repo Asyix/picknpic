@@ -3,6 +3,8 @@ package fr.polytech.picknpic.ui.controllers.ServiceControllers;
 import fr.polytech.picknpic.bl.facades.service.ServiceFacade;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import javafx.scene.control.Alert;
+import fr.polytech.picknpic.ui.SceneManager;
+import javafx.fxml.FXML;
 
 /**
  * Controller for managing services.
@@ -13,8 +15,8 @@ public class ManageServicesController {
     /** The facade for service-related operations. */
     private final ServiceFacade serviceFacade;
 
-    /** The main controller for the application. */
-    private MainController mainController;
+    /** The scene manager for managing scene transitions. */
+    private SceneManager sceneManager;
 
     /**
      * Constructs a new `ManageServicesController` instance.
@@ -25,12 +27,11 @@ public class ManageServicesController {
     }
 
     /**
-     * Sets the {@link MainController} instance.
-     *
-     * @param mainController The main controller to set.
+     * Sets the {@link SceneManager instance}.
+     * @param sceneManager The scene manager to set.
      */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
+    public void setSceneManager(SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
     /**
@@ -80,9 +81,19 @@ public class ManageServicesController {
         try {
             serviceFacade.deleteService(id_service);
             showAlert("Service Deleted", "Service deleted successfully", "The service has been deleted successfully.");
+            loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to delete service", "An error occurred while deleting the service.");
         }
+    }
+
+    /**
+     * Loads the main scene.
+     * This method will be triggered when the user clicks "NO" in the confirm delete dialog.
+     */
+    @FXML
+    public void loadMainScene() throws Exception {
+        sceneManager.loadMainScene();
     }
 
     /**
@@ -100,9 +111,12 @@ public class ManageServicesController {
         try {
             serviceFacade.updateService(id_service, name, example_image, price, description);
             showAlert("Service Updated", "Service updated successfully", "The service has been updated successfully.");
+            sceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to update service", "An error occurred while updating the service.");
         }
     }
+
+
 
 }
