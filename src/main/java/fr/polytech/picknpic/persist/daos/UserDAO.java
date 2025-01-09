@@ -2,6 +2,8 @@ package fr.polytech.picknpic.persist.daos;
 
 import fr.polytech.picknpic.bl.models.User;
 
+import java.util.List;
+
 /**
  * Interface for Data Access Object (DAO) operations related to the User entity.
  * Provides methods for user authentication and data retrieval.
@@ -23,7 +25,9 @@ public interface UserDAO {
 
     User readUser(int id);
 
-    void updateUser(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber);
+    List<User> getAllUsers(User user);
+
+    boolean updateUser(User user);
 
     void deleteUser(int id);
 

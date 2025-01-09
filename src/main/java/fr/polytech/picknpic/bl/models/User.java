@@ -6,7 +6,8 @@ package fr.polytech.picknpic.bl.models;
  * personal details, and a role indicating if they are an admin.
  */
 public class User {
-
+    /** The unique identifier of the user. */
+    private int id;
     /** The user's email address. */
     private String email;
 
@@ -167,5 +168,9 @@ public class User {
      */
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public int getId() {
+        return id;
     }
 }

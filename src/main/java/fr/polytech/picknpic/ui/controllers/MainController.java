@@ -51,6 +51,8 @@ public class MainController {
     @FXML
     private Button displayAllServicesButton;
 
+    @FXML Button manageUsersButton;
+
     /** The scene manager for managing scene transitions. */
     private SceneManager sceneManager;
 
@@ -72,6 +74,11 @@ public class MainController {
         } else {
             sceneManager.loadLoginScene();
         }
+    }
+
+    @FXML
+    private void handleManageUsers() {
+        sceneManager.loadManageUsersScene();
     }
 
     @FXML

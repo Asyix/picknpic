@@ -3,13 +3,17 @@ package fr.polytech.picknpic.bl.facades.user;
 import fr.polytech.picknpic.bl.models.User;
 
 public class UserFacade {
-    /** The singleton LoginFacade instance used to authenticate users. */
-    private final LoginFacade loginFacade;
+
     /** The singleton instance of the UserFacade. */
     private static UserFacade userFacade = null;
-
+    /** The singleton LoginFacade instance used to authenticate users. */
+    private final LoginFacade loginFacade;
     /** The singleton instance of the RegisterFacade. */
-    private static RegisterFacade registerFacade;
+    private final RegisterFacade registerFacade;
+    /** The singleton instance of the ManageUsersFacade. */
+    private final ManageUsersFacade manageUsersFacade;
+    /** The singleton instance of the DisplayUsersFacade. */
+    private final DisplayUsersFacade displayUsersFacade;
 
     /**
      * Constructs a new UserFacade instance.
@@ -18,6 +22,8 @@ public class UserFacade {
     private UserFacade() {
         loginFacade = LoginFacade.getInstance();
         registerFacade = RegisterFacade.getInstance();
+        manageUsersFacade = ManageUsersFacade.getInstance();
+        displayUsersFacade = DisplayUsersFacade.getInstance();
     }
 
     /**
@@ -61,5 +67,21 @@ public class UserFacade {
         return registerFacade.register(email, password, username, firstName, lastName, phoneNumber);
     }
 
+    public User createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+        return manageUsersFacade.createUser(email, password, username, firstName, lastName, phoneNumber, admin);
+    }
 
+
+
+    public boolean updateUser(User user) {
+        return manageUsersFacade.updateUser(user);
+    }
+
+    public void deleteUser(int id) {
+        manageUsersFacade.deleteUser(id);
+    }
+
+    public User readUser(int id) {
+        return displayUsersFacade.readUser(id);
+    }
 }

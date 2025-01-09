@@ -3,7 +3,9 @@ package fr.polytech.picknpic.ui;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.controllers.MainController;
+import fr.polytech.picknpic.ui.controllers.UserControllers.AddUserController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
+import fr.polytech.picknpic.ui.controllers.UserControllers.ManageUsersController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -88,6 +90,22 @@ public class SceneManager {
             registerStage.setScene(scene);
             registerStage.setTitle("Register");
             registerStage.showAndWait(); // Pause until registration is complete
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadManageUsersScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/manageUsers.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            ManageUsersController manageUsersController = loader.getController();
+            manageUsersController.setSceneManager(this);
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Manage Users");
+            primaryStage.show();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

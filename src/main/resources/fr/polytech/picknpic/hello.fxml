@@ -13,4 +13,5 @@
     <Button fx:id="deleteUsersButton" text="Delete Service" onAction="#handleDeleteService"/>
     <Button fx:id="createGradeButton" text="Create Grade" onAction="#handleCreateGrade"/>
     <Button fx:id="deleteGradeButton" text="Delete Grade" onAction="#handleDeleteGrade"/>
+    <Button fx:id="managerUsersButton" text="Manage Users" onAction="#handleManageUsers"/>
 </VBox>
