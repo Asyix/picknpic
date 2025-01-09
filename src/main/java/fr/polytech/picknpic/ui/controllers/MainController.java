@@ -70,10 +70,15 @@ public class MainController {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
         if (currentUser != null) {
             welcomeLabel.setText("Welcome, " + currentUser.getFirstName() + "!");
-            loginButton.setText("Logout");
         } else {
             sceneManager.loadLoginScene();
         }
+    }
+
+    @FXML
+    private void handleLogout() {
+        LoginFacade.getInstance().setCurrentUser(null);
+        sceneManager.loadLoginScene();
     }
 
     @FXML

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -29,6 +26,7 @@
         <TextField fx:id="phoneNumberField" promptText="Phone Number" styleClass="paleGreyPane" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="2"/>
 
         <Button text="Register" onAction="#handleRegister" styleClass="greenButton" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="2"/>
+        <Button text="Back" onAction="#loadLogin" styleClass="redButton" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="2"/>
     </GridPane>
 
 </AnchorPane>

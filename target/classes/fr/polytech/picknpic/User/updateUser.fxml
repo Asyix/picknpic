@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="fr.polytech.picknpic.ui.controllers.UserControllers.UpdateUserController"
+      spacing="10" alignment="CENTER" padding="10">
+    <TextField fx:id="emailField" promptText="Email" />
+    <PasswordField fx:id="passwordField" promptText="Password" />
+    <TextField fx:id="usernameField" promptText="Username" />
+    <TextField fx:id="firstNameField" promptText="First Name" />
+    <TextField fx:id="lastNameField" promptText="Last Name" />
+    <TextField fx:id="phoneNumberField" promptText="Phone Number" />
+    <CheckBox fx:id="adminCheckBox" text="Admin" />
+    <Button text="Update User" onAction="#handleUpdateUser" />
+</VBox>

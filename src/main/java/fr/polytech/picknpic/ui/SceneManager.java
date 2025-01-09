@@ -20,6 +20,8 @@ public class SceneManager {
     /** The primary stage of the application. */
     private final Stage primaryStage;
 
+    private Stage currentStage;
+
     /** The currently logged-in user. */
     private User currentUser = LoginFacade.getInstance().getCurrentUser();
 
@@ -69,10 +71,9 @@ public class SceneManager {
             LoginController loginController = loader.getController();
             loginController.setSceneManager(this);
 
-            Stage loginStage = new Stage();
-            loginStage.setScene(scene);
-            loginStage.setTitle("Login");
-            loginStage.showAndWait(); // Pause until login is complete
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Login");
+            primaryStage.show(); // Pause until login is complete
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -86,10 +87,10 @@ public class SceneManager {
             RegisterController registerController = loader.getController();
             registerController.setSceneManager(this);
 
-            Stage registerStage = new Stage();
-            registerStage.setScene(scene);
-            registerStage.setTitle("Register");
-            registerStage.showAndWait(); // Pause until registration is complete
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Register");
+            primaryStage.setScene(scene);
+            primaryStage.show(); // Pause until registration is complete
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
