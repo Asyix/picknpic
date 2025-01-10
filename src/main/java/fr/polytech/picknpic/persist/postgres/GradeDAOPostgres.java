@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * PostgreSQL implementation of the {@link GradeDAO} interface.
@@ -97,27 +99,33 @@ public class GradeDAOPostgres implements GradeDAO {
      * @return A {@link Grade} object containing the user's grades, or {@code null} if no grades were found.
      */
     @Override
-    public Grade getAllGrades(int id_user) {
-        Grade grade = null;
+    public List<Grade> getAllGrades(int id_user) { // Corrected to return a list
+        List<Grade> grades = new ArrayList<>();
         try (Connection connection = JDBCConnector.getInstance().getConnection()) {
             String query = "SELECT * FROM \"Grade\" WHERE id_user_graded = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id_user);
 
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                grade = new Grade();
-                grade.setIdGrade(resultSet.getInt("id_grade"));
-                grade.setIdUserGraded(resultSet.getInt("id_user_graded"));
-                grade.setIdServiceGraded(resultSet.getInt("id_service_graded"));
-                grade.setFriendliness(resultSet.getInt("friendliness"));
-                grade.setRapidity(resultSet.getInt("rapidity"));
-                grade.setQuality(resultSet.getInt("quality"));
-                grade.setAvgGrade(resultSet.getFloat("avg_grade"));
+            while (resultSet.next()) {
+                grades.add(mapResultSetToGrade(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return grades;
+    }
+
+    private Grade mapResultSetToGrade(ResultSet resultSet) throws SQLException {
+        Grade grade = new Grade();
+        grade.setIdGrade(resultSet.getInt("id_grade"));
+        grade.setIdUserGraded(resultSet.getInt("id_user_graded"));
+        grade.setIdServiceGraded(resultSet.getInt("id_service_graded"));
+        grade.setFriendliness(resultSet.getInt("friendliness"));
+        grade.setRapidity(resultSet.getInt("rapidity"));
+        grade.setQuality(resultSet.getInt("quality"));
+        grade.setAvgGrade(resultSet.getFloat("avg_grade"));
         return grade;
     }
+
 }

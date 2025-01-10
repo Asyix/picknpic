@@ -3,6 +3,8 @@ package fr.polytech.picknpic.bl.facades.grade;
 import fr.polytech.picknpic.bl.models.Grade;
 import fr.polytech.picknpic.persist.AbstractFactory;
 
+import java.util.List;
+
 /**
  * Facade for managing grade-related operations.
  * Provides a simplified interface for creating, deleting, and retrieving grades
@@ -72,7 +74,7 @@ public class GradeFacade {
      * @param id_user The ID of the user.
      * @return A Grade object containing all grades for the user.
      */
-    public Grade getAllGrades(int id_user) {
+    public List<Grade> getAllGrades(int id_user) {
         return displayAllGradesFacade.getAllGrades(id_user);
     }
 }

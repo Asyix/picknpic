@@ -29,6 +29,9 @@ public class MainController {
     @FXML
     private Label welcomeLabel;
 
+    // temporary sceneManager to be deleted later
+    private SceneManager sceneManager;
+
     @FXML
     private void initialize() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -37,5 +40,43 @@ public class MainController {
         } else {
             SceneManager.loadLoginScene();
         }
+    }
+
+    // Temporary methods to navigate to other scenes
+
+    public void handleCreateRequest() {
+        sceneManager.loadCreateRequestScene();
+    }
+
+    public void handleChangeRequestStatus() {
+        sceneManager.loadChangeRequestStatusScene();
+    }
+
+    public void handleCreateService() {
+        sceneManager.loadCreateServiceScene();
+    }
+
+    public void handleUpdateService() {
+        sceneManager.loadUpdateServiceScene();
+    }
+
+    public void handleDeleteService() {
+        sceneManager.loadDeleteServiceScene();
+    }
+
+    public void handleCreateGrade() {
+        sceneManager.loadCreateGradeScene();
+    }
+
+    public void handleDeleteGrade() {
+        sceneManager.loadDeleteGradeScene();
+    }
+
+    public void handleDisplayAllServices() {
+        sceneManager.loadDisplayAllServicesScene();
+    }
+
+    public void handleDisplayAllGrades() {
+        sceneManager.loadDisplayAllGradesScene();
     }
 }
