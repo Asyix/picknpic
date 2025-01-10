@@ -76,12 +76,6 @@ public class MainController {
     }
 
     @FXML
-    private void handleLogout() {
-        LoginFacade.getInstance().setCurrentUser(null);
-        sceneManager.loadLoginScene();
-    }
-
-    @FXML
     private void handleManageUsers() {
         sceneManager.loadManageUsersScene();
     }

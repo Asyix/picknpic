@@ -1,5 +1,6 @@
 package fr.polytech.picknpic.persist.postgres;
 
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.persist.JDBCConnector;
 import fr.polytech.picknpic.persist.daos.UserDAO;
@@ -253,5 +254,50 @@ public class UserDAOPostgres implements UserDAO {
         }
 
         return true;
+    }
+
+    public boolean deleteAccount(int id, String password) {
+        if (LoginFacade.getInstance().getCurrentUser().getId() != id) {
+            return false;
+        }
+        else {
+            String query = "DELETE FROM \"User\" WHERE id = ? AND password = ?";
+            try (Connection connection = JDBCConnector.getInstance().getConnection();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                statement.setString(2, password);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            return true;
+        }
+
+    }
+
+    @Override
+    public boolean updateAccount(User user) {
+        if (LoginFacade.getInstance().getCurrentUser().getId() != user.getId()) {
+            return false;
+        }
+        else {
+            String query = "UPDATE \"User\" SET email = ?, password = ?, username = ?, first_name = ?, last_name = ?, phone_number = ? WHERE id = ?";
+            try (Connection connection = JDBCConnector.getInstance().getConnection();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, user.getEmail());
+                statement.setString(2, user.getPassword());
+                statement.setString(3, user.getUsername());
+                statement.setString(4, user.getFirstName());
+                statement.setString(5, user.getLastName());
+                statement.setInt(6, user.getPhoneNumber());
+                statement.setInt(7, user.getId());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            return true;
+        }
     }
 }

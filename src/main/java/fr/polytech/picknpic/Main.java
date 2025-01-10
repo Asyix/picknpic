@@ -9,7 +9,6 @@ import javafx.stage.Stage;
  * Initializes the application and sets up the primary stage with the initial scene.
  */
 public class Main extends Application {
-
     /**
      * Starts the JavaFX application.
      * Initializes the {@link SceneManager} and loads the initial scene.

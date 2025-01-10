@@ -3,10 +3,10 @@ package fr.polytech.picknpic.ui;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.controllers.MainController;
-import fr.polytech.picknpic.ui.controllers.UserControllers.AddUserController;
-import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
-import fr.polytech.picknpic.ui.controllers.UserControllers.ManageUsersController;
-import fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController;
+import fr.polytech.picknpic.ui.controllers.MainLayoutController;
+import fr.polytech.picknpic.ui.controllers.NavbarController;
+import fr.polytech.picknpic.ui.controllers.UserControllers.*;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +19,9 @@ public class SceneManager {
 
     /** The primary stage of the application. */
     private final Stage primaryStage;
+
+    /** The main layout controller for managing the main application layout. */
+    private MainLayoutController mainLayoutController;
 
     private Stage currentStage;
 
@@ -60,6 +63,30 @@ public class SceneManager {
     }
 
 
+    private void loadMainLayout() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/mainLayout.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            mainLayoutController = loader.getController();
+            mainLayoutController.setSceneManager(this); // Pass SceneManager to MainLayoutController
+
+            loadMainScene();
+
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Pick'n'Pic");
+            primaryStage.sizeToScene();
+            primaryStage.show();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load main layout", e);
+        }
+    }
+
+    public void handleLogin() {
+        loadMainLayout();
+    }
+
+
     /**
      * Loads the login scene and initializes the {@link LoginController}.
      */
@@ -73,6 +100,7 @@ public class SceneManager {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
+            primaryStage.sizeToScene();
             primaryStage.show(); // Pause until login is complete
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -89,24 +117,8 @@ public class SceneManager {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Register");
-            primaryStage.setScene(scene);
+            primaryStage.sizeToScene();
             primaryStage.show(); // Pause until registration is complete
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void loadManageUsersScene() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/manageUsers.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            ManageUsersController manageUsersController = loader.getController();
-            manageUsersController.setSceneManager(this);
-
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Manage Users");
-            primaryStage.show();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -115,16 +127,80 @@ public class SceneManager {
     public void loadMainScene() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/hello.fxml"));
-            Scene scene = new Scene(loader.load());
-
+            Parent content = loader.load();
             MainController mainController = loader.getController();
             mainController.setSceneManager(this);
-
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Pick'n'Pic");
-            primaryStage.show();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+
+    public void loadProfileScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/profile.fxml"));
+            Parent content = loader.load();
+            ProfileController profileController = loader.getController();
+            profileController.setSceneManager(this);
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadManageUsersScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/manageUsers.fxml"));
+            Parent content = loader.load();
+            ManageUsersController manageUsersController = loader.getController();
+            manageUsersController.setSceneManager(this);
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadUpdateAccountScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/updateAccount.fxml"));
+            Parent content = loader.load();
+            UpdateAccountController updateAccountController = loader.getController();
+            updateAccountController.setSceneManager(this);
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void loadPostsScene() {
+    }
+
+    public void loadNotificationsScene() {
+    }
+
+    public void loadChatScene() {
+    }
+
+
 }

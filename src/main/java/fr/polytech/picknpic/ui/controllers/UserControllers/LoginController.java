@@ -54,7 +54,7 @@ public class LoginController {
         if (user != null) {
             // Successful login: Inform MainController and close the login window
             sceneManager.updateCurrentUser();
-            sceneManager.loadMainScene();
+            sceneManager.handleLogin();
         } else {
             // Failed login: Display an error message
             messageLabel.setText("Invalid username or password.");
