@@ -71,10 +71,11 @@ public class SceneManager {
             mainLayoutController = loader.getController();
             mainLayoutController.setSceneManager(this); // Pass SceneManager to MainLayoutController
 
-            loadProfileScene();
+            loadMainScene();
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Pick'n'Pic");
+            primaryStage.sizeToScene();
             primaryStage.show();
         } catch (Exception e) {
             throw new RuntimeException("Failed to load main layout", e);
@@ -99,6 +100,7 @@ public class SceneManager {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
+            primaryStage.sizeToScene();
             primaryStage.show(); // Pause until login is complete
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -115,7 +117,7 @@ public class SceneManager {
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Register");
-            primaryStage.setScene(scene);
+            primaryStage.sizeToScene();
             primaryStage.show(); // Pause until registration is complete
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -130,6 +132,7 @@ public class SceneManager {
             mainController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
             } else {
                 throw new RuntimeException("MainLayoutController is not initialized");
             }
@@ -147,6 +150,7 @@ public class SceneManager {
             profileController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
             } else {
                 throw new RuntimeException("MainLayoutController is not initialized");
             }
@@ -163,6 +167,7 @@ public class SceneManager {
             manageUsersController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
             } else {
                 throw new RuntimeException("MainLayoutController is not initialized");
             }
@@ -179,6 +184,7 @@ public class SceneManager {
             updateAccountController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
             } else {
                 throw new RuntimeException("MainLayoutController is not initialized");
             }

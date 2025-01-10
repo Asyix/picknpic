@@ -24,22 +24,32 @@ public class ProfileController {
     @FXML
     private Label phoneNumberLabel;
 
+    private User currentUser;
+
     private SceneManager sceneManager;
 
     public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;
-        loadUserData();
+    }
+
+    @FXML
+    private void initialize() {
+        currentUser = LoginFacade.getInstance().getCurrentUser();
+        System.out.println(currentUser.getEmail());
+        if (currentUser != null) {
+            loadUserData();
+        }
+        else {
+            sceneManager.loadLoginScene();
+        }
     }
 
     private void loadUserData() {
-        User currentUser = LoginFacade.getInstance().getCurrentUser();
-        if (currentUser != null) {
             emailLabel.setText(currentUser.getEmail());
             usernameLabel.setText(currentUser.getUsername());
             firstNameLabel.setText(currentUser.getFirstName());
             lastNameLabel.setText(currentUser.getLastName());
             phoneNumberLabel.setText(String.valueOf(currentUser.getPhoneNumber()));
-        }
     }
 
     @FXML
