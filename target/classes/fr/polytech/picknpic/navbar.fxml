@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.NavbarController" spacing="10" alignment="CENTER_LEFT">
+<HBox fx:id="navbar" xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.NavbarController" spacing="10" alignment="CENTER_LEFT">
     <!-- Add buttons to the navbar -->
     <Button text="Home" onAction="#loadHome"/>
     <Button text="Posts" onAction="#loadPosts"/>

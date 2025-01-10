@@ -36,7 +36,7 @@ public class ManageUsersFacade {
      * @param admin The admin status of the user to create.
      * @return A {@link User} object containing the created user's details.
      */
-    public User createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+    public boolean createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
         return abstractFactory.createUserDAO().createUser(email, password, username, firstName, lastName, phoneNumber, admin);
     }
 

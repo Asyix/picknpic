@@ -71,6 +71,7 @@ public class ManageUsersController {
     }
 
     private void loadUsers() {
+        usersList.clear();
         usersList.setAll(displayUsersFacade.getAllUsers(LoginFacade.getInstance().getCurrentUser()));
     }
 

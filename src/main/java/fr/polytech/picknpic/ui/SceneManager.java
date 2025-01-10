@@ -203,4 +203,6 @@ public class SceneManager {
     }
 
 
+    public void loadReportsScene() {
+    }
 }

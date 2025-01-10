@@ -42,8 +42,8 @@ public class AddUserController {
         int phoneNumber = Integer.parseInt(phoneNumberField.getText());
         boolean admin = adminCheckBox.isSelected();
 
-        User newUser = manageUsersFacade.createUser(email, password, username, firstName, lastName, phoneNumber, admin);
-        if (newUser != null) {
+        boolean success = manageUsersFacade.createUser(email, password, username, firstName, lastName, phoneNumber, admin);
+        if (success) {
             dialogStage.close();
         } else {
             showAlert("Error", "User creation failed", "Please check the input fields.");

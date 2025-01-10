@@ -67,7 +67,7 @@ public class UserFacade {
         return registerFacade.register(email, password, username, firstName, lastName, phoneNumber);
     }
 
-    public User createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+    public boolean createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
         return manageUsersFacade.createUser(email, password, username, firstName, lastName, phoneNumber, admin);
     }
 
