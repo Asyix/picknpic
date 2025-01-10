@@ -26,12 +26,6 @@ public class ProfileController {
 
     private User currentUser;
 
-    private SceneManager sceneManager;
-
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
-
     @FXML
     private void initialize() {
         currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -40,7 +34,7 @@ public class ProfileController {
             loadUserData();
         }
         else {
-            sceneManager.loadLoginScene();
+            SceneManager.loadLoginScene();
         }
     }
 
@@ -54,7 +48,7 @@ public class ProfileController {
 
     @FXML
     private void loadUpdateAccount() {
-        sceneManager.loadUpdateAccountScene();
+        SceneManager.loadUpdateAccountScene();
     }
 
     @FXML
@@ -72,7 +66,7 @@ public class ProfileController {
                 boolean success = ManageAccountFacade.getInstance().deleteAccount(currentUser.getId(), password);
                 if (success) {
                     LoginFacade.getInstance().setCurrentUser(null);
-                    sceneManager.loadLoginScene();
+                    SceneManager.loadLoginScene();
                 } else {
                     showAlert("Error", "Account deletion failed.");
                 }

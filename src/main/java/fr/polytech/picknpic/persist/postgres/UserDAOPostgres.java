@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,19 +86,7 @@ public class UserDAOPostgres implements UserDAO {
             statement.setString(4, firstName);
             statement.setString(5, lastName);
             statement.setInt(6, phoneNumber);
-
-            try (ResultSet resultSet = statement.executeQuery();) {
-                if (resultSet.next()) {
-                    // Populate the User object with data from the database
-                    user = new User(resultSet.getString("email"),
-                            resultSet.getString("password"),
-                            resultSet.getString("username"),
-                            resultSet.getString("first_name"),
-                            resultSet.getString("last_name"),
-                            resultSet.getInt("phone_number"),
-                            resultSet.getBoolean("admin"));
-                }
-            }
+            statement.executeUpdate();
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
@@ -107,8 +96,7 @@ public class UserDAOPostgres implements UserDAO {
     }
 
     @Override
-    public User createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
-        User user = null;
+    public boolean createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
         String query = "INSERT INTO \"User\" (email, password, username, first_name, last_name, phone_number, admin) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = JDBCConnector.getInstance().getConnection();
@@ -120,26 +108,14 @@ public class UserDAOPostgres implements UserDAO {
             statement.setString(5, lastName);
             statement.setInt(6, phoneNumber);
             statement.setBoolean(7, admin);
-
-            try (ResultSet resultSet = statement.executeQuery();) {
-                if (resultSet.next()) {
-                    // Populate the User object with data from the database
-                    user = new User(resultSet.getString("email"),
-                            resultSet.getString("password"),
-                            resultSet.getString("username"),
-                            resultSet.getString("first_name"),
-                            resultSet.getString("last_name"),
-                            resultSet.getInt("phone_number"),
-                            resultSet.getBoolean("admin"));
-                }
-            }
+            statement.executeUpdate();
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
 
         }
 
-        return user;
+        return true;
     }
 
     @Override
@@ -169,13 +145,14 @@ public class UserDAOPostgres implements UserDAO {
 
     @Override
     public List<User> getAllUsers(User user) {
-        List<User> users = null;
+        List<User> users = new ArrayList<>();
         String query = "SELECT * FROM \"User\"";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                user = new User(resultSet.getString("email"),
+                user = new User(resultSet.getInt("id"),
+                        resultSet.getString("email"),
                         resultSet.getString("password"),
                         resultSet.getString("username"),
                         resultSet.getString("first_name"),
@@ -228,12 +205,35 @@ public class UserDAOPostgres implements UserDAO {
 
     @Override
     public boolean followUser(int idFollowed, int idFollower) {
-        String query = "INSERT INTO \"Follow\" (id_followed, id_follower) VALUES (?, ?)";
-        try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, idFollowed);
-            statement.setInt(2, idFollower);
-            statement.executeUpdate();
+        String insertFollowQuery = "INSERT INTO \"Follow\" (id_followed, id_follower) VALUES (?, ?)";
+        String updateFollowersQuery = "UPDATE \"User\" SET nb_followers = nb_followers + 1 WHERE id = ?";
+        String updateFollowsQuery = "UPDATE \"User\" SET nb_follows = nb_follows + 1 WHERE id = ?";
+
+        try (Connection connection = JDBCConnector.getInstance().getConnection()) {
+            connection.setAutoCommit(false); // Start transaction
+
+            try (PreparedStatement insertFollowStmt = connection.prepareStatement(insertFollowQuery);
+                 PreparedStatement updateFollowersStmt = connection.prepareStatement(updateFollowersQuery);
+                 PreparedStatement updateFollowsStmt = connection.prepareStatement(updateFollowsQuery)) {
+
+                // Execute insert follow query
+                insertFollowStmt.setInt(1, idFollowed);
+                insertFollowStmt.setInt(2, idFollower);
+                insertFollowStmt.executeUpdate();
+
+                // Execute update followers query
+                updateFollowersStmt.setInt(1, idFollowed);
+                updateFollowersStmt.executeUpdate();
+
+                // Execute update follows query
+                updateFollowsStmt.setInt(1, idFollower);
+                updateFollowsStmt.executeUpdate();
+
+                connection.commit(); // Commit transaction
+            } catch (SQLException e) {
+                connection.rollback(); // Rollback transaction on error
+                throw new RuntimeException(e);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -243,12 +243,35 @@ public class UserDAOPostgres implements UserDAO {
 
     @Override
     public boolean unfollowUser(int idFollowed, int idFollower) {
-        String query = "DELETE FROM \"Follow\" WHERE id_followed = ? AND id_follower = ?";
-        try (Connection connection = JDBCConnector.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, idFollowed);
-            statement.setInt(2, idFollower);
-            statement.executeUpdate();
+        String deleteFollowQuery = "DELETE FROM \"Follow\" WHERE id_followed = ? AND id_follower = ?";
+        String updateFollowersQuery = "UPDATE \"User\" SET nb_followers = nb_followers - 1 WHERE id = ?";
+        String updateFollowsQuery = "UPDATE \"User\" SET nb_follows = nb_follows - 1 WHERE id = ?";
+
+        try (Connection connection = JDBCConnector.getInstance().getConnection()) {
+            connection.setAutoCommit(false); // Start transaction
+
+            try (PreparedStatement deleteFollowStmt = connection.prepareStatement(deleteFollowQuery);
+                 PreparedStatement updateFollowersStmt = connection.prepareStatement(updateFollowersQuery);
+                 PreparedStatement updateFollowsStmt = connection.prepareStatement(updateFollowsQuery)) {
+
+                // Execute delete follow query
+                deleteFollowStmt.setInt(1, idFollowed);
+                deleteFollowStmt.setInt(2, idFollower);
+                deleteFollowStmt.executeUpdate();
+
+                // Execute update followers query
+                updateFollowersStmt.setInt(1, idFollowed);
+                updateFollowersStmt.executeUpdate();
+
+                // Execute update follows query
+                updateFollowsStmt.setInt(1, idFollower);
+                updateFollowsStmt.executeUpdate();
+
+                connection.commit(); // Commit transaction
+            } catch (SQLException e) {
+                connection.rollback(); // Rollback transaction on error
+                throw new RuntimeException(e);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

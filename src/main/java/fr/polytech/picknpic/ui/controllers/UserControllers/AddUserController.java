@@ -23,8 +23,6 @@ public class AddUserController {
     private TextField phoneNumberField;
     @FXML
     private CheckBox adminCheckBox;
-
-    private SceneManager sceneManager;
     private final ManageUsersFacade manageUsersFacade = ManageUsersFacade.getInstance();
     private Stage dialogStage;
 
@@ -42,8 +40,8 @@ public class AddUserController {
         int phoneNumber = Integer.parseInt(phoneNumberField.getText());
         boolean admin = adminCheckBox.isSelected();
 
-        User newUser = manageUsersFacade.createUser(email, password, username, firstName, lastName, phoneNumber, admin);
-        if (newUser != null) {
+        boolean success = manageUsersFacade.createUser(email, password, username, firstName, lastName, phoneNumber, admin);
+        if (success) {
             dialogStage.close();
         } else {
             showAlert("Error", "User creation failed", "Please check the input fields.");

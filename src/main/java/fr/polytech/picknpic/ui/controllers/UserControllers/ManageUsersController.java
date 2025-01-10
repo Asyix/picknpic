@@ -38,8 +38,6 @@ public class ManageUsersController {
     @FXML
     private TableColumn<User, Boolean> adminColumn;
 
-    private SceneManager sceneManager;
-
     private User currentUser;
 
     private final ManageUsersFacade manageUsersFacade = ManageUsersFacade.getInstance();
@@ -47,9 +45,6 @@ public class ManageUsersController {
     private final DisplayUsersFacade displayUsersFacade = DisplayUsersFacade.getInstance();
     private final ObservableList<User> usersList = FXCollections.observableArrayList();
 
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
 
     @FXML
     private void initialize() {
@@ -66,11 +61,12 @@ public class ManageUsersController {
             loadUsers();
         }
         else {
-            sceneManager.loadLoginScene();
+            SceneManager.loadLoginScene();
         }
     }
 
     private void loadUsers() {
+        usersList.clear();
         usersList.setAll(displayUsersFacade.getAllUsers(LoginFacade.getInstance().getCurrentUser()));
     }
 

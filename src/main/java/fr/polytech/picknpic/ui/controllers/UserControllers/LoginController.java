@@ -18,23 +18,28 @@ import javafx.stage.Stage;
  */
 public class LoginController {
 
-    /** The text field for entering the username. */
+    /**
+     * The text field for entering the username.
+     */
     @FXML
     private TextField usernameField;
 
-    /** The password field for entering the password. */
+    /**
+     * The password field for entering the password.
+     */
     @FXML
     private PasswordField passwordField;
 
-    /** The label for displaying messages to the user (e.g., error messages). */
+    /**
+     * The label for displaying messages to the user (e.g., error messages).
+     */
     @FXML
     private Label messageLabel;
 
-    /** The facade for handling user login operations. */
+    /**
+     * The facade for handling user login operations.
+     */
     private final UserFacade userFacade;
-
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
 
     public LoginController() {
         this.userFacade = UserFacade.getInstance();
@@ -52,9 +57,7 @@ public class LoginController {
         User user = userFacade.login(username, password);
 
         if (user != null) {
-            // Successful login: Inform MainController and close the login window
-            sceneManager.updateCurrentUser();
-            sceneManager.handleLogin();
+            SceneManager.handleLogin();
         } else {
             // Failed login: Display an error message
             messageLabel.setText("Invalid username or password.");
@@ -63,11 +66,7 @@ public class LoginController {
     }
 
     public void loadRegister() {
-        sceneManager.loadRegisterScene();
+        SceneManager.loadRegisterScene();
 
-    }
-
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
     }
 }
