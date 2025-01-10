@@ -22,9 +22,9 @@ import javafx.fxml.FXML;
 public class SceneManager {
 
     /** The primary stage of the application. */
-    private final Stage primaryStage;
+    private static Stage primaryStage;
 
-    private Stage currentStage;
+    private static Stage currentStage;
 
     /** The currently logged-in user. */
     private User currentUser = LoginFacade.getInstance().getCurrentUser();

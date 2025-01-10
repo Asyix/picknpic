@@ -40,6 +40,17 @@ public class User {
         this.admin = admin;
     }
 
+    public User(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.admin = admin;
+    }
+
     public User() {
         this.admin = false;
     };
@@ -174,7 +185,4 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }

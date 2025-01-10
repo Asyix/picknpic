@@ -2,6 +2,7 @@ package fr.polytech.picknpic.ui.controllers.ServiceControllers;
 
 import fr.polytech.picknpic.bl.facades.service.ServiceFacade;
 import fr.polytech.picknpic.bl.models.Service;
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

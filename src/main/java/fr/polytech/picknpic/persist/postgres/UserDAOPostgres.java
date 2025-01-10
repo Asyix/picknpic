@@ -25,8 +25,6 @@ public class UserDAOPostgres implements UserDAO {
      * @return A {@link User} object containing the user's details if authentication is successful,
      *         or {@code null} if no match is found.
      */
-
-
     @Override
     public User login(String username, String password) {
         User user = null;
@@ -40,14 +38,14 @@ public class UserDAOPostgres implements UserDAO {
             try (ResultSet resultSet = statement.executeQuery();) {
                 if (resultSet.next()) {
                     // Populate the User object with data from the database
-                    user = new User(resultSet.getString("email"),
+                    user = new User(resultSet.getInt("id"),
+                            resultSet.getString("email"),
                             resultSet.getString("password"),
                             resultSet.getString("username"),
                             resultSet.getString("first_name"),
                             resultSet.getString("last_name"),
                             resultSet.getInt("phone_number"),
                             resultSet.getBoolean("admin"));
-                    user.setId(resultSet.getInt("id"));
                 }
             }
         } catch (SQLException e) {

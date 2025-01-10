@@ -2,6 +2,7 @@
 package fr.polytech.picknpic.ui.controllers.GradeControllers;
 
 import fr.polytech.picknpic.bl.facades.grade.GradeFacade;
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.Grade;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class DisplayAllGradesController {
     @FXML
     private VBox gradesContainer;
 
-    private SceneManager sceneManager;
+    private LoginFacade loginFacade;
 
     public DisplayAllGradesController() {
         this.gradeFacade = GradeFacade.getGradeFacadeInstance();
@@ -38,7 +39,7 @@ public class DisplayAllGradesController {
     }
 
     public void handleGetAllGrades() {
-        int id_user = sceneManager.getCurrentUser().getId();
+        int id_user = LoginFacade.getInstance().getCurrentUser().getId();
         System.out.println("user id" + id_user);
         List<Grade> grades = gradeFacade.getAllGrades(id_user);
 
