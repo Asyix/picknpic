@@ -33,13 +33,6 @@ public class RegisterController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
-
     @FXML
     private void handleRegister() {
         String email = emailField.getText();
@@ -66,7 +59,7 @@ public class RegisterController {
             User user = userFacade.register(email, password, username, firstName, lastName, phone);
             if (user != null) {
                 showAlert("Success", "Registration successful.");
-                sceneManager.loadLoginScene();
+                SceneManager.loadLoginScene();
             } else {
                 showAlert("Error", "Registration failed.");
             }
@@ -77,7 +70,7 @@ public class RegisterController {
 
     @FXML
     private void loadLogin() {
-        sceneManager.loadLoginScene();
+        SceneManager.loadLoginScene();
     }
 
     private void showAlert(String title, String message) {

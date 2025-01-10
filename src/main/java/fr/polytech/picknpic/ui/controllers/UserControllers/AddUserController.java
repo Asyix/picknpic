@@ -23,8 +23,6 @@ public class AddUserController {
     private TextField phoneNumberField;
     @FXML
     private CheckBox adminCheckBox;
-
-    private SceneManager sceneManager;
     private final ManageUsersFacade manageUsersFacade = ManageUsersFacade.getInstance();
     private Stage dialogStage;
 

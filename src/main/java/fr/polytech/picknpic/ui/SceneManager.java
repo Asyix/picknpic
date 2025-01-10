@@ -18,15 +18,10 @@ import javafx.scene.Scene;
 public class SceneManager {
 
     /** The primary stage of the application. */
-    private final Stage primaryStage;
+    private static Stage primaryStage;
 
     /** The main layout controller for managing the main application layout. */
-    private MainLayoutController mainLayoutController;
-
-    private Stage currentStage;
-
-    /** The currently logged-in user. */
-    private User currentUser = LoginFacade.getInstance().getCurrentUser();
+    private static MainLayoutController mainLayoutController;
 
     /**
      * Constructs a new {@link SceneManager} instance.
@@ -34,23 +29,7 @@ public class SceneManager {
      * @param primaryStage The primary stage of the application.
      */
     public SceneManager(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
-
-    /**
-     * Updates the current user state by fetching the latest user from the {@link LoginFacade}.
-     */
-    public void updateCurrentUser() {
-        this.currentUser = LoginFacade.getInstance().getCurrentUser();
-    }
-
-    /**
-     * Retrieves the currently logged-in user.
-     *
-     * @return The current {@link User}, or {@code null} if no user is logged in.
-     */
-    public User getCurrentUser() {
-        return currentUser;
+        SceneManager.primaryStage = primaryStage;
     }
 
     /**
@@ -58,18 +37,16 @@ public class SceneManager {
      *
      * @throws Exception If an error occurs during the scene loading process.
      */
-    public void loadInitialScene() throws Exception {
+    public static void loadInitialScene() throws Exception {
         loadLoginScene();
     }
 
-
-    private void loadMainLayout() {
+    private static void loadMainLayout() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/mainLayout.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/mainLayout.fxml"));
             Scene scene = new Scene(loader.load());
 
             mainLayoutController = loader.getController();
-            mainLayoutController.setSceneManager(this); // Pass SceneManager to MainLayoutController
 
             loadMainScene();
 
@@ -82,21 +59,17 @@ public class SceneManager {
         }
     }
 
-    public void handleLogin() {
+    public static void handleLogin() {
         loadMainLayout();
     }
-
 
     /**
      * Loads the login scene and initializes the {@link LoginController}.
      */
-    public void loadLoginScene() {
+    public static void loadLoginScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/login.fxml"));
             Scene scene = new Scene(loader.load());
-
-            LoginController loginController = loader.getController();
-            loginController.setSceneManager(this);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Login");
@@ -107,13 +80,10 @@ public class SceneManager {
         }
     }
 
-    public void loadRegisterScene() {
+    public static void loadRegisterScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/register.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/register.fxml"));
             Scene scene = new Scene(loader.load());
-
-            RegisterController registerController = loader.getController();
-            registerController.setSceneManager(this);
 
             primaryStage.setScene(scene);
             primaryStage.setTitle("Register");
@@ -124,12 +94,11 @@ public class SceneManager {
         }
     }
 
-    public void loadMainScene() {
+    public static void loadMainScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/hello.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/hello.fxml"));
             Parent content = loader.load();
             MainController mainController = loader.getController();
-            mainController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -141,13 +110,10 @@ public class SceneManager {
         }
     }
 
-
-    public void loadProfileScene() {
+    public static void loadProfileScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/profile.fxml"));
             Parent content = loader.load();
-            ProfileController profileController = loader.getController();
-            profileController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -159,12 +125,10 @@ public class SceneManager {
         }
     }
 
-    public void loadManageUsersScene() {
+    public static void loadManageUsersScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/manageUsers.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/manageUsers.fxml"));
             Parent content = loader.load();
-            ManageUsersController manageUsersController = loader.getController();
-            manageUsersController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -176,12 +140,10 @@ public class SceneManager {
         }
     }
 
-    public void loadUpdateAccountScene() {
+    public static void loadUpdateAccountScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/User/updateAccount.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/updateAccount.fxml"));
             Parent content = loader.load();
-            UpdateAccountController updateAccountController = loader.getController();
-            updateAccountController.setSceneManager(this);
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -193,16 +155,19 @@ public class SceneManager {
         }
     }
 
-    public void loadPostsScene() {
+    public static void loadPostsScene() {
+        // Implementation for loading posts scene
     }
 
-    public void loadNotificationsScene() {
+    public static void loadNotificationsScene() {
+        // Implementation for loading notifications scene
     }
 
-    public void loadChatScene() {
+    public static void loadChatScene() {
+        // Implementation for loading chat scene
     }
 
-
-    public void loadReportsScene() {
+    public static void loadReportsScene() {
+        // Implementation for loading reports scene
     }
 }

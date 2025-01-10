@@ -21,13 +21,6 @@ public class UpdateAccountController {
     @FXML
     private TextField phoneNumberField;
 
-    private SceneManager sceneManager;
-
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-        loadUserData();
-    }
-
     private void loadUserData() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -56,7 +49,7 @@ public class UpdateAccountController {
                 if (success) {
                     LoginFacade.getInstance().setCurrentUser(updatedUser);
                     showAlert("Success", "Profile updated successfully.");
-                    sceneManager.loadProfileScene();
+                    SceneManager.loadProfileScene();
                 } else {
                     showAlert("Error", "Profile update failed.");
                 }
@@ -68,7 +61,7 @@ public class UpdateAccountController {
 
     @FXML
     private void loadProfile() {
-        sceneManager.loadProfileScene();
+        SceneManager.loadProfileScene();
     }
 
     private void showAlert(String title, String message) {
