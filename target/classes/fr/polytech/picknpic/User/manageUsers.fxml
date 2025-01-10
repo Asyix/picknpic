@@ -20,4 +20,5 @@
     <Button text="Add User" onAction="#handleCreateUser" layoutX="10.0" layoutY="410.0" />
     <Button text="Edit User" onAction="#handleUpdateUser" layoutX="100.0" layoutY="410.0" />
     <Button text="Delete User" onAction="#handleDeleteUser" layoutX="190.0" layoutY="410.0" />
+    <Button text="See Profile" onAction="#handleSeeProfile" layoutX="280.0" layoutY="410.0" />
 </AnchorPane>

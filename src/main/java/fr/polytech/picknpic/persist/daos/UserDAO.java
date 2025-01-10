@@ -40,4 +40,5 @@ public interface UserDAO {
     boolean updateAccount(User user);
 
 
+    boolean isFollowing(int idFollowed, int idFollower);
 }

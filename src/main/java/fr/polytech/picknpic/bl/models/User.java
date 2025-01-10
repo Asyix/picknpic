@@ -29,8 +29,12 @@ public class User {
     /** Indicates whether the user has admin privileges. */
     private boolean admin;
 
+    private int nbFollowers;
 
-    public User(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
+    private int nbFollows;
+
+
+    public User(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin, int nbFollowers, int nbFollows) {
         this.email = email;
         this.password = password;
         this.username = username;
@@ -38,6 +42,8 @@ public class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.admin = admin;
+        this.nbFollowers = nbFollowers;
+        this.nbFollows = nbFollows;
     }
 
     public User(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
@@ -49,6 +55,19 @@ public class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.admin = admin;
+    }
+
+    public User(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin, int nbFollowers, int nbFollows) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.admin = admin;
+        this.nbFollowers = nbFollowers;
+        this.nbFollows = nbFollows;
     }
 
     public User() {
@@ -181,7 +200,20 @@ public class User {
         this.admin = admin;
     }
 
+    /**
+     * Gets the unique identifier of the user.
+     *
+     * @return the unique identifier of the user.
+     */
     public int getId() {
         return id;
+    }
+
+    public int getNbFollowers() {
+        return nbFollowers;
+    }
+
+    public int getNbFollows() {
+        return nbFollows;
     }
 }

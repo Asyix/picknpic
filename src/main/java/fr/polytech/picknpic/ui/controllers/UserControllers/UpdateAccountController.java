@@ -49,7 +49,7 @@ public class UpdateAccountController {
                 if (success) {
                     LoginFacade.getInstance().setCurrentUser(updatedUser);
                     showAlert("Success", "Profile updated successfully.");
-                    SceneManager.loadProfileScene();
+                    SceneManager.loadProfileScene(LoginFacade.getInstance().getCurrentUser());
                 } else {
                     showAlert("Error", "Profile update failed.");
                 }
@@ -61,7 +61,7 @@ public class UpdateAccountController {
 
     @FXML
     private void loadProfile() {
-        SceneManager.loadProfileScene();
+        SceneManager.loadProfileScene(LoginFacade.getInstance().getCurrentUser());
     }
 
     private void showAlert(String title, String message) {

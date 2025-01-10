@@ -7,6 +7,7 @@ import fr.polytech.picknpic.bl.facades.user.ManageUsersFacade;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -142,5 +143,15 @@ public class ManageUsersController {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleSeeProfile() {
+        User selectedUser = usersTable.getSelectionModel().getSelectedItem();
+        if (selectedUser != null) {
+            SceneManager.loadProfileScene(selectedUser);
+        } else {
+            showAlert("No Selection", "No User Selected", "Please select a user in the table.");
+        }
     }
 }

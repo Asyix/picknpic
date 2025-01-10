@@ -127,13 +127,16 @@ public class UserDAOPostgres implements UserDAO {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery();) {
                 if (resultSet.next()) {
-                    user = new User(resultSet.getString("email"),
+                    user = new User(resultSet.getInt("id"),
+                            resultSet.getString("email"),
                             resultSet.getString("password"),
                             resultSet.getString("username"),
                             resultSet.getString("first_name"),
                             resultSet.getString("last_name"),
                             resultSet.getInt("phone_number"),
-                            resultSet.getBoolean("admin"));
+                            resultSet.getBoolean("admin"),
+                            resultSet.getInt("nb_followers"),
+                            resultSet.getInt("nb_follows"));
                 }
             }
         } catch (SQLException e) {
@@ -321,6 +324,21 @@ public class UserDAOPostgres implements UserDAO {
             }
 
             return true;
+        }
+    }
+
+    @Override
+    public boolean isFollowing(int idFollowed, int idFollower) {
+        String query = "SELECT * FROM \"Follow\" WHERE id_followed = ? AND id_follower = ?";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idFollowed);
+            statement.setInt(2, idFollower);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
