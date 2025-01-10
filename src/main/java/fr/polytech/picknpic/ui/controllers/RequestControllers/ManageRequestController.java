@@ -5,6 +5,7 @@ import fr.polytech.picknpic.bl.models.Request;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import fr.polytech.picknpic.ui.SceneManager;
 
 /**
  * Controller for managing requests.
@@ -17,10 +18,8 @@ public class ManageRequestController {
      */
     private final RequestFacade requestFacade;
 
-    /**
-     * The main controller for the application.
-     */
-    private MainController mainController;
+    /** The scene manager for managing scene transitions. */
+    private SceneManager sceneManager;
 
     /**
      * Constructs a new `ManageRequestController` instance.
@@ -28,15 +27,6 @@ public class ManageRequestController {
      */
     public ManageRequestController() {
         this.requestFacade = RequestFacade.getRequestFacadeInstance();
-    }
-
-    /**
-     * Sets the {@link MainController} instance.
-     *
-     * @param mainController The main controller to set.
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     /**
@@ -72,12 +62,15 @@ public class ManageRequestController {
 
             // Notify the user that the request has been created
             showAlert("Request Created", "Request successfully created!", "Request ID: ");
+            sceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to create request.", "Reason: " + e.getMessage());
         }
 
         // TODO: handle non existing id_user_buyer, id_service
         // TODO: handle empty fields for message, image, status
+
+
 
     }
 
@@ -91,6 +84,7 @@ public class ManageRequestController {
 
             // Notify the user that the request status has been updated
             showAlert("Request Updated", "Request status successfully updated!", "Request ID: ");
+            sceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to update request status.", "Reason: " + e.getMessage());
         }

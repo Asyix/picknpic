@@ -5,4 +5,13 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.MainController" spacing="10" alignment="CENTER">
     <Label fx:id="welcomeLabel"/>
+    <Button fx:id="createRequestButton" text="Create Request" onAction="#handleCreateRequest"/> <!-- Temporary request navigation button -->
+    <Button fx:id="changeRequestStatusButton" text="Manage Request" onAction="#handleChangeRequestStatus"/> <!-- Temporary manage request navigation button -->
+    <Button fx:id="createServiceButton" text="Create Service" onAction="#handleCreateService"/>
+    <Button fx:id="updateServicesButton" text="Update Service" onAction="#handleUpdateService"/>
+    <Button fx:id="deleteUsersButton" text="Delete Service" onAction="#handleDeleteService"/>
+    <Button fx:id="createGradeButton" text="Create Grade" onAction="#handleCreateGrade"/>
+    <Button fx:id="deleteGradeButton" text="Delete Grade" onAction="#handleDeleteGrade"/>
+    <Button fx:id="displayAllServicesButton" text="Display All Services" onAction="#handleDisplayAllServices"/>
+    <Button fx:id="displayAllGradesButton" text="Display All Grades" onAction="#handleDisplayAllGrades"/>
 </VBox>
