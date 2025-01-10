@@ -21,6 +21,7 @@ module fr.polytech.picknpic {
     opens fr.polytech.picknpic.ui.controllers.RequestControllers to javafx.fxml;
     opens fr.polytech.picknpic.ui.controllers.ServiceControllers to javafx.fxml;
     opens fr.polytech.picknpic.ui.controllers.GradeControllers to javafx.fxml;
+    opens fr.polytech.picknpic.ui.controllers.SubscriptionControllers to javafx.fxml;
     exports fr.polytech.picknpic.bl.facades.user;
     exports fr.polytech.picknpic.ui.controllers.UserControllers;
     opens fr.polytech.picknpic.ui.controllers.UserControllers to javafx.fxml;

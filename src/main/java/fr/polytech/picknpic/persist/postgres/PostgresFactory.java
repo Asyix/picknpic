@@ -5,6 +5,7 @@ import fr.polytech.picknpic.persist.daos.UserDAO;
 import fr.polytech.picknpic.persist.daos.RequestDAO;
 import fr.polytech.picknpic.persist.daos.ServiceDAO;
 import fr.polytech.picknpic.persist.daos.GradeDAO;
+import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
 
 /**
  * A factory class for creating PostgreSQL-specific DAO implementations.
@@ -26,6 +27,9 @@ public class PostgresFactory extends AbstractFactory {
 
     /** Singleton instance of the PostgreSQL-specific GradeDAO implementation. */
     private static GradeDAOPostgres gradeDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific SubscriptionDAO implementation. */
+    private static SubscriptionDAOPostgres subscriptionDAOPostgres;
 
     /**
      * Private constructor to ensure controlled instantiation of the factory.
@@ -94,6 +98,19 @@ public class PostgresFactory extends AbstractFactory {
             gradeDAOPostgres = new GradeDAOPostgres();
         }
         return gradeDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link SubscriptionDAO}.
+     *
+     * @return A {@link SubscriptionDAOPostgres} instance.
+     */
+    @Override
+    public SubscriptionDAO createSubscriptionDAO() {
+        if (subscriptionDAOPostgres == null) {
+            subscriptionDAOPostgres = new SubscriptionDAOPostgres();
+        }
+        return subscriptionDAOPostgres;
     }
 
 }

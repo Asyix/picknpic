@@ -79,4 +79,8 @@ public class MainController {
     public void handleDisplayAllGrades() {
         sceneManager.loadDisplayAllGradesScene();
     }
+
+    public void handleSeeBenefits() {
+        sceneManager.loadSeeBenefitsScene();
+    }
 }

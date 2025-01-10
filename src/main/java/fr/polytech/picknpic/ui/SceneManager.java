@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.*;
 import fr.polytech.picknpic.ui.controllers.GradeControllers.*;
 import fr.polytech.picknpic.ui.controllers.RequestControllers.*;
+import fr.polytech.picknpic.ui.controllers.SubscriptionControllers.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,10 +25,14 @@ import javafx.fxml.FXML;
  */
 public class SceneManager {
 
-    /** The primary stage of the application. */
+    /**
+     * The primary stage of the application.
+     */
     private static Stage primaryStage;
 
-    /** The main layout controller for managing the main application layout. */
+    /**
+     * The main layout controller for managing the main application layout.
+     */
     private static MainLayoutController mainLayoutController;
 
     /**
@@ -321,7 +326,7 @@ public class SceneManager {
      * Loads the update grade scene.
      */
     @FXML
-    public static void loadDeleteGradeScene () {
+    public static void loadDeleteGradeScene() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/deleteGrade.fxml"));
             Parent content = loader.load();
@@ -343,6 +348,22 @@ public class SceneManager {
     public static void loadDisplayAllGradesScene() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/displayAllGrades.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadSeeBenefitsScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Subscription/seeBenefits.fxml"));
             Parent content = loader.load();
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
