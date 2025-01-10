@@ -50,7 +50,7 @@ public class NavbarController {
 
     @FXML
     private void loadProfile() {
-        SceneManager.loadProfileScene();
+        SceneManager.loadProfileScene(LoginFacade.getInstance().getCurrentUser());
     }
 
     @FXML

@@ -110,11 +110,13 @@ public class SceneManager {
         }
     }
 
-    public static void loadProfileScene() {
+    public static void loadProfileScene(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/profile.fxml"));
             Parent content = loader.load();
             if (mainLayoutController != null) {
+                ProfileController profileController = loader.getController();
+                profileController.initializeWithUser(user);
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
             } else {
