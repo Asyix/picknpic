@@ -10,6 +10,13 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import fr.polytech.picknpic.ui.controllers.ServiceControllers.*;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.*;
+import fr.polytech.picknpic.ui.controllers.RequestControllers.*;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.fxml.FXML;
 
 /**
  * Manages scenes and user interactions within the application.
@@ -170,4 +177,182 @@ public class SceneManager {
     public static void loadReportsScene() {
         // Implementation for loading reports scene
     }
+
+    // The following methods are related to the Request use-case
+
+    /**
+     * Loads the create request scene.
+     */
+    @FXML
+    public static void loadCreateRequestScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Request/createRequest.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the update request scene.
+     */
+    @FXML
+    public static void loadChangeRequestStatusScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Request/changeRequestStatus.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // The following methods are related to the Service use-case
+
+    /**
+     * Loads the delete request scene.
+     */
+    @FXML
+    public static void loadCreateServiceScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/createService.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the update service scene.
+     */
+    @FXML
+    public static void loadUpdateServiceScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/updateService.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the delete service scene.
+     */
+    @FXML
+    public static void loadDeleteServiceScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/deleteService.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the display all services scene.
+     */
+    @FXML
+    public static void loadDisplayAllServicesScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/displayAllServices.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // The following methods are related to the Grade use-case
+
+    /**
+     * Loads the create grade scene.
+     */
+    @FXML
+    public static void loadCreateGradeScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the update grade scene.
+     */
+    @FXML
+    public static void loadDeleteGradeScene () {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/deleteGrade.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Loads the display all grades scene.
+     */
+    @FXML
+    public static void loadDisplayAllGradesScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/displayAllGrades.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
