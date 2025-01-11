@@ -7,6 +7,7 @@ import fr.polytech.picknpic.persist.daos.ServiceDAO;
 import fr.polytech.picknpic.persist.daos.GradeDAO;
 import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
 import fr.polytech.picknpic.persist.daos.NotificationDAO;
+import fr.polytech.picknpic.persist.daos.PhotoDAO;
 
 /**
  * A factory class for creating PostgreSQL-specific DAO implementations.
@@ -127,6 +128,19 @@ public class PostgresFactory extends AbstractFactory {
             notificationDAOPostgres = new NotificationDAOPostgres();
         }
         return notificationDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link PhotoDAO}.
+     *
+     * @return A {@link PhotoDAOPostgres} instance.
+     */
+    @Override
+    public PhotoDAO createPhotoDAO() {
+        if (photoDAOPostgres == null) {
+            photoDAOPostgres = new PhotoDAOPostgres();
+        }
+        return photoDAOPostgres;
     }
 
 }
