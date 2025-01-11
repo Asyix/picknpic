@@ -1,8 +1,13 @@
 package fr.polytech.picknpic.ui.controllers.PhotoControllers;
 
 import fr.polytech.picknpic.bl.facades.photo.PhotoFacade;
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * Controller for handling gallery-related operations in the UI.
@@ -10,9 +15,26 @@ import javafx.fxml.FXML;
  */
 public class GalleryController {
 
-    private PhotoFacade photoFacade;
-    private String currentUserId;
+    private final PhotoFacade photoFacade;
     private SceneManager sceneManager;
+
+    @FXML
+    private TextField photoNameTextField;
+
+    @FXML
+    private TextField priceTextField;
+
+    @FXML
+    private TextField photoUrlTextField;
+
+    @FXML
+    private TextArea descriptionTextArea;
+
+    @FXML
+    private CheckBox isForSaleCheckBox;
+
+    @FXML
+    private CheckBox isForSubscribersOnlyCheckBox;
 
     /**
      * Initializes the GalleryController with the PhotoFacade instance.
@@ -21,12 +43,61 @@ public class GalleryController {
         this.photoFacade = PhotoFacade.getPhotoFacadeInstance();
     }
 
-    /**
-     * Handles the action of clicking on a photo in the gallery.
-     */
     @FXML
-    public void handlePhotoClick() {
-        // Add logic for displaying photo details.
+    public void initialize() {
+        // Set up placeholders for the input fields
+        setupPlaceholder(photoNameTextField, "Enter Photo Name");
+        setupPlaceholder(descriptionTextArea, "Enter Description");
+        setupPlaceholder(photoUrlTextField, "Enter Photo URL");
+    }
+
+    /**
+     * Displays an alert with the given title, header, and message.
+     *
+     * @param title   The title of the alert.
+     * @param header  The header text of the alert.
+     * @param message The message text of the alert.
+     */
+    private void showAlert(String title, String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    /**
+     * Sets up a placeholder for the given text field.
+     *
+     * @param field       The text field to set up the placeholder for.
+     * @param placeholder The placeholder text.
+     */
+    private void setupPlaceholder(TextField field, String placeholder) {
+        field.setText(placeholder);
+        field.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && field.getText().equals(placeholder)) {
+                field.clear();
+            } else if (!newValue && field.getText().isEmpty()) {
+                field.setText(placeholder);
+            }
+        });
+    }
+
+    /**
+     * Sets up a placeholder for the given text area.
+     *
+     * @param area        The text area to set up the placeholder for.
+     * @param placeholder The placeholder text.
+     */
+    private void setupPlaceholder(TextArea area, String placeholder) {
+        area.setText(placeholder);
+        area.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && area.getText().equals(placeholder)) {
+                area.clear();
+            } else if (!newValue && area.getText().isEmpty()) {
+                area.setText(placeholder);
+            }
+        });
     }
 
     /**
@@ -34,15 +105,24 @@ public class GalleryController {
      */
     @FXML
     public void handlePublishPhoto() {
-        // Add logic for opening the photo upload form.
-    }
+        String photoName = photoNameTextField.getText();
+        String description = descriptionTextArea.getText();
+        String priceText = priceTextField.getText();
+        String photoUrl = photoUrlTextField.getText();
+        boolean isForSale = isForSaleCheckBox.isSelected();
+        boolean isForSubscribersOnly = isForSubscribersOnlyCheckBox.isSelected();
 
-    /**
-     * Sets the current user ID for the gallery context.
-     *
-     * @param userId The ID of the user currently interacting with the gallery.
-     */
-    public void setCurrentUserId(String userId) {
-        this.currentUserId = userId;
+        int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
+
+        try {
+            int price = priceText.isEmpty() ? 0 : Integer.parseInt(priceText); // Default to 0 if empty
+            photoFacade.publishPhoto(photoName, description, price, photoUrl, currentUserId, isForSale, isForSubscribersOnly, 0);
+            showAlert("Photo Published", "Photo successfully published", "The photo has been published successfully.");
+            sceneManager.loadMainScene();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid price format.");
+        } catch (Exception e) {
+            System.out.println("Error while publishing photo: " + e.getMessage());
+        }
     }
 }

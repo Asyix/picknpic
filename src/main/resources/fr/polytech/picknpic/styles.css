@@ -39,3 +39,33 @@
 #background {
     -fx-background-color: #000000;
 }
+
+#PhotoPane {
+    -fx-background-color: #3E3E3E;
+}
+
+#PhotoPane:hover {
+    -fx-background-color: #343434; /* Darker grey on hover */
+}
+
+/* Delete button styles */
+#deleteButton {
+    -fx-background-color: #FF4D4D; /* Red color */
+    -fx-text-fill: white;
+    -fx-border-color: #FF0000;
+}
+
+#deleteButton:hover {
+    -fx-background-color: #E60000; /* Darker red on hover */
+}
+
+/* Update button styles */
+#updateButton {
+    -fx-background-color: #4D94FF; /* Blue color */
+    -fx-text-fill: white;
+    -fx-border-color: #0066FF;
+}
+
+#updateButton:hover {
+    -fx-background-color: #0052CC; /* Darker blue on hover */
+}

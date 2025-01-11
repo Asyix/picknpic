@@ -12,7 +12,7 @@ public class Photo {
     private int price;
     private int userId;
     private Date uploadDate;
-    private String filePath;
+    private String url;
     private boolean isForSale;
     private boolean isForSubscribersOnly;
     private int nbLikes;
@@ -130,17 +130,17 @@ public class Photo {
      *
      * @return the file path of the photo.
      */
-    public String getFilePath() {
-        return filePath;
+    public String getUrl() {
+        return url;
     }
 
     /**
      * Sets the file path of the photo.
      *
-     * @param filePath the file path of the photo.
+     * @param url the file path of the photo.
      */
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     /**

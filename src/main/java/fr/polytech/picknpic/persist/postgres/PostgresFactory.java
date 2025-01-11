@@ -33,7 +33,11 @@ public class PostgresFactory extends AbstractFactory {
     /** Singleton instance of the PostgreSQL-specific SubscriptionDAO implementation. */
     private static SubscriptionDAOPostgres subscriptionDAOPostgres;
 
+    /** Singleton instance of the PostgreSQL-specific NotificationDAO implementation. */
     private static NotificationDAOPostgres notificationDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific PhotoDAO implementation. */
+    private static PhotoDAOPostgres photoDAOPostgres;
 
     /**
      * Private constructor to ensure controlled instantiation of the factory.

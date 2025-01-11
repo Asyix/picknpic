@@ -16,4 +16,7 @@
     <Button fx:id="displayAllGradesButton" text="Display All Grades" onAction="#handleDisplayAllGrades"/>
     <Button fx:id="seeBenefitsButton" text="See Benefits" onAction="#handleSeeBenefits"/>
     <Button fx:id="displayNotificationButton" text="Display Notification" onAction="#handleDisplayNotification"/>
+    <Button fx:id="publishPhotoButton" text="Publish Photo" onAction="#handlePublishPhoto"/>
+    <Button fx:id="displayPhotosButton" text="Display Photos" onAction="#handleDisplayPhotos"/>
+    <Button fx:id="deletePhotoButton" text="Delete Photo" onAction="#handleDeletePhoto"/>
 </VBox>

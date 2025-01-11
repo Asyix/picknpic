@@ -21,7 +21,7 @@ public class PhotoDAOPostgres implements PhotoDAO {
      */
     @Override
     public void publishPhoto(Photo photo) {
-        String query = "INSERT INTO \"Photo\" (title, description, price, user_id, upload_date, file_path, is_for_sale, is_for_subscribers_only, nb_likes) " +
+        String query = "INSERT INTO \"Photo\" (title, description, price, user_id, upload_date, url, is_for_sale, is_for_subscribers_only, nb_likes) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -31,7 +31,7 @@ public class PhotoDAOPostgres implements PhotoDAO {
             statement.setInt(3, photo.getPrice());
             statement.setInt(4, photo.getUserId());
             statement.setDate(5, new java.sql.Date(photo.getUploadDate().getTime()));
-            statement.setString(6, photo.getFilePath());
+            statement.setString(6, photo.getUrl());
             statement.setBoolean(7, photo.getIsForSale());
             statement.setBoolean(8, photo.getIsForSubscribersOnly());
             statement.setInt(9, photo.getNbLikes());
@@ -49,7 +49,7 @@ public class PhotoDAOPostgres implements PhotoDAO {
      */
     @Override
     public void updatePhoto(Photo photo) {
-        String query = "UPDATE \"Photo\" SET title = ?, description = ?, price = ?, file_path = ?, is_for_sale = ?, is_for_subscribers_only = ?, nb_likes = ? " +
+        String query = "UPDATE \"Photo\" SET title = ?, description = ?, price = ?, url = ?, is_for_sale = ?, is_for_subscribers_only = ?, nb_likes = ? " +
                 "WHERE photo_id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -57,7 +57,7 @@ public class PhotoDAOPostgres implements PhotoDAO {
             statement.setString(1, photo.getTitle());
             statement.setString(2, photo.getDescription());
             statement.setInt(3, photo.getPrice());
-            statement.setString(4, photo.getFilePath());
+            statement.setString(4, photo.getUrl());
             statement.setBoolean(5, photo.getIsForSale());
             statement.setBoolean(6, photo.getIsForSubscribersOnly());
             statement.setInt(7, photo.getNbLikes());
@@ -109,7 +109,7 @@ public class PhotoDAOPostgres implements PhotoDAO {
                     photo.setPrice(resultSet.getInt("price"));
                     photo.setUserId(resultSet.getInt("user_id"));
                     photo.setUploadDate(resultSet.getDate("upload_date"));
-                    photo.setFilePath(resultSet.getString("file_path"));
+                    photo.setUrl(resultSet.getString("url"));
                     photo.setIsForSale(resultSet.getBoolean("is_for_sale"));
                     photo.setIsForSubscribersOnly(resultSet.getBoolean("is_for_subscribers_only"));
                     photo.setNbLikes(resultSet.getInt("nb_likes"));
@@ -143,7 +143,7 @@ public class PhotoDAOPostgres implements PhotoDAO {
                 photo.setPrice(resultSet.getInt("price"));
                 photo.setUserId(resultSet.getInt("user_id"));
                 photo.setUploadDate(resultSet.getDate("upload_date"));
-                photo.setFilePath(resultSet.getString("file_path"));
+                photo.setUrl(resultSet.getString("url"));
                 photo.setIsForSale(resultSet.getBoolean("is_for_sale"));
                 photo.setIsForSubscribersOnly(resultSet.getBoolean("is_for_subscribers_only"));
                 photo.setNbLikes(resultSet.getInt("nb_likes"));

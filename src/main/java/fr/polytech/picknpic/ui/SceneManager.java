@@ -6,6 +6,7 @@ import fr.polytech.picknpic.ui.controllers.MainController;
 import fr.polytech.picknpic.ui.controllers.MainLayoutController;
 import fr.polytech.picknpic.ui.controllers.NavbarController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.*;
+import fr.polytech.picknpic.ui.controllers.PhotoControllers.*;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -391,5 +392,90 @@ public class SceneManager {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    public static void loadDeletePhotoScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/deletePhoto.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadDisplayPhotosScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/displayPhotos.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadPublishPhotoScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/publishPhoto.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadUpdatePhotoDetailsScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/updatePhotoDetails.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadUniquePhotoDetailsScene(String photoUrl) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/uniquePhotoDetails.fxml"));
+            Parent content = loader.load();
+
+            UniquePhotoDetails controller = loader.getController();
+            controller.setPhotoUrl(photoUrl);
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load unique photo scene", e);
+        }
+    }
+
 
 }
