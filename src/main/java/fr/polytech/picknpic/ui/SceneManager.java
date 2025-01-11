@@ -376,4 +376,20 @@ public class SceneManager {
         }
     }
 
+    @FXML
+    public static void loadDisplayNotificationScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Notification/displayNotification.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
