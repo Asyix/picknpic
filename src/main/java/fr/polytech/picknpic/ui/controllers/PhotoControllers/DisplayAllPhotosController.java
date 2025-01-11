@@ -1,7 +1,6 @@
 package fr.polytech.picknpic.ui.controllers.PhotoControllers;
 
 import fr.polytech.picknpic.bl.facades.photo.PhotoFacade;
-import fr.polytech.picknpic.ui.controllers.PhotoControllers.UniquePhotoDetails;
 import fr.polytech.picknpic.bl.models.Photo;
 import javafx.beans.property.SimpleIntegerProperty;
 import fr.polytech.picknpic.ui.SceneManager;
@@ -25,12 +24,13 @@ public class DisplayAllPhotosController {
     // Property to store the clicked photo ID
     private final SimpleIntegerProperty clickedPhotoId = new SimpleIntegerProperty();
 
+
     @FXML
     private VBox photosContainer;
 
     private SceneManager sceneManager;
 
-    private UniquePhotoDetails uniquePhotoDetails;
+    private DisplayUniquePhotoController uniquePhotoDetails;
 
     public DisplayAllPhotosController() {
         this.photoFacade = PhotoFacade.getPhotoFacadeInstance();
@@ -120,9 +120,9 @@ public class DisplayAllPhotosController {
     private void handlePhotoClick(int photoId) {
         clickedPhotoId.set(photoId);
         System.out.println("Clicked Photo ID: " + photoId);
-        Photo clickedPhoto = photoFacade.getPhotoById(photoId); // Assuming you have this method
+        Photo clickedPhoto = photoFacade.getPhotoById(photoId);
         if (clickedPhoto != null) {
-            sceneManager.loadUniquePhotoDetailsScene(clickedPhoto.getUrl());
+            sceneManager.loadUniquePhotoDetailsScene(clickedPhoto.getUrl(), photoId);
         } else {
             System.err.println("Photo not found for ID: " + photoId);
         }
@@ -145,4 +145,5 @@ public class DisplayAllPhotosController {
     public int getClickedPhotoId() {
         return clickedPhotoId.get();
     }
+
 }

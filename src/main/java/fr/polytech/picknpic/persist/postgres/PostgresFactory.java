@@ -7,6 +7,7 @@ import fr.polytech.picknpic.persist.daos.ServiceDAO;
 import fr.polytech.picknpic.persist.daos.GradeDAO;
 import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
 import fr.polytech.picknpic.persist.daos.NotificationDAO;
+import fr.polytech.picknpic.persist.daos.PurchaseDAO;
 import fr.polytech.picknpic.persist.daos.PhotoDAO;
 
 /**
@@ -38,6 +39,9 @@ public class PostgresFactory extends AbstractFactory {
 
     /** Singleton instance of the PostgreSQL-specific PhotoDAO implementation. */
     private static PhotoDAOPostgres photoDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific PurchaseDAO implementation. */
+    private static PurchaseDAOPostgres purchaseDAOPostgres;
 
     /**
      * Private constructor to ensure controlled instantiation of the factory.
@@ -145,6 +149,19 @@ public class PostgresFactory extends AbstractFactory {
             photoDAOPostgres = new PhotoDAOPostgres();
         }
         return photoDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link PurchaseDAO}.
+     *
+     * @return A {@link PurchaseDAOPostgres} instance.
+     */
+    @Override
+    public PurchaseDAO createPurchaseDAO() {
+        if (purchaseDAOPostgres == null) {
+            purchaseDAOPostgres = new PurchaseDAOPostgres();
+        }
+        return purchaseDAOPostgres;
     }
 
 }

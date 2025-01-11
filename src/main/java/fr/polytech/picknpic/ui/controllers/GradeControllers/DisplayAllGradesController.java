@@ -27,8 +27,6 @@ public class DisplayAllGradesController {
     @FXML
     private VBox gradesContainer;
 
-    private LoginFacade loginFacade;
-
     public DisplayAllGradesController() {
         this.gradeFacade = GradeFacade.getGradeFacadeInstance();
     }

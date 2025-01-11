@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
  * Controller for handling gallery-related operations in the UI.
  * Provides methods for displaying and publishing photos.
  */
-public class GalleryController {
+public class PublishPhotoController {
 
     private final PhotoFacade photoFacade;
     private SceneManager sceneManager;
@@ -39,7 +39,7 @@ public class GalleryController {
     /**
      * Initializes the GalleryController with the PhotoFacade instance.
      */
-    public GalleryController() {
+    public PublishPhotoController() {
         this.photoFacade = PhotoFacade.getPhotoFacadeInstance();
     }
 

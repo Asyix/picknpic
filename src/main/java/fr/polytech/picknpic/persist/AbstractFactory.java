@@ -7,6 +7,7 @@ import fr.polytech.picknpic.persist.daos.GradeDAO;
 import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
 import fr.polytech.picknpic.persist.daos.NotificationDAO;
 import fr.polytech.picknpic.persist.daos.PhotoDAO;
+import fr.polytech.picknpic.persist.daos.PurchaseDAO;
 import fr.polytech.picknpic.persist.postgres.PostgresFactory;
 
 /**
@@ -92,5 +93,13 @@ public abstract class AbstractFactory {
      * @return A {@link PhotoDAO} instance.
      */
     public abstract PhotoDAO createPhotoDAO();
+
+    /**
+     * Abstract method to create a {@link PurchaseDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link PurchaseDAO} instance.
+     */
+    public abstract PurchaseDAO createPurchaseDAO();
 
 }
