@@ -11,15 +11,32 @@ import javafx.scene.control.Label;
  */
 public class NotificationController {
 
+    /**
+     * The facade for notification-related operations.
+     */
     private NotificationFacade notificationFacade;
+
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
+    /**
+     * The label for displaying the notification description.
+     */
     @FXML
     private Label notificationDescriptionLabel;
 
+    /**
+     * The label for displaying the notification type.
+     */
     @FXML
     private Label notificationTypeLabel;
 
+    /**
+     * Constructs a new `NotificationController` instance.
+     * Initializes the {@link NotificationFacade} singleton for notification operations.
+     */
     public NotificationController() {
         this.notificationFacade = NotificationFacade.getNotificationFacadeInstance();
     }
@@ -39,6 +56,10 @@ public class NotificationController {
         }
     }
 
+    /**
+     * Initializes the controller.
+     * Can be used to set default values or placeholders for UI elements.
+     */
     @FXML
     public void handleShowNotification() {
         int notificationId = 1; // Example notification ID

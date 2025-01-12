@@ -18,18 +18,33 @@ import javafx.scene.control.Alert;
  */
 public class DisplayUniquePhotoController {
 
+    /**
+     * The container for displaying the photo.
+     */
     @FXML
     private Pane imagePane;
 
+    /**
+     * The buttons for performing actions on the photo.
+     */
     @FXML
     private Button deleteButton;
 
+    /**
+     * The buttons for performing actions on the photo.
+     */
     @FXML
     private Button updateButton;
 
+    /**
+     * The buttons for performing actions on the photo.
+     */
     @FXML
     private Button buyButton;
 
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
     /**
@@ -37,10 +52,6 @@ public class DisplayUniquePhotoController {
      * This will be passed to either UpdatePhotoController, DeletePhotoController, or PurchaseController.
      */
     private Photo currentPhoto;
-
-    private PurchaseController purchaseController;
-
-    private DisplayAllPhotosController displayAllPhotosController;
 
     /**
      * Setter for the clicked photo
@@ -50,6 +61,9 @@ public class DisplayUniquePhotoController {
         displayPhoto();
     }
 
+    /**
+     * Getter for the clicked photo
+     */
     public Photo getPhoto() {
         return currentPhoto;
     }
@@ -74,6 +88,10 @@ public class DisplayUniquePhotoController {
         imagePane.getChildren().add(photoImageView);
     }
 
+    /**
+     * Initializes the controller.
+     * Can be used to set default values or placeholders for UI elements.
+     */
     @FXML
     public void initialize() {
         handleRoleBasedRendering();
@@ -113,16 +131,23 @@ public class DisplayUniquePhotoController {
         sceneManager.loadPurchasePhotoScene(currentPhoto);
     }
 
-    // use SceneManager loadDeletePhotoScene to navigate
+    /**
+     * Handles the action of deleting the displayed photo.
+     */
     public void navigateToDeletePhotoScene() {
         sceneManager.loadDeletePhotoScene(currentPhoto);
     }
 
-    // use SceneManager loadUpdatePhotoScene to navigate
+    /**
+     * Handles the action of updating the displayed photo.
+     */
     public void navigateToUpdatePhotoScene() {
         sceneManager.loadUpdatePhotoDetailsScene(currentPhoto);
     }
 
+    /**
+     * Handles the action of navigating to the unique photo details scene.
+     */
     public void navigateToUniquePhotoDetailsScene() {
         sceneManager.loadUniquePhotoDetailsScene(currentPhoto);
     }

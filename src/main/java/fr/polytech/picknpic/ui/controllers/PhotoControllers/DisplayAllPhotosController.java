@@ -28,11 +28,8 @@ public class DisplayAllPhotosController {
     private final SimpleIntegerProperty clickedPhotoId = new SimpleIntegerProperty();
 
     /**
-     * The current photo to be passed to the unique photo details controller.
+     * The container for displaying photos.
      */
-    private Photo currentPhoto;
-
-
     @FXML
     private VBox photosContainer;
 
@@ -41,12 +38,14 @@ public class DisplayAllPhotosController {
      */
     private SceneManager sceneManager;
 
-    private DisplayUniquePhotoController uniquePhotoDetails;
-
     public DisplayAllPhotosController() {
         this.photoFacade = PhotoFacade.getPhotoFacadeInstance();
     }
 
+    /**
+     * Initializes the controller.
+     * Can be used to set default values or placeholders for UI elements.
+     */
     @FXML
     public void initialize() {
         handleGetAllPhotos();
@@ -136,24 +135,6 @@ public class DisplayAllPhotosController {
         } else {
             System.err.println("Photo not found for ID: " + photo.getPhotoId());
         }
-    }
-
-    /**
-     * Gets the property for the clicked photo ID.
-     *
-     * @return The clicked photo ID property.
-     */
-    public SimpleIntegerProperty clickedPhotoIdProperty() {
-        return clickedPhotoId;
-    }
-
-    /**
-     * Gets the value of the clicked photo ID.
-     *
-     * @return The clicked photo ID.
-     */
-    public int getClickedPhotoId() {
-        return clickedPhotoId.get();
     }
 
 }

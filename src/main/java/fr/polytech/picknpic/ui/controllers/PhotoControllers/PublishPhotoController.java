@@ -15,24 +15,49 @@ import javafx.scene.control.TextField;
  */
 public class PublishPhotoController {
 
+    /**
+     * The facade for photo-related operations.
+     */
     private final PhotoFacade photoFacade;
+
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
+    /**
+     * The text field for entering the photo name.
+     */
     @FXML
     private TextField photoNameTextField;
 
+    /**
+     * The text field for entering the price of the photo.
+     */
     @FXML
     private TextField priceTextField;
 
+    /**
+     * The text field for entering the photo URL.
+     */
     @FXML
     private TextField photoUrlTextField;
 
+    /**
+     * The text area for entering the photo description.
+     */
     @FXML
     private TextArea descriptionTextArea;
 
+    /**
+     * The check box for setting the photo as for sale.
+     */
     @FXML
     private CheckBox isForSaleCheckBox;
 
+    /**
+     * The check box for setting the photo as for subscribers only.
+     */
     @FXML
     private CheckBox isForSubscribersOnlyCheckBox;
 
@@ -43,6 +68,10 @@ public class PublishPhotoController {
         this.photoFacade = PhotoFacade.getPhotoFacadeInstance();
     }
 
+    /**
+     * Initializes the controller.
+     * Can be used to set default values or placeholders for UI elements.
+     */
     @FXML
     public void initialize() {
         // Set up placeholders for the input fields

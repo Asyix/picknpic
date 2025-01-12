@@ -14,17 +14,36 @@ import javafx.scene.control.TextField;
  */
 public class UpdatePhotoController {
 
+    /**
+     * The facade for photo-related operations.
+     */
     private PhotoFacade photoFacade;
 
+    /**
+     * The current photo to be updated.
+     */
     private Photo currentPhoto;
+
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
+    /**
+     * The text field for entering the photo name.
+     */
     @FXML
     private TextField photoNameField;
 
+    /**
+     * The text field for entering the price of the photo.
+     */
     @FXML
     private TextField photoPriceField;
 
+    /**
+     * The text area for entering the photo description.
+     */
     @FXML
     private TextArea photoDescriptionField;
 
@@ -41,7 +60,25 @@ public class UpdatePhotoController {
      */
     @FXML
     public void initialize() {
+    }
 
+    /**
+     * Setter method for the clicked photo
+     */
+    public void setPhoto(Photo photo) {
+        this.currentPhoto = photo;
+
+        // Set placeholders for the fields with current photo details
+        setupPlaceholder(photoNameField, photo.getTitle());
+        setupPlaceholder(photoPriceField, String.valueOf(photo.getPrice()));
+        setupPlaceholder(photoDescriptionField, photo.getDescription());
+    }
+
+    /**
+     * Getter method for the clicked photo
+     */
+    public Photo getPhoto() {
+        return currentPhoto;
     }
 
     /**
@@ -78,17 +115,19 @@ public class UpdatePhotoController {
         });
     }
 
-    public void setPhoto(Photo photo) {
-        this.currentPhoto = photo;
-
-        // Set placeholders for the fields with current photo details
-        setupPlaceholder(photoNameField, photo.getTitle());
-        setupPlaceholder(photoPriceField, String.valueOf(photo.getPrice()));
-        setupPlaceholder(photoDescriptionField, photo.getDescription());
-    }
-
-    public Photo getPhoto() {
-        return currentPhoto;
+    /**
+     * Displays an alert dialog with the specified details.
+     *
+     * @param title   The title of the alert dialog.
+     * @param header  The header text of the alert dialog.
+     * @param message The message content of the alert dialog.
+     */
+    private void showAlert(String title, String header, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     /**
@@ -108,21 +147,6 @@ public class UpdatePhotoController {
         } catch (Exception e) {
             showAlert("Error", "Update Failed", "An error occurred while updating the photo.");
         }
-    }
-
-    /**
-     * Displays an alert dialog with the specified details.
-     *
-     * @param title   The title of the alert dialog.
-     * @param header  The header text of the alert dialog.
-     * @param message The message content of the alert dialog.
-     */
-    private void showAlert(String title, String header, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
 }

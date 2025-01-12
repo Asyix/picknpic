@@ -14,14 +14,29 @@ import javafx.scene.control.Label;
  */
 public class PurchaseController {
 
+    /**
+     * The facade for purchase-related operations.
+     */
     private final PurchaseFacade purchaseFacade;
 
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
+    /**
+     * The current photo to be purchased.
+     */
     private Photo currentPhoto;
 
+    /**
+     * The controller for displaying unique photo details.
+     */
     private DisplayUniquePhotoController displayUniquePhotoController;
 
+    /**
+     * The label for displaying the purchase confirmation message.
+     */
     @FXML
     private Label confirmationLabel;
 
@@ -32,6 +47,9 @@ public class PurchaseController {
         this.purchaseFacade = PurchaseFacade.getPurchaseFacadeInstance();
     }
 
+    /**
+     * Initializes the controller with the confirmationLabel
+     */
     @FXML
     public void initialize() {
         // Update the label if the photo is already set
@@ -41,41 +59,8 @@ public class PurchaseController {
     }
 
     /**
-     * Handles the action of making a purchase.
-     *
-     * @param photo The photo to be purchased.
+     * Setter method to set the current photo
      */
-    @FXML
-    public void makePurchase(Photo photo) {
-
-        try {
-            System.out.println("Attempting to purchase photo with ID: " + photo.getPhotoId());
-            // Validate the photo ID
-            if (photo.getPhotoId() <= 0) {
-                throw new IllegalArgumentException("Invalid photo ID.");
-            }
-
-            // Get the current user ID
-            int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
-
-            // Make the purchase
-            purchaseFacade.purchase(photo.getPhotoId(), currentUserId);
-
-            // Show success alert
-            showAlert(Alert.AlertType.INFORMATION, "Purchase Successful",
-                    "The purchase has been successfully completed.");
-            loadMainScene();
-        } catch (Exception e) {
-            // Handle and show error alert
-            showAlert(Alert.AlertType.ERROR, "Purchase Failed",
-                    "An error occurred while making the purchase: " + e.getMessage());
-        }
-    }
-
-    public void handlePurchase() {
-        makePurchase(this.currentPhoto);
-    }
-
     public void setPhoto(Photo photo) {
         this.currentPhoto = photo;
     }
@@ -117,5 +102,44 @@ public class PurchaseController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    /**
+     * Handles the action of making a purchase.
+     *
+     * @param photo The photo to be purchased.
+     */
+    @FXML
+    public void makePurchase(Photo photo) {
+
+        try {
+            System.out.println("Attempting to purchase photo with ID: " + photo.getPhotoId());
+            // Validate the photo ID
+            if (photo.getPhotoId() <= 0) {
+                throw new IllegalArgumentException("Invalid photo ID.");
+            }
+
+            // Get the current user ID
+            int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
+
+            // Make the purchase
+            purchaseFacade.purchase(photo.getPhotoId(), currentUserId);
+
+            // Show success alert
+            showAlert(Alert.AlertType.INFORMATION, "Purchase Successful",
+                    "The purchase has been successfully completed.");
+            loadMainScene();
+        } catch (Exception e) {
+            // Handle and show error alert
+            showAlert(Alert.AlertType.ERROR, "Purchase Failed",
+                    "An error occurred while making the purchase: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Calls the makePurhcase method with the current photo
+     */
+    public void handlePurchase() {
+        makePurchase(this.currentPhoto);
     }
 }

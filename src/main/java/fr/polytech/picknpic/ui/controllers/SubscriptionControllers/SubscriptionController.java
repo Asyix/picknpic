@@ -12,16 +12,31 @@ import javafx.scene.control.Label;
  */
 public class SubscriptionController {
 
+    /**
+     * The label for displaying the subscription description.
+     */
     @FXML
     private Label subscriptionDescriptionLabel;
 
+    /**
+     * The label for displaying the subscription discount.
+     */
     @FXML
     private Label subscriptionDiscountLabel;
 
+    /**
+     * The facade for subscription-related operations.
+     */
     private final SubscriptionFacade subscriptionFacade;
 
+    /**
+     * The subscription object to store the subscription details.
+     */
     private Subscription subscription;
 
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
     /**
@@ -32,7 +47,10 @@ public class SubscriptionController {
         this.subscriptionFacade = SubscriptionFacade.getSubscriptionFacadeInstance();
     }
 
-    // Automatically load benefits when the scene initializes
+    /**
+     * Initializes the controller.
+     * Can be used to set default values or placeholders for UI elements.
+     */
     @FXML
     public void initialize() {
         seeBenefits();
