@@ -115,7 +115,7 @@ public class DisplayUniquePhotoController {
 
     // use SceneManager loadDeletePhotoScene to navigate
     public void navigateToDeletePhotoScene() {
-        sceneManager.loadDeletePhotoScene();
+        sceneManager.loadDeletePhotoScene(currentPhoto);
     }
 
     // use SceneManager loadUpdatePhotoScene to navigate

@@ -386,10 +386,15 @@ public class SceneManager {
     }
 
     @FXML
-    public static void loadDeletePhotoScene() {
+    public static void loadDeletePhotoScene(Photo photo) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/deletePhoto.fxml"));
             Parent content = loader.load();
+
+            // Pass the photo ID to PurchaseController
+            DeletePhotoController controller = loader.getController();
+            controller.setPhoto(photo);
+
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -434,14 +439,17 @@ public class SceneManager {
     }
 
     public static void loadPurchasePhotoScene(Photo photo) {
-        System.out.println("Loading purchase scene with Photo ID: " + photo.getPhotoId());
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/purchasePhoto.fxml"));
             Parent content = loader.load();
 
-            // Pass the photo ID to PurchaseController
+            // Pass the photo to PurchaseController
             PurchaseController controller = loader.getController();
-            controller.setPhoto(photo);
+
+            // Postpone setting the photo to ensure fields like confirmationLabel are initialized
+            if (photo != null) {
+                controller.setPhoto(photo);
+            }
 
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
@@ -461,7 +469,7 @@ public class SceneManager {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/updatePhotoDetails.fxml"));
             Parent content = loader.load();
 
-            // Pass the photo ID to UpdatePhotoController
+            // Pass the photo to UpdatePhotoController
             UpdatePhotoController controller = loader.getController();
             controller.setPhoto(photo);
 

@@ -18,5 +18,4 @@
     <Button fx:id="displayNotificationButton" text="Display Notification" onAction="#handleDisplayNotification"/>
     <Button fx:id="publishPhotoButton" text="Publish Photo" onAction="#handlePublishPhoto"/>
     <Button fx:id="displayPhotosButton" text="Display Photos" onAction="#handleDisplayPhotos"/>
-    <Button fx:id="deletePhotoButton" text="Delete Photo" onAction="#handleDeletePhoto"/>
 </VBox>

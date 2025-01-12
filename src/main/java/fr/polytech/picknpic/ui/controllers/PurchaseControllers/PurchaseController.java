@@ -7,6 +7,7 @@ import fr.polytech.picknpic.bl.models.Photo;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 
 /**
  * Controller for handling purchase-related actions in the UI.
@@ -17,15 +18,26 @@ public class PurchaseController {
 
     private SceneManager sceneManager;
 
-    private Photo photo;
+    private Photo currentPhoto;
 
     private DisplayUniquePhotoController displayUniquePhotoController;
+
+    @FXML
+    private Label confirmationLabel;
 
     /**
      * Constructor for initializing the PurchaseController.
      */
     public PurchaseController() {
         this.purchaseFacade = PurchaseFacade.getPurchaseFacadeInstance();
+    }
+
+    @FXML
+    public void initialize() {
+        // Update the label if the photo is already set
+        if (currentPhoto != null) {
+            updateConfirmationLabel();
+        }
     }
 
     /**
@@ -61,11 +73,26 @@ public class PurchaseController {
     }
 
     public void handlePurchase() {
-        makePurchase(this.photo);
+        makePurchase(this.currentPhoto);
     }
 
     public void setPhoto(Photo photo) {
-        this.photo = photo;
+        this.currentPhoto = photo;
+    }
+
+    /**
+     * Updates the confirmation label with the current photo name.
+     */
+    private void updateConfirmationLabel() {
+        if (confirmationLabel != null) {
+            if (currentPhoto != null) {
+                confirmationLabel.setText("ARE YOU SURE YOU WANT TO BUY “" + currentPhoto.getTitle() + "”?");
+            } else {
+                confirmationLabel.setText("No photo selected.");
+            }
+        } else {
+            System.err.println("Error: confirmationLabel is null in updateConfirmationLabel.");
+        }
     }
 
     /**

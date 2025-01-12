@@ -130,7 +130,6 @@ public class DisplayAllPhotosController {
      */
     private void handlePhotoClick(Photo photo) {
         clickedPhotoId.set(photo.getPhotoId());
-        System.out.println("Clicked Photo ID: " + photo.getPhotoId());
         Photo clickedPhoto = photoFacade.getPhotoById(photo.getPhotoId());
         if (clickedPhoto != null) {
             sceneManager.loadUniquePhotoDetailsScene(photo);

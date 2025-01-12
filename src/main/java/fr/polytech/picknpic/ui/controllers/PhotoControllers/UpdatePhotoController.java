@@ -15,9 +15,8 @@ import javafx.scene.control.TextField;
 public class UpdatePhotoController {
 
     private PhotoFacade photoFacade;
-    private int currentPhotoId;
 
-    private Photo photo;
+    private Photo currentPhoto;
     private SceneManager sceneManager;
 
     @FXML
@@ -42,9 +41,7 @@ public class UpdatePhotoController {
      */
     @FXML
     public void initialize() {
-        //setupPlaceholder(photoNameTextField, "Current photo name");
-        //setupPlaceholder(descriptionTextArea, "Current description");
-        //setupPlaceholder(photoPriceTextField, "Current price");
+
     }
 
     /**
@@ -82,11 +79,16 @@ public class UpdatePhotoController {
     }
 
     public void setPhoto(Photo photo) {
-        this.photo = photo;
+        this.currentPhoto = photo;
+
+        // Set placeholders for the fields with current photo details
+        setupPlaceholder(photoNameField, photo.getTitle());
+        setupPlaceholder(photoPriceField, String.valueOf(photo.getPrice()));
+        setupPlaceholder(photoDescriptionField, photo.getDescription());
     }
 
     public Photo getPhoto() {
-        return photo;
+        return currentPhoto;
     }
 
     /**
@@ -100,7 +102,7 @@ public class UpdatePhotoController {
             String description = photoDescriptionField.getText();
             int price = Integer.parseInt(photoPriceField.getText());
 
-            photoFacade.updatePhoto(currentPhotoId, title, description, price, null); // File path as null for now
+            photoFacade.updatePhoto(currentPhoto.getPhotoId(), title, description, price, null); // File path as null for now
             showAlert("Photo Updated", "Success", "The photo has been updated successfully.");
             sceneManager.loadMainScene();
         } catch (Exception e) {
@@ -123,12 +125,4 @@ public class UpdatePhotoController {
         alert.showAndWait();
     }
 
-    /**
-     * Sets the ID of the photo to be updated.
-     *
-     * @param photoId The ID of the photo to update.
-     */
-    public void setCurrentPhotoId(int photoId) {
-        this.currentPhotoId = photoId;
-    }
 }

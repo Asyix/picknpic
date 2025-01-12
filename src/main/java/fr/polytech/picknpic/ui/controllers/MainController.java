@@ -93,6 +93,4 @@ public class MainController {
 
     public void handleDisplayPhotos() { sceneManager.loadDisplayPhotosScene(); }
 
-    public void handleDeletePhoto() { sceneManager.loadDeletePhotoScene(); }
-
 }
