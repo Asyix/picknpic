@@ -3,6 +3,7 @@ package fr.polytech.picknpic.ui.controllers.PurchaseControllers;
 import fr.polytech.picknpic.bl.facades.purchase.PurchaseFacade;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayUniquePhotoController;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.models.Photo;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -16,7 +17,7 @@ public class PurchaseController {
 
     private SceneManager sceneManager;
 
-    private int photoId;
+    private Photo photo;
 
     private DisplayUniquePhotoController displayUniquePhotoController;
 
@@ -30,15 +31,15 @@ public class PurchaseController {
     /**
      * Handles the action of making a purchase.
      *
-     * @param photoId The ID of the photo to be purchased.
+     * @param photo The photo to be purchased.
      */
     @FXML
-    public void makePurchase(int photoId) {
+    public void makePurchase(Photo photo) {
 
         try {
-            System.out.println("Attempting to purchase photo with ID: " + photoId);
+            System.out.println("Attempting to purchase photo with ID: " + photo.getPhotoId());
             // Validate the photo ID
-            if (photoId <= 0) {
+            if (photo.getPhotoId() <= 0) {
                 throw new IllegalArgumentException("Invalid photo ID.");
             }
 
@@ -46,11 +47,12 @@ public class PurchaseController {
             int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
 
             // Make the purchase
-            purchaseFacade.purchase(photoId, currentUserId);
+            purchaseFacade.purchase(photo.getPhotoId(), currentUserId);
 
             // Show success alert
             showAlert(Alert.AlertType.INFORMATION, "Purchase Successful",
                     "The purchase has been successfully completed.");
+            loadMainScene();
         } catch (Exception e) {
             // Handle and show error alert
             showAlert(Alert.AlertType.ERROR, "Purchase Failed",
@@ -59,11 +61,11 @@ public class PurchaseController {
     }
 
     public void handlePurchase() {
-        makePurchase(this.photoId);
+        makePurchase(this.photo);
     }
 
-    public void setPhotoId(int photoId) {
-        this.photoId = photoId;
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
     /**

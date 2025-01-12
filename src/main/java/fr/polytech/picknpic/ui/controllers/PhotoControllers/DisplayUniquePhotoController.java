@@ -5,6 +5,7 @@ import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.ui.controllers.PurchaseControllers.PurchaseController;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayAllPhotosController;
 import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.bl.models.Photo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -31,31 +32,26 @@ public class DisplayUniquePhotoController {
 
     private SceneManager sceneManager;
 
-    private String photoUrl;
-
-    private int currentPhotoId;
+    /**
+     * The current photo that was clicked from DisplayAllPhotosController.
+     * This will be passed to either UpdatePhotoController, DeletePhotoController, or PurchaseController.
+     */
+    private Photo currentPhoto;
 
     private PurchaseController purchaseController;
 
     private DisplayAllPhotosController displayAllPhotosController;
 
     /**
-     * Sets the URL of the photo to display and updates the UI.
-     *
-     * @param url The URL of the photo.
+     * Setter for the clicked photo
      */
-    public void setPhotoUrl(String url) {
-        this.photoUrl = url;
+    public void setPhoto(Photo photo) {
+        this.currentPhoto = photo;
         displayPhoto();
     }
 
-    public void setPhotoId(int photoId) {
-        this.currentPhotoId = photoId;
-        System.out.println("Photo ID set in DisplayUniquePhotoController: " + currentPhotoId);
-    }
-
-    public int getPhotoId() {
-        return currentPhotoId;
+    public Photo getPhoto() {
+        return currentPhoto;
     }
 
     /**
@@ -68,10 +64,10 @@ public class DisplayUniquePhotoController {
         photoImageView.setPreserveRatio(true);
 
         try {
-            Image photoImage = new Image(photoUrl, true);
+            Image photoImage = new Image(currentPhoto.getUrl(), true); // directly use getUrl instead of photoUrl
             photoImageView.setImage(photoImage);
         } catch (IllegalArgumentException e) {
-            System.out.println("Invalid URL for photo: " + photoUrl);
+            System.out.println("Invalid URL for photo: " + currentPhoto.getUrl());
         }
 
         imagePane.getChildren().clear();
@@ -114,7 +110,7 @@ public class DisplayUniquePhotoController {
      * Handles the action of buying the displayed photo.
      */
     public void navigateToBuyPhoto() {
-        sceneManager.loadPurchasePhotoScene(currentPhotoId);
+        sceneManager.loadPurchasePhotoScene(currentPhoto);
     }
 
     // use SceneManager loadDeletePhotoScene to navigate
@@ -124,11 +120,11 @@ public class DisplayUniquePhotoController {
 
     // use SceneManager loadUpdatePhotoScene to navigate
     public void navigateToUpdatePhotoScene() {
-        sceneManager.loadUpdatePhotoDetailsScene();
+        sceneManager.loadUpdatePhotoDetailsScene(currentPhoto);
     }
 
     public void navigateToUniquePhotoDetailsScene() {
-        sceneManager.loadUniquePhotoDetailsScene(photoUrl, currentPhotoId);
+        sceneManager.loadUniquePhotoDetailsScene(currentPhoto);
     }
 
 }

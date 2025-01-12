@@ -2,6 +2,7 @@ package fr.polytech.picknpic.ui.controllers.PhotoControllers;
 
 import fr.polytech.picknpic.bl.facades.photo.PhotoFacade;
 import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.bl.models.Photo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -15,6 +16,8 @@ public class UpdatePhotoController {
 
     private PhotoFacade photoFacade;
     private int currentPhotoId;
+
+    private Photo photo;
     private SceneManager sceneManager;
 
     @FXML
@@ -39,7 +42,51 @@ public class UpdatePhotoController {
      */
     @FXML
     public void initialize() {
-        // Initialize placeholders or load photo details if needed
+        //setupPlaceholder(photoNameTextField, "Current photo name");
+        //setupPlaceholder(descriptionTextArea, "Current description");
+        //setupPlaceholder(photoPriceTextField, "Current price");
+    }
+
+    /**
+     * Sets up a placeholder for the given text field.
+     *
+     * @param field       The text field to set up the placeholder for.
+     * @param placeholder The placeholder text.
+     */
+    private void setupPlaceholder(TextField field, String placeholder) {
+        field.setText(placeholder);
+        field.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && field.getText().equals(placeholder)) {
+                field.clear();
+            } else if (!newValue && field.getText().isEmpty()) {
+                field.setText(placeholder);
+            }
+        });
+    }
+
+    /**
+     * Sets up a placeholder for the given text area.
+     *
+     * @param area        The text area to set up the placeholder for.
+     * @param placeholder The placeholder text.
+     */
+    private void setupPlaceholder(TextArea area, String placeholder) {
+        area.setText(placeholder);
+        area.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && area.getText().equals(placeholder)) {
+                area.clear();
+            } else if (!newValue && area.getText().isEmpty()) {
+                area.setText(placeholder);
+            }
+        });
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+
+    public Photo getPhoto() {
+        return photo;
     }
 
     /**

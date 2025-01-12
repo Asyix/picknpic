@@ -5,6 +5,7 @@ import fr.polytech.picknpic.ui.controllers.MainLayoutController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.*;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.*;
 import fr.polytech.picknpic.ui.controllers.PurchaseControllers.*;
+import fr.polytech.picknpic.bl.models.Photo;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -432,15 +433,15 @@ public class SceneManager {
         }
     }
 
-    public static void loadPurchasePhotoScene(int photoId) {
-        System.out.println("Loading purchase scene with Photo ID: " + photoId);
+    public static void loadPurchasePhotoScene(Photo photo) {
+        System.out.println("Loading purchase scene with Photo ID: " + photo.getPhotoId());
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/purchasePhoto.fxml"));
             Parent content = loader.load();
 
             // Pass the photo ID to PurchaseController
             PurchaseController controller = loader.getController();
-            controller.setPhotoId(photoId);
+            controller.setPhoto(photo);
 
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
@@ -455,10 +456,15 @@ public class SceneManager {
 
 
     @FXML
-    public static void loadUpdatePhotoDetailsScene() {
+    public static void loadUpdatePhotoDetailsScene(Photo photo) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/updatePhotoDetails.fxml"));
             Parent content = loader.load();
+
+            // Pass the photo ID to UpdatePhotoController
+            UpdatePhotoController controller = loader.getController();
+            controller.setPhoto(photo);
+
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -471,16 +477,15 @@ public class SceneManager {
     }
 
     @FXML
-    public static void loadUniquePhotoDetailsScene(String photoUrl, int photoId) {
+    public static void loadUniquePhotoDetailsScene(Photo photo) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/uniquePhotoDetails.fxml"));
             Parent content = loader.load();
 
             DisplayUniquePhotoController controller = loader.getController();
-            controller.setPhotoUrl(photoUrl);
-            controller.setPhotoId(photoId);
+            controller.setPhoto(photo);
             PurchaseController purchaseController = new PurchaseController();
-            purchaseController.setPhotoId(photoId);
+            purchaseController.setPhoto(photo);
 
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);

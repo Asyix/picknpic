@@ -19,15 +19,26 @@ import java.util.List;
  */
 public class DisplayAllPhotosController {
 
+    /**
+     * The facade for photo-related operations.
+     */
     private final PhotoFacade photoFacade;
 
     // Property to store the clicked photo ID
     private final SimpleIntegerProperty clickedPhotoId = new SimpleIntegerProperty();
 
+    /**
+     * The current photo to be passed to the unique photo details controller.
+     */
+    private Photo currentPhoto;
+
 
     @FXML
     private VBox photosContainer;
 
+    /**
+     * The scene manager for loading different scenes.
+     */
     private SceneManager sceneManager;
 
     private DisplayUniquePhotoController uniquePhotoDetails;
@@ -105,7 +116,7 @@ public class DisplayAllPhotosController {
         likesLabel.setStyle("-fx-text-fill: white;");
 
         // Add click event to the pane
-        pane.setOnMouseClicked(event -> handlePhotoClick(photo.getPhotoId()));
+        pane.setOnMouseClicked(event -> handlePhotoClick(photo));
 
         pane.getChildren().addAll(titleLabel, descriptionLabel, priceLabel, photoImageView, likesLabel);
 
@@ -115,16 +126,16 @@ public class DisplayAllPhotosController {
     /**
      * Handles the action of clicking on a photo pane.
      *
-     * @param photoId The ID of the clicked photo.
+     * @param photo The clicked photo.
      */
-    private void handlePhotoClick(int photoId) {
-        clickedPhotoId.set(photoId);
-        System.out.println("Clicked Photo ID: " + photoId);
-        Photo clickedPhoto = photoFacade.getPhotoById(photoId);
+    private void handlePhotoClick(Photo photo) {
+        clickedPhotoId.set(photo.getPhotoId());
+        System.out.println("Clicked Photo ID: " + photo.getPhotoId());
+        Photo clickedPhoto = photoFacade.getPhotoById(photo.getPhotoId());
         if (clickedPhoto != null) {
-            sceneManager.loadUniquePhotoDetailsScene(clickedPhoto.getUrl(), photoId);
+            sceneManager.loadUniquePhotoDetailsScene(photo);
         } else {
-            System.err.println("Photo not found for ID: " + photoId);
+            System.err.println("Photo not found for ID: " + photo.getPhotoId());
         }
     }
 
