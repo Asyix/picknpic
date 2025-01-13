@@ -301,9 +301,11 @@ public class SceneManager {
      * Loads the display all services scene.
      */
     @FXML
-    public static void loadDisplayAllServicesScene() {
+    public static void loadDisplayAllServicesScene(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/displayAllServices.fxml"));
+            loader.setControllerFactory(param -> new DisplayAllServicesController(user)); // Pass user to the constructor
+
             Parent content = loader.load();
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
@@ -312,7 +314,7 @@ public class SceneManager {
                 throw new RuntimeException("MainLayoutController is not initialized");
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to load DisplayAllServicesScene", e);
         }
     }
 

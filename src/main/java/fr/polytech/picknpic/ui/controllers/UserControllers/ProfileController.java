@@ -5,6 +5,7 @@ import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.facades.user.ManageAccountFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -119,7 +120,20 @@ public class ProfileController {
 
     @FXML
     private void loadServicesScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/displayAllServices.fxml"));
 
+            // Pass the profileUser to the DisplayAllServicesController
+            loader.setControllerFactory(param -> new DisplayAllServicesController(profileUser));
+
+            Parent servicesContent = loader.load();
+
+            // Clear the contentPane and add the new content
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(servicesContent);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load services scene", e);
+        }
     }
 
     @FXML

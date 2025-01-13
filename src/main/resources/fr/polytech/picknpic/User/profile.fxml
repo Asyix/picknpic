@@ -24,5 +24,5 @@
         <Button fx:id="requestsButton" text="Requests" onAction="#loadRequestsScene" visible="false"/>
         <Button fx:id="salesButton" text="Sales" onAction="#loadSalesScene" visible="false"/>
     </HBox>
-    <Pane fx:id="contentPane" />
+    <Pane fx:id="contentPane" VBox.vgrow="ALWAYS" />
 </VBox>

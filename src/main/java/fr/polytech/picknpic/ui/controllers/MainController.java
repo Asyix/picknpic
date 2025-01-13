@@ -52,10 +52,6 @@ public class MainController {
         sceneManager.loadDeleteGradeScene();
     }
 
-    public void handleDisplayAllServices() {
-        sceneManager.loadDisplayAllServicesScene();
-    }
-
     public void handleDisplayAllGrades() {
         sceneManager.loadDisplayAllGradesScene();
     }

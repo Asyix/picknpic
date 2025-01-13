@@ -9,7 +9,6 @@
     <Button fx:id="createServiceButton" text="Create Service" onAction="#handleCreateService"/>
     <Button fx:id="createGradeButton" text="Create Grade" onAction="#handleCreateGrade"/>
     <Button fx:id="deleteGradeButton" text="Delete Grade" onAction="#handleDeleteGrade"/>
-    <Button fx:id="displayAllServicesButton" text="Display All Services" onAction="#handleDisplayAllServices"/>
     <Button fx:id="displayAllGradesButton" text="Display All Grades" onAction="#handleDisplayAllGrades"/>
     <Button fx:id="seeBenefitsButton" text="See Benefits" onAction="#handleSeeBenefits"/>
     <Button fx:id="displayNotificationButton" text="Display Notification" onAction="#handleDisplayNotification"/>
