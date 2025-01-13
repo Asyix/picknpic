@@ -41,4 +41,5 @@ public interface UserDAO {
 
 
     boolean isFollowing(int idFollowed, int idFollower);
+
 }
