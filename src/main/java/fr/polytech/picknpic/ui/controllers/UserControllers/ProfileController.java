@@ -6,6 +6,7 @@ import fr.polytech.picknpic.bl.facades.user.ManageAccountFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController;
+import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayAllPhotosForSpecificUserController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -115,7 +116,19 @@ public class ProfileController {
 
     @FXML
     private void loadPhotosScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/displayPhotosForSpecificUser.fxml"));
+            Parent content = loader.load();
 
+            DisplayAllPhotosForSpecificUserController controller = loader.getController();
+            controller.setUserId(profileUser.getId());
+            controller.displayAllPhotosForUser();
+
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(content);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load displayAllPhotosForUser scene", e);
+        }
     }
 
     @FXML

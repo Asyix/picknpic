@@ -6,6 +6,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="fr.polytech.picknpic.ui.controllers.UserControllers.ProfileController"
       spacing="10" alignment="CENTER">
+    <!-- User Info Section -->
     <HBox spacing="10" alignment="CENTER">
         <Label fx:id="usernameLabel" text="Username"/>
         <Label text="Followers:"/>
@@ -17,6 +18,8 @@
         <Button fx:id="updateButton" text="Update Profile" onAction="#loadUpdateAccount" visible="false"/>
         <Button fx:id="deleteButton" text="Delete Account" onAction="#handleDeleteAccount" visible="false"/>
     </HBox>
+
+    <!-- Navigation Buttons Section -->
     <HBox spacing="10" alignment="CENTER">
         <Button text="Photos" onAction="#loadPhotosScene"/>
         <Button text="Posts" onAction="#loadPostsScene"/>
@@ -24,5 +27,9 @@
         <Button fx:id="requestsButton" text="Requests" onAction="#loadRequestsScene" visible="false"/>
         <Button fx:id="salesButton" text="Sales" onAction="#loadSalesScene" visible="false"/>
     </HBox>
-    <Pane fx:id="contentPane" VBox.vgrow="ALWAYS" />
+
+    <!-- Scrollable Content Section -->
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" fitToHeight="false" VBox.vgrow="ALWAYS" pannable="true">
+        <Pane fx:id="contentPane" prefHeight="600" />
+    </ScrollPane>
 </VBox>

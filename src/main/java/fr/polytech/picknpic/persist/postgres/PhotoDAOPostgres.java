@@ -155,4 +155,40 @@ public class PhotoDAOPostgres implements PhotoDAO {
         }
         return photos;
     }
+
+    /**
+     * Retrieves all photos for a specific user by their ID.
+     *
+     * @param userId The ID of the user whose photos are to be retrieved.
+     * @return A list of photos uploaded by the specified user.
+     */
+    public List<Photo> getAllPhotosByUserId(int userId) {
+        String query = "SELECT * FROM \"Photo\" WHERE user_id = ?";
+        List<Photo> photos = new ArrayList<>();
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, userId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Photo photo = new Photo();
+                    photo.setPhotoId(resultSet.getInt("photo_id"));
+                    photo.setTitle(resultSet.getString("title"));
+                    photo.setDescription(resultSet.getString("description"));
+                    photo.setPrice(resultSet.getInt("price"));
+                    photo.setUserId(resultSet.getInt("user_id"));
+                    photo.setUploadDate(resultSet.getDate("upload_date"));
+                    photo.setUrl(resultSet.getString("url"));
+                    photo.setIsForSale(resultSet.getBoolean("is_for_sale"));
+                    photo.setIsForSubscribersOnly(resultSet.getBoolean("is_for_subscribers_only"));
+                    photo.setNbLikes(resultSet.getInt("nb_likes"));
+                    photos.add(photo);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while fetching photos for user ID: " + userId, e);
+        }
+        return photos;
+    }
 }

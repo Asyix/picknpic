@@ -45,4 +45,12 @@ public interface PhotoDAO {
      * @return A list of all photos in the database.
      */
     List<Photo> getAllPhotos();
+
+    /**
+     * Retrieves all photos from the database by user ID.
+     *
+     * @param userId The ID of the user whose photos are to be retrieved.
+     * @return A list of all photos in the database by the user.
+     */
+    List<Photo> getAllPhotosByUserId(int userId);
 }

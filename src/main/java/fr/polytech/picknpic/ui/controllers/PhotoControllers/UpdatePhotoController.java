@@ -128,7 +128,7 @@ public class UpdatePhotoController {
             String description = photoDescriptionField.getText();
             int price = Integer.parseInt(photoPriceField.getText());
 
-            photoFacade.updatePhoto(currentPhoto.getPhotoId(), title, description, price, null); // File path as null for now
+            photoFacade.updatePhoto(currentPhoto.getPhotoId(), title, description, price, currentPhoto.getUrl()); // File path as null for now
             showAlert("Photo Updated", "Success", "The photo has been updated successfully.");
             SceneManager.loadMainScene();
         } catch (Exception e) {

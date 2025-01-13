@@ -39,3 +39,27 @@
 #background {
     -fx-background-color: #000000;
 }
+
+/* Delete button - Red */
+#deleteButton {
+    -fx-background-color: #FF4D4D; /* Red */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+#deleteButton:hover {
+    -fx-background-color: #E63939; /* Darker red on hover */
+}
+
+/* Update button - Blue */
+#updateButton {
+    -fx-background-color: #4D79FF; /* Blue */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+#updateButton:hover {
+    -fx-background-color: #3959E6; /* Darker blue on hover */
+}
