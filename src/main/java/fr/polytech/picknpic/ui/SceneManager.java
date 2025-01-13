@@ -321,25 +321,6 @@ public class SceneManager {
     // The following methods are related to the Grade use-case
 
     /**
-     * Loads the create grade scene.
-     */
-    @FXML
-    public static void loadCreateGradeScene() {
-        try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
-            Parent content = loader.load();
-            if (mainLayoutController != null) {
-                mainLayoutController.setContent(content);
-                primaryStage.sizeToScene();
-            } else {
-                throw new RuntimeException("MainLayoutController is not initialized");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
      * Loads the update grade scene.
      */
     @FXML

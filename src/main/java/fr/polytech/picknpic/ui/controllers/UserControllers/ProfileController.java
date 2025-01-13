@@ -2,10 +2,13 @@ package fr.polytech.picknpic.ui.controllers.UserControllers;
 
 import fr.polytech.picknpic.bl.facades.user.FollowFacade;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.models.Grade;
 import fr.polytech.picknpic.bl.facades.user.ManageAccountFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.bl.facades.subscription.SubscriptionFacade;
 import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.CreateGradeController;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.DisplayAllGradesController;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayAllPhotosForSpecificUserController;
 import fr.polytech.picknpic.ui.controllers.SubscriptionControllers.SubscriptionController;
@@ -207,6 +210,47 @@ public class ProfileController {
             contentPane.getChildren().add(servicesContent);
         } catch (Exception e) {
             throw new RuntimeException("Failed to load services scene", e);
+        }
+    }
+
+    /**
+     * Loads the grade scene for the profile user.
+     */
+    @FXML
+    private void loadGradeScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/displayAllGrades.fxml"));
+            Parent content = loader.load();
+
+            // Get the controller and configure it
+            DisplayAllGradesController displayAllGradesController = loader.getController();
+            displayAllGradesController.setProfileController(this); // Link to ProfileController
+            displayAllGradesController.setCurrentPageUser(profileUser); // Set the user for whom grades are displayed
+
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to load the grade scene", e);
+        }
+    }
+
+    /**
+     * Loads the create grade scene.
+     */
+    @FXML
+    public void loadCreateGradeScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
+            Parent content = loader.load();
+
+            CreateGradeController createGradeController = loader.getController();
+            createGradeController.setCurrentPageUser(profileUser);
+
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(content);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -11,7 +11,6 @@ public interface GradeDAO {
     /**
      * Creates a new grade in the database.
      *
-     * @param id_grade The unique identifier of the grade.
      * @param id_user_graded The ID of the user being graded.
      * @param id_service_graded The ID of the service being graded.
      * @param friendliness The friendliness grade.
@@ -20,7 +19,7 @@ public interface GradeDAO {
      * @param avg_grade The average grade.
      * @return The created {@link Grade} object.
      */
-    Grade createGrade(int id_grade, int id_user_graded, int id_service_graded, int friendliness, int rapidity, int quality, float avg_grade);
+    Grade createGrade(int id_user_graded, int id_service_graded, int friendliness, int rapidity, int quality, float avg_grade);
 
     /**
      * Deletes an existing grade from the database.

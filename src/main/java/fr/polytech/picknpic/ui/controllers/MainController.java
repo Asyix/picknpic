@@ -44,10 +44,6 @@ public class MainController {
         sceneManager.loadCreateServiceScene();
     }
 
-    public void handleCreateGrade() {
-        sceneManager.loadCreateGradeScene();
-    }
-
     public void handleDeleteGrade() {
         sceneManager.loadDeleteGradeScene();
     }

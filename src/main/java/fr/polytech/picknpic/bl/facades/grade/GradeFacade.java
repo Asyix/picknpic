@@ -55,7 +55,7 @@ public class GradeFacade {
      * @return The created Grade object.
      */
     public Grade createGrade(int id_user_graded, int id_service_graded, int friendliness, int rapidity, int quality, float avg_grade) {
-        return manageGradesFacade.createGrade(0, id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
+        return manageGradesFacade.createGrade(id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
     }
 
     /**

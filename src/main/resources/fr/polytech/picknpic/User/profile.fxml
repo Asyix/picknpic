@@ -26,6 +26,7 @@
         <Button text="Services" onAction="#loadServicesScene"/>
         <Button fx:id="requestsButton" text="Requests" onAction="#loadRequestsScene" visible="false"/>
         <Button fx:id="salesButton" text="Sales" onAction="#loadSalesScene" visible="false"/>
+        <Button text="Grade" onAction="#loadGradeScene"/>
     </HBox>
 
     <!-- Scrollable Content Section -->

@@ -7,7 +7,6 @@
     <Label fx:id="welcomeLabel"/>
     <Button fx:id="changeRequestStatusButton" text="Manage Request" onAction="#handleChangeRequestStatus"/> <!-- Temporary manage request navigation button -->
     <Button fx:id="createServiceButton" text="Create Service" onAction="#handleCreateService"/>
-    <Button fx:id="createGradeButton" text="Create Grade" onAction="#handleCreateGrade"/>
     <Button fx:id="deleteGradeButton" text="Delete Grade" onAction="#handleDeleteGrade"/>
     <Button fx:id="displayAllGradesButton" text="Display All Grades" onAction="#handleDisplayAllGrades"/>
     <Button fx:id="seeBenefitsButton" text="See Benefits" onAction="#handleSeeBenefits"/>
