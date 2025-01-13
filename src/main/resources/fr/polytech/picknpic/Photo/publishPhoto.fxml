@@ -1,0 +1,52 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.picknpic.ui.controllers.PhotoControllers.PublishPhotoController">
+    <children>
+        <Pane id="headerPane" prefHeight="37.0" prefWidth="600.0" />
+        <Pane id="paleGreyPane" layoutX="66.0" layoutY="75.0" prefHeight="285.0" prefWidth="475.0">
+            <children>
+                <Button id="greenButton" layoutX="341.0" layoutY="238.0" mnemonicParsing="false" onAction="#handlePublishPhoto" text="CONFIRM" />
+
+                <!-- Photo Name Pane -->
+                <Pane id="darkGreyPane" layoutX="31.0" layoutY="24.0" prefHeight="31.0" prefWidth="418.0" style="-fx-background-color: #343434;">
+                    <children>
+                        <TextField fx:id="photoNameTextField" layoutX="13.0" layoutY="3.0" prefWidth="390.0" style="-fx-background-color: #343434; -fx-text-fill: white;" />
+                    </children>
+                </Pane>
+
+                <!-- Photo URL TextField -->
+                <Pane id="darkGreyPane" layoutX="31.0" layoutY="67.0" prefHeight="71.0" prefWidth="418.0">
+                    <children>
+                        <Label layoutX="12.0" layoutY="10.0" text="PHOTO URL" textFill="WHITE" />
+                        <TextField fx:id="photoUrlTextField" layoutX="12.0" layoutY="33.0" prefWidth="390.0" style="-fx-background-color: #343434; -fx-text-fill: white;" />
+                    </children>
+                </Pane>
+
+                <!-- Price Pane -->
+                <Pane id="darkGreyPane" layoutX="31.0" layoutY="149.0" prefHeight="71.0" prefWidth="201.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="10.0" text="PRICE" textFill="WHITE" />
+                        <TextField fx:id="priceTextField" layoutX="14.0" layoutY="33.0" prefWidth="173.0" style="-fx-background-color: #343434; -fx-text-fill: white;" />
+                    </children>
+                </Pane>
+
+                <!-- Description Pane -->
+                <Pane id="darkGreyPane" layoutX="240.0" layoutY="149.0" prefHeight="71.0" prefWidth="201.0">
+                    <children>
+                        <TextArea fx:id="descriptionTextArea" layoutX="14.0" layoutY="33.0" prefWidth="173.0" prefHeight="40.0" style="-fx-background-color: #343434; -fx-text-fill: white;" />
+                    </children>
+                </Pane>
+
+                <!-- Is For Sale Checkbox -->
+                <CheckBox fx:id="isForSaleCheckBox" layoutX="31.0" layoutY="245.0" text="Is For Sale" textFill="WHITE" />
+
+                <!-- Is For Subscribers Only Checkbox -->
+                <CheckBox fx:id="isForSubscribersOnlyCheckBox" layoutX="140.0" layoutY="245.0" text="Is For Subscribers Only" textFill="WHITE" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
