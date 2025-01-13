@@ -6,6 +6,9 @@ import fr.polytech.picknpic.bl.models.Service;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import fr.polytech.picknpic.ui.controllers.MainLayoutController;
 import fr.polytech.picknpic.ui.controllers.NavbarController;
+import fr.polytech.picknpic.ui.controllers.PhotoControllers.*;
+import fr.polytech.picknpic.ui.controllers.PurchaseControllers.*;
+import fr.polytech.picknpic.bl.models.Photo;
 import fr.polytech.picknpic.ui.controllers.UserControllers.*;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -369,6 +372,159 @@ public class SceneManager {
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadSeeBenefitsScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Subscription/seeBenefits.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadDisplayNotificationScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Notification/displayNotification.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadDeletePhotoScene(Photo photo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/deletePhoto.fxml"));
+            Parent content = loader.load();
+
+            // Pass the photo ID to PurchaseController
+            DeletePhotoController controller = loader.getController();
+            controller.setPhoto(photo);
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadDisplayPhotosScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/displayPhotos.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadPublishPhotoScene() {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/publishPhoto.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void loadPurchasePhotoScene(Photo photo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/purchasePhoto.fxml"));
+            Parent content = loader.load();
+
+            // Pass the photo to PurchaseController
+            PurchaseController controller = loader.getController();
+
+            // Postpone setting the photo to ensure fields like confirmationLabel are initialized
+            if (photo != null) {
+                controller.setPhoto(photo);
+            }
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load purchase photo scene", e);
+        }
+    }
+
+
+    @FXML
+    public static void loadUpdatePhotoDetailsScene(Photo photo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/updatePhotoDetails.fxml"));
+            Parent content = loader.load();
+
+            // Pass the photo to UpdatePhotoController
+            UpdatePhotoController controller = loader.getController();
+            controller.setPhoto(photo);
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public static void loadUniquePhotoDetailsScene(Photo photo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Photo/uniquePhotoDetails.fxml"));
+            Parent content = loader.load();
+
+            DisplayUniquePhotoController controller = loader.getController();
+            controller.setPhoto(photo);
+            PurchaseController purchaseController = new PurchaseController();
+            purchaseController.setPhoto(photo);
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load unique photo scene", e);
         }
     }
 

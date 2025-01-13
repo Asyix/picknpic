@@ -3,6 +3,12 @@ package fr.polytech.picknpic.ui.controllers;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.ui.controllers.UserControllers.LoginController;
+import fr.polytech.picknpic.ui.controllers.RequestControllers.ManageRequestController;
+import fr.polytech.picknpic.ui.controllers.ServiceControllers.ManageServicesController;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.ManageGradesController;
+import fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController;
+import fr.polytech.picknpic.ui.controllers.NotificationControllers.NotificationController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,4 +65,21 @@ public class MainController {
     public void handleDisplayAllGrades() {
         sceneManager.loadDisplayAllGradesScene();
     }
+
+    public void handleSeeBenefits() {
+        sceneManager.loadSeeBenefitsScene();
+    }
+
+    public void handleDisplayNotification() {
+        sceneManager.loadDisplayNotificationScene();
+    }
+
+    public void handlePublishPhoto() {
+        sceneManager.loadPublishPhotoScene();
+    }
+
+    public void handleDisplayPhotos() {
+        sceneManager.loadDisplayPhotosScene();
+    }
+
 }
