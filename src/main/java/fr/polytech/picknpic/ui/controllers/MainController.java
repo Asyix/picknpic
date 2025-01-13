@@ -89,8 +89,12 @@ public class MainController {
         sceneManager.loadDisplayNotificationScene();
     }
 
-    public void handlePublishPhoto() { sceneManager.loadPublishPhotoScene(); }
+    public void handlePublishPhoto() {
+        sceneManager.loadPublishPhotoScene();
+    }
 
-    public void handleDisplayPhotos() { sceneManager.loadDisplayPhotosScene(); }
+    public void handleDisplayPhotos() {
+        sceneManager.loadDisplayPhotosScene();
+    }
 
 }

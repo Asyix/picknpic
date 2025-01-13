@@ -1,12 +1,21 @@
 package fr.polytech.picknpic.ui;
 
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import fr.polytech.picknpic.ui.controllers.MainLayoutController;
-import fr.polytech.picknpic.ui.controllers.UserControllers.*;
+import fr.polytech.picknpic.ui.controllers.NavbarController;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.*;
 import fr.polytech.picknpic.ui.controllers.PurchaseControllers.*;
 import fr.polytech.picknpic.bl.models.Photo;
+import fr.polytech.picknpic.ui.controllers.UserControllers.*;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import fr.polytech.picknpic.ui.controllers.ServiceControllers.*;
+import fr.polytech.picknpic.ui.controllers.GradeControllers.*;
+import fr.polytech.picknpic.ui.controllers.RequestControllers.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,14 +27,10 @@ import javafx.fxml.FXML;
  */
 public class SceneManager {
 
-    /**
-     * The primary stage of the application.
-     */
+    /** The primary stage of the application. */
     private static Stage primaryStage;
 
-    /**
-     * The main layout controller for managing the main application layout.
-     */
+    /** The main layout controller for managing the main application layout. */
     private static MainLayoutController mainLayoutController;
 
     /**
@@ -115,11 +120,13 @@ public class SceneManager {
         }
     }
 
-    public static void loadProfileScene() {
+    public static void loadProfileScene(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/profile.fxml"));
             Parent content = loader.load();
             if (mainLayoutController != null) {
+                ProfileController profileController = loader.getController();
+                profileController.initializeWithUser(user);
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
             } else {
@@ -319,7 +326,7 @@ public class SceneManager {
      * Loads the update grade scene.
      */
     @FXML
-    public static void loadDeleteGradeScene() {
+    public static void loadDeleteGradeScene () {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/deleteGrade.fxml"));
             Parent content = loader.load();
@@ -505,6 +512,5 @@ public class SceneManager {
             throw new RuntimeException("Failed to load unique photo scene", e);
         }
     }
-
 
 }
