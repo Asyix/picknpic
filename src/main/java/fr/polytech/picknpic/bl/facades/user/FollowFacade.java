@@ -27,4 +27,8 @@ public class FollowFacade {
     public boolean isFollowing(int idFollowed, int idFollower) {
         return abstractFactory.createUserDAO().isFollowing(idFollowed, idFollower);
     }
+
+    public int[] getFollowsIds(int id_follower) {
+        return abstractFactory.createUserDAO().getFollowsIds(id_follower);
+    }
 }

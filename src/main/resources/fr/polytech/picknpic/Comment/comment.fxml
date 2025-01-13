@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.CommentControllers.CommentController" spacing="10" alignment="TOP_LEFT">
+    <Text fx:id="commentText" />
+    <Button fx:id="likeButton" text="Like" />
+    <Button fx:id="replyButton" text="Reply" />
+</HBox>
