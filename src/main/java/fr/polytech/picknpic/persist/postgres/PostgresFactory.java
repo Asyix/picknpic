@@ -1,6 +1,7 @@
 package fr.polytech.picknpic.persist.postgres;
 
 import fr.polytech.picknpic.persist.AbstractFactory;
+import fr.polytech.picknpic.persist.daos.*;
 import fr.polytech.picknpic.persist.daos.UserDAO;
 import fr.polytech.picknpic.persist.daos.RequestDAO;
 import fr.polytech.picknpic.persist.daos.ServiceDAO;
@@ -30,6 +31,9 @@ public class PostgresFactory extends AbstractFactory {
 
     /** Singleton instance of the PostgreSQL-specific GradeDAO implementation. */
     private static GradeDAOPostgres gradeDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific LikeDAO implementation. */
+    private static LikeDAOPostgres likeDAOPostgres;
 
     /** Singleton instance of the PostgreSQL-specific SubscriptionDAO implementation. */
     private static SubscriptionDAOPostgres subscriptionDAOPostgres;
@@ -110,6 +114,14 @@ public class PostgresFactory extends AbstractFactory {
             gradeDAOPostgres = new GradeDAOPostgres();
         }
         return gradeDAOPostgres;
+    }
+
+    @Override
+    public LikeDAO createLikeDAO() {
+        if (likeDAOPostgres == null) {
+            likeDAOPostgres = new LikeDAOPostgres();
+        }
+        return likeDAOPostgres;
     }
 
     /**
