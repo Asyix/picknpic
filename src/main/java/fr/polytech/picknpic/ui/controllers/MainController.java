@@ -10,11 +10,8 @@ import fr.polytech.picknpic.ui.controllers.GradeControllers.ManageGradesControll
 import fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController;
 import fr.polytech.picknpic.ui.controllers.NotificationControllers.NotificationController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 /**
  * Controller for the main application view.
@@ -45,24 +42,12 @@ public class MainController {
 
     // Temporary methods to navigate to other scenes
 
-    public void handleCreateRequest() {
-        sceneManager.loadCreateRequestScene();
-    }
-
     public void handleChangeRequestStatus() {
         sceneManager.loadChangeRequestStatusScene();
     }
 
     public void handleCreateService() {
         sceneManager.loadCreateServiceScene();
-    }
-
-    public void handleUpdateService() {
-        sceneManager.loadUpdateServiceScene();
-    }
-
-    public void handleDeleteService() {
-        sceneManager.loadDeleteServiceScene();
     }
 
     public void handleCreateGrade() {

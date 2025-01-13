@@ -2,6 +2,7 @@ package fr.polytech.picknpic.ui;
 
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.bl.models.Service;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import fr.polytech.picknpic.ui.controllers.MainLayoutController;
 import fr.polytech.picknpic.ui.controllers.NavbarController;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.*;
+import fr.polytech.picknpic.ui.controllers.RequestControllers.*;
 import fr.polytech.picknpic.ui.controllers.GradeControllers.*;
 import fr.polytech.picknpic.ui.controllers.RequestControllers.*;
 import javafx.stage.Stage;
@@ -189,10 +191,15 @@ public class SceneManager {
      * Loads the create request scene.
      */
     @FXML
-    public static void loadCreateRequestScene() {
+    public static void loadCreateRequestScene(Service service) {
+        System.out.println(service.getIdService());
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Request/createRequest.fxml"));
             Parent content = loader.load();
+
+            CreateRequestController createRequestController = loader.getController();
+            createRequestController.setService(service);
+
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -248,10 +255,14 @@ public class SceneManager {
      * Loads the update service scene.
      */
     @FXML
-    public static void loadUpdateServiceScene() {
+    public static void loadUpdateServiceScene(Service service) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/updateService.fxml"));
             Parent content = loader.load();
+
+            UpdateServiceController updateServiceController = loader.getController();
+            updateServiceController.setService(service);
+
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
@@ -267,10 +278,14 @@ public class SceneManager {
      * Loads the delete service scene.
      */
     @FXML
-    public static void loadDeleteServiceScene() {
+    public static void loadDeleteServiceScene(Service service) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/deleteService.fxml"));
             Parent content = loader.load();
+
+            DeleteServiceController deleteServiceController = loader.getController();
+            deleteServiceController.setService(service);
+
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
                 primaryStage.sizeToScene();
