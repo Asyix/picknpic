@@ -4,6 +4,7 @@ import fr.polytech.picknpic.bl.facades.user.FollowFacade;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.facades.user.ManageAccountFacade;
 import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.bl.facades.subscription.SubscriptionFacade;
 import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayAllPhotosForSpecificUserController;
@@ -19,6 +20,10 @@ import javafx.scene.control.TextInputDialog;
 
 import java.util.Optional;
 
+/**
+ * Controller for managing profile operations in the application.
+ * Provides an interface between the UI and the profile business logic.
+ */
 public class ProfileController {
 
     @FXML
@@ -42,8 +47,20 @@ public class ProfileController {
     @FXML
     private Pane contentPane;
 
+    /**
+     * The current user of the application.
+     */
     private User currentUser;
+
+    /**
+     * The user whose profile is being viewed.
+     */
     private User profileUser;
+
+    /**
+     * The facade for subscription-related operations.
+     */
+    private final SubscriptionFacade subscriptionFacade = SubscriptionFacade.getSubscriptionFacadeInstance();
 
     @FXML
     private void initialize() {
@@ -59,6 +76,7 @@ public class ProfileController {
         this.profileUser = profileUser;
         updateProfileInfo();
         updateButtonsVisibility();
+        updateSubscriptionButton();
         loadPostsScene();
     }
 
@@ -84,6 +102,31 @@ public class ProfileController {
         salesButton.setVisible(isOwnProfile);
     }
 
+    /**
+     * Updates the text and action of the subscription button based on the current subscription status.
+     */
+    private void updateSubscriptionButton() {
+        boolean isSubscribed = subscriptionFacade.isSubscribed(currentUser.getId(), profileUser.getId());
+        subscribeButton.setText(isSubscribed ? "Unsubscribe" : "Subscribe");
+        subscribeButton.setOnAction(event -> {
+            if (isSubscribed) {
+                handleUnsubscribe();
+            } else {
+                handleSubscribe();
+            }
+        });
+    }
+
+    /**
+     * Handles the unsubscribe operation.
+     */
+    @FXML
+    private void handleUnsubscribe() {
+        subscriptionFacade.unsubscribe(currentUser.getId(), profileUser.getId());
+        showAlert("Unsubscribed", "You have successfully unsubscribed.");
+        updateSubscriptionButton();
+    }
+
     @FXML
     private void handleFollow() {
         FollowFacade followFacade = FollowFacade.getInstance();
@@ -94,8 +137,6 @@ public class ProfileController {
         }
         updateProfileInfo();
     }
-
-
 
     @FXML
     private void loadPostsScene() {
@@ -109,6 +150,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Handles the subscription operation.
+     */
     @FXML
     private void handleSubscribe() {
         try {
@@ -125,7 +169,9 @@ public class ProfileController {
         }
     }
 
-
+    /**
+     * Loads the photos scene for the profile user.
+     */
     @FXML
     private void loadPhotosScene() {
         try {
@@ -143,6 +189,9 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Loads the services scene for the profile user.
+     */
     @FXML
     private void loadServicesScene() {
         try {

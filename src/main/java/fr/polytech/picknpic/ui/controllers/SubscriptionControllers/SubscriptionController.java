@@ -3,6 +3,7 @@ package fr.polytech.picknpic.ui.controllers.SubscriptionControllers;
 import fr.polytech.picknpic.bl.facades.subscription.SubscriptionFacade;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
+import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -64,26 +65,7 @@ public class SubscriptionController {
         int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
         int userThatOffersSubscriptionId = this.currentPageUser.getId();
         subscribe(currentUserId, userThatOffersSubscriptionId);
-    }
-
-    /**
-     * Unsubscribes the current user from a provider's subscription.
-     *
-     * @param subscriberId The ID of the subscriber.
-     * @param providerId   The ID of the provider.
-     */
-    public void unsubscribe(int subscriberId, int providerId) {
-        subscriptionFacade.unsubscribe(subscriberId, providerId);
-        showAlert("Unsubscription Successful", "You have successfully unsubscribed from the user's subscription!");
-    }
-
-    /**
-     * Handles the unsubscription operation.
-     */
-    public void handleUnsubscribe() {
-        int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
-        int userThatOffersSubscriptionId = this.currentPageUser.getId();
-        unsubscribe(currentUserId, userThatOffersSubscriptionId);
+        loadProfileScene();
     }
 
     /**
@@ -124,4 +106,14 @@ public class SubscriptionController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    public void loadProfileScene() {
+        try {
+            SceneManager.loadProfileScene(this.currentPageUser);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load the profile scene", e);
+        }
+    }
+
 }
