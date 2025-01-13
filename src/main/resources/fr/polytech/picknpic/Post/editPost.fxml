@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.PostControllers.EditPostController" spacing="10" alignment="TOP_LEFT">
+    <TextArea fx:id="postTextArea" prefHeight="200" prefWidth="300" />
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Save" onAction="#handleSave" />
+        <Button text="Cancel" onAction="#handleCancel" />
+    </HBox>
+</VBox>
