@@ -22,16 +22,10 @@ import javafx.stage.Stage;
  */
 public class MainController {
 
-    /** The button for navigating to the login scene. */
-    @FXML
-    private Button loginButton;
 
     /** The label for displaying a welcome message. */
     @FXML
     private Label welcomeLabel;
-
-    // temporary sceneManager to be deleted later
-    private SceneManager sceneManager;
 
     @FXML
     private void initialize() {
@@ -41,60 +35,6 @@ public class MainController {
         } else {
             SceneManager.loadLoginScene();
         }
-    }
-
-    // Temporary methods to navigate to other scenes
-
-    public void handleCreateRequest() {
-        sceneManager.loadCreateRequestScene();
-    }
-
-    public void handleChangeRequestStatus() {
-        sceneManager.loadChangeRequestStatusScene();
-    }
-
-    public void handleCreateService() {
-        sceneManager.loadCreateServiceScene();
-    }
-
-    public void handleUpdateService() {
-        sceneManager.loadUpdateServiceScene();
-    }
-
-    public void handleDeleteService() {
-        sceneManager.loadDeleteServiceScene();
-    }
-
-    public void handleCreateGrade() {
-        sceneManager.loadCreateGradeScene();
-    }
-
-    public void handleDeleteGrade() {
-        sceneManager.loadDeleteGradeScene();
-    }
-
-    public void handleDisplayAllServices() {
-        sceneManager.loadDisplayAllServicesScene();
-    }
-
-    public void handleDisplayAllGrades() {
-        sceneManager.loadDisplayAllGradesScene();
-    }
-
-    public void handleSeeBenefits() {
-        sceneManager.loadSeeBenefitsScene();
-    }
-
-    public void handleDisplayNotification() {
-        sceneManager.loadDisplayNotificationScene();
-    }
-
-    public void handlePublishPhoto() {
-        sceneManager.loadPublishPhotoScene();
-    }
-
-    public void handleDisplayPhotos() {
-        sceneManager.loadDisplayPhotosScene();
     }
 
 }
