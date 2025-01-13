@@ -1,26 +1,35 @@
-
 package fr.polytech.picknpic.persist.daos;
+
 import fr.polytech.picknpic.bl.models.Subscription;
 
 /**
  * Interface for subscription-related data access operations.
- * Provides methods for displaying subscription details.
+ * Provides methods for managing subscriptions.
  */
 public interface SubscriptionDAO {
 
     /**
      * The current user subscribes to another user's subscription.
      *
-     * @param currentUserId The ID of the user who is subscribing.
-     * @param userThatOffersSubscriptionId The ID of the user who offers the subscription.
+     * @param subscriberId The ID of the user who is subscribing.
+     * @param providerId   The ID of the user who is being subscribed to.
      */
-    void subscribe(int currentUserId, int userThatOffersSubscriptionId);
+    void subscribe(int subscriberId, int providerId);
 
     /**
-     * Retrieves a subscription by its unique identifier.
+     * Checks if a subscription exists between two users.
      *
-     * @param subscriptionId The unique identifier of the subscription to retrieve.
-     * @return The subscription with the specified ID.
+     * @param subscriberId The ID of the subscriber.
+     * @param providerId   The ID of the provider.
+     * @return `true` if the subscription exists, `false` otherwise.
      */
-    Subscription getSubscriptionById(int subscriptionId);
+    boolean isSubscribed(int subscriberId, int providerId);
+
+    /**
+     * Deletes a subscription between a subscriber and a provider.
+     *
+     * @param subscriberId The ID of the subscriber.
+     * @param providerId   The ID of the provider.
+     */
+    void unsubscribe(int subscriberId, int providerId);
 }
