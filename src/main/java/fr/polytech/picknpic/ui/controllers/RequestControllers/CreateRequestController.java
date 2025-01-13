@@ -18,9 +18,6 @@ public class CreateRequestController {
     /** The facade for managing requests. */
     private final RequestFacade requestFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     /** The service that was clicked. */
     private Service currentService;
 
@@ -90,7 +87,7 @@ public class CreateRequestController {
             requestFacade.createRequest(id_user_buyer, id_service, id_chat, message, image, status);
 
             showAlert("Request Created", "Success", "Your request has been successfully created.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to Create Request", "Reason: " + e.getMessage());
         }

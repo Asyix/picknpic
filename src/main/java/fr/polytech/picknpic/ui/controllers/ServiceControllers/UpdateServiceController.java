@@ -17,8 +17,6 @@ public class UpdateServiceController {
     /** The facade for service-related operations. */
     private final ServiceFacade serviceFacade;
 
-    private SceneManager sceneManager;
-
     /** The service that was clicked. */
     private Service currentService;
 
@@ -124,7 +122,7 @@ public class UpdateServiceController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

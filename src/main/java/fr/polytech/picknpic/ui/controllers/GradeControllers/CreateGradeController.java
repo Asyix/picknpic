@@ -15,9 +15,6 @@ public class CreateGradeController {
     /** Facade for grade-related operations. */
     private final GradeFacade gradeFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     @FXML
     private TextField friendlinessField;
 
@@ -71,7 +68,7 @@ public class CreateGradeController {
             // Create the grade
             gradeFacade.createGrade(id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
             showAlert("Grade Created", "Grade successfully created", "The grade has been added successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (IllegalArgumentException e) {
             showAlert("Invalid Input", "Input Error", e.getMessage());
         } catch (Exception e) {
@@ -105,7 +102,7 @@ public class CreateGradeController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

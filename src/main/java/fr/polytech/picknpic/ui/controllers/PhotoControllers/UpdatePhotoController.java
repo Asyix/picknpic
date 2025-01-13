@@ -18,33 +18,19 @@ public class UpdatePhotoController {
     /**
      * The facade for photo-related operations.
      */
-    private PhotoFacade photoFacade;
+    private final PhotoFacade photoFacade;
 
     /**
      * The current photo to be updated.
      */
     private Photo currentPhoto;
 
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
-
-    /**
-     * The text field for entering the photo name.
-     */
     @FXML
     private TextField photoNameField;
 
-    /**
-     * The text field for entering the price of the photo.
-     */
     @FXML
     private TextField photoPriceField;
 
-    /**
-     * The text area for entering the photo description.
-     */
     @FXML
     private TextArea photoDescriptionField;
 
@@ -144,7 +130,7 @@ public class UpdatePhotoController {
 
             photoFacade.updatePhoto(currentPhoto.getPhotoId(), title, description, price, null); // File path as null for now
             showAlert("Photo Updated", "Success", "The photo has been updated successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Update Failed", "An error occurred while updating the photo.");
         }

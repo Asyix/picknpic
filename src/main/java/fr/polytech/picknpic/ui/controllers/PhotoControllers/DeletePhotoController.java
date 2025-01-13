@@ -24,14 +24,6 @@ public class DeletePhotoController {
      */
     private Photo currentPhoto;
 
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
-
-    /**
-     * The confirmation label for the delete operation.
-     */
     @FXML
     private Label confirmationLabel;
 
@@ -75,7 +67,7 @@ public class DeletePhotoController {
      */
     @FXML
     public void loadMainScene() {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**
@@ -102,7 +94,7 @@ public class DeletePhotoController {
         try {
             photoFacade.deletePhoto(currentPhoto.getPhotoId());
             showAlert("Photo Deleted", "Success", "The photo has been deleted successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Deletion Failed", "An error occurred while deleting the photo.");
         }

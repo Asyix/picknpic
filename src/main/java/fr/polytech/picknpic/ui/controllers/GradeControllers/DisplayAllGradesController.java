@@ -5,7 +5,6 @@ package fr.polytech.picknpic.ui.controllers.GradeControllers;
 import fr.polytech.picknpic.bl.facades.grade.GradeFacade;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.Grade;
-import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -20,9 +19,6 @@ import java.util.List;
 public class DisplayAllGradesController {
 
     private final GradeFacade gradeFacade;
-
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
 
     @FXML
     private VBox gradesContainer;

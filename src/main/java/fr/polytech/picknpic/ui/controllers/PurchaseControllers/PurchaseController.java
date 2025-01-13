@@ -21,11 +21,6 @@ public class PurchaseController {
     private final PurchaseFacade purchaseFacade;
 
     /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
-
-    /**
      * The current photo to be purchased.
      */
     private Photo currentPhoto;
@@ -35,9 +30,6 @@ public class PurchaseController {
      */
     private DisplayUniquePhotoController displayUniquePhotoController;
 
-    /**
-     * The label for displaying the purchase confirmation message.
-     */
     @FXML
     private Label confirmationLabel;
 
@@ -87,7 +79,7 @@ public class PurchaseController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

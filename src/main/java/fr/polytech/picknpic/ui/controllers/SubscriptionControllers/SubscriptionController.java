@@ -3,7 +3,6 @@ package fr.polytech.picknpic.ui.controllers.SubscriptionControllers;
 
 import fr.polytech.picknpic.bl.facades.subscription.SubscriptionFacade;
 import fr.polytech.picknpic.bl.models.Subscription;
-import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -34,11 +33,6 @@ public class SubscriptionController {
      * The subscription object to store the subscription details.
      */
     private Subscription subscription;
-
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
 
     /**
      * Constructs a new `SubscriptionController` instance.

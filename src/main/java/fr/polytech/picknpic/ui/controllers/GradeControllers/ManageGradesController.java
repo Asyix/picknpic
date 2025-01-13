@@ -15,9 +15,6 @@ public class ManageGradesController {
     /** Facade for grade-related operations. */
     private final GradeFacade gradeFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     /**
      * Constructs a new `ManageGradesController` instance.
      * Initializes the {@link GradeFacade} singleton.
@@ -57,7 +54,7 @@ public class ManageGradesController {
         try {
             gradeFacade.createGrade(id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
             showAlert("Grade Created", "Grade successfully created", "The grade has been added successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to create grade", "An error occurred while creating the grade.");
         }
@@ -74,7 +71,7 @@ public class ManageGradesController {
         try {
             gradeFacade.deleteGrade(id_grade);
             showAlert("Grade Deleted", "Grade successfully deleted", "The grade has been deleted successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to delete grade", "An error occurred while deleting the grade.");
         }
@@ -86,7 +83,7 @@ public class ManageGradesController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
 }

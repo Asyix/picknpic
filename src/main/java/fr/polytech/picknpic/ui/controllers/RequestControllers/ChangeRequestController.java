@@ -13,9 +13,6 @@ public class ChangeRequestController {
     /** The facade for managing requests. */
     private final RequestFacade requestFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     /**
      * Constructs a new `ChangeRequestController` instance.
      * Initializes the {@link RequestFacade} singleton.
@@ -52,7 +49,7 @@ public class ChangeRequestController {
 
             // Notify the user that the request status has been updated
             showAlert("Request Updated", "Request status successfully updated!", "Your request has been updated.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to update request status.", "Reason: " + e.getMessage());
         }

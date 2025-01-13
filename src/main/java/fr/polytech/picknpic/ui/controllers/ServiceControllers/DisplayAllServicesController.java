@@ -22,9 +22,6 @@ public class DisplayAllServicesController {
     /** The service facade for fetching service data. */
     private final ServiceFacade serviceFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     /** The current logged-in user. */
     private final User currentUser;
 
@@ -141,7 +138,7 @@ public class DisplayAllServicesController {
      */
     private void handleDeleteService(Service service) {
         try {
-            sceneManager.loadDeleteServiceScene(service);
+            SceneManager.loadDeleteServiceScene(service);
         } catch (Exception e) {
             System.err.println("Failed to delete service: " + e.getMessage());
         }
@@ -154,7 +151,7 @@ public class DisplayAllServicesController {
      */
     private void handleUpdateService(Service service) {
         try {
-            sceneManager.loadUpdateServiceScene(service);
+            SceneManager.loadUpdateServiceScene(service);
         } catch (Exception e) {
             System.err.println("Failed to navigate to update service scene: " + e.getMessage());
         }
@@ -167,7 +164,7 @@ public class DisplayAllServicesController {
      */
     private void handleRequestService(Service service) {
         try {
-            sceneManager.loadCreateRequestScene(service);
+            SceneManager.loadCreateRequestScene(service);
             System.out.println("passed");
         } catch (Exception e) {
             System.err.println("Failed to navigate to update service scene: " + e.getMessage());
