@@ -8,6 +8,7 @@ import fr.polytech.picknpic.ui.controllers.RequestControllers.ManageRequestContr
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.ManageServicesController;
 import fr.polytech.picknpic.ui.controllers.GradeControllers.ManageGradesController;
 import fr.polytech.picknpic.ui.controllers.UserControllers.RegisterController;
+import fr.polytech.picknpic.ui.controllers.NotificationControllers.NotificationController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -79,4 +80,21 @@ public class MainController {
     public void handleDisplayAllGrades() {
         sceneManager.loadDisplayAllGradesScene();
     }
+
+    public void handleSeeBenefits() {
+        sceneManager.loadSeeBenefitsScene();
+    }
+
+    public void handleDisplayNotification() {
+        sceneManager.loadDisplayNotificationScene();
+    }
+
+    public void handlePublishPhoto() {
+        sceneManager.loadPublishPhotoScene();
+    }
+
+    public void handleDisplayPhotos() {
+        sceneManager.loadDisplayPhotosScene();
+    }
+
 }

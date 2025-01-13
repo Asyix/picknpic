@@ -2,6 +2,14 @@ package fr.polytech.picknpic.persist.postgres;
 
 import fr.polytech.picknpic.persist.AbstractFactory;
 import fr.polytech.picknpic.persist.daos.*;
+import fr.polytech.picknpic.persist.daos.UserDAO;
+import fr.polytech.picknpic.persist.daos.RequestDAO;
+import fr.polytech.picknpic.persist.daos.ServiceDAO;
+import fr.polytech.picknpic.persist.daos.GradeDAO;
+import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
+import fr.polytech.picknpic.persist.daos.NotificationDAO;
+import fr.polytech.picknpic.persist.daos.PurchaseDAO;
+import fr.polytech.picknpic.persist.daos.PhotoDAO;
 
 /**
  * A factory class for creating PostgreSQL-specific DAO implementations.
@@ -26,6 +34,18 @@ public class PostgresFactory extends AbstractFactory {
 
     /** Singleton instance of the PostgreSQL-specific LikeDAO implementation. */
     private static LikeDAOPostgres likeDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific SubscriptionDAO implementation. */
+    private static SubscriptionDAOPostgres subscriptionDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific NotificationDAO implementation. */
+    private static NotificationDAOPostgres notificationDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific PhotoDAO implementation. */
+    private static PhotoDAOPostgres photoDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific PurchaseDAO implementation. */
+    private static PurchaseDAOPostgres purchaseDAOPostgres;
 
     /**
      * Private constructor to ensure controlled instantiation of the factory.
@@ -102,6 +122,58 @@ public class PostgresFactory extends AbstractFactory {
             likeDAOPostgres = new LikeDAOPostgres();
         }
         return likeDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link SubscriptionDAO}.
+     *
+     * @return A {@link SubscriptionDAOPostgres} instance.
+     */
+    @Override
+    public SubscriptionDAO createSubscriptionDAO() {
+        if (subscriptionDAOPostgres == null) {
+            subscriptionDAOPostgres = new SubscriptionDAOPostgres();
+        }
+        return subscriptionDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link NotificationDAO}.
+     *
+     * @return A {@link NotificationDAOPostgres} instance.
+     */
+    @Override
+    public NotificationDAO createNotificationDAO() {
+        if (notificationDAOPostgres == null) {
+            notificationDAOPostgres = new NotificationDAOPostgres();
+        }
+        return notificationDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link PhotoDAO}.
+     *
+     * @return A {@link PhotoDAOPostgres} instance.
+     */
+    @Override
+    public PhotoDAO createPhotoDAO() {
+        if (photoDAOPostgres == null) {
+            photoDAOPostgres = new PhotoDAOPostgres();
+        }
+        return photoDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link PurchaseDAO}.
+     *
+     * @return A {@link PurchaseDAOPostgres} instance.
+     */
+    @Override
+    public PurchaseDAO createPurchaseDAO() {
+        if (purchaseDAOPostgres == null) {
+            purchaseDAOPostgres = new PurchaseDAOPostgres();
+        }
+        return purchaseDAOPostgres;
     }
 
 }

@@ -1,0 +1,12 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/javafx" fx:controller="fr.polytech.picknpic.ui.controllers.NotificationControllers.NotificationController">
+    <children>
+        <Label fx:id="notificationDescriptionLabel" layoutX="50" layoutY="50" text="Description" />
+        <Label fx:id="notificationTypeLabel" layoutX="50" layoutY="100" text="Type" />
+        <Button layoutX="50" layoutY="150" text="Show Notification" onAction="#handleShowNotification" />
+    </children>
+</AnchorPane>
