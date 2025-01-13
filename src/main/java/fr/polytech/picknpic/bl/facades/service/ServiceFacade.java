@@ -90,4 +90,14 @@ public class ServiceFacade {
     public List<Service> getAllServices(int id_user_owner) {
         return displayAllServicesFacade.getAllServices(id_user_owner);
     }
+
+    /**
+     * Retrieves a service by its ID.
+     *
+     * @param id_service The ID of the service to retrieve.
+     * @return The {@link Service} object if found, otherwise {@code null}.
+     */
+    public Service getService(int id_service) {
+        return manageServicesFacade.getService(id_service);
+    }
 }

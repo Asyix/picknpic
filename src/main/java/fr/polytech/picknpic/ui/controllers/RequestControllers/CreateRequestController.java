@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 /**
  * Controller for creating requests.
@@ -22,10 +23,10 @@ public class CreateRequestController {
     private Service currentService;
 
     @FXML
-    private TextField serviceNameField;
+    private Label serviceNameLabel;
 
     @FXML
-    private TextField priceField;
+    private Label priceLabel;
 
     @FXML
     private TextArea messageField;
@@ -49,12 +50,25 @@ public class CreateRequestController {
     public void setService(Service service) {
         this.currentService = service;
 
-        // Populate fields with the service details
-        if (serviceNameField != null) serviceNameField.setText(service.getName());
-        if (priceField != null) priceField.setText(String.format("%.2f", service.getPrice()));
-        if (messageField != null) messageField.setText("Enter your message to the seller...");
-        if (imageField != null) imageField.setText("Optional image URL...");
+        // Debugging: Ensure service data is correct
+        System.out.println("Service ID: " + currentService.getIdService() +
+                ", Service name: " + currentService.getName() +
+                ", Service price: " + currentService.getPrice());
+
+        // Set the labels to display the service name and price
+        if (serviceNameLabel != null) {
+            serviceNameLabel.setText(service.getName());
+        } else {
+            System.out.println("serviceNameLabel is null");
+        }
+
+        if (priceLabel != null) {
+            priceLabel.setText(String.format("%.2f", service.getPrice()));
+        } else {
+            System.out.println("priceLabel is null");
+        }
     }
+
 
     /**
      * Displays an alert dialog with the provided message.
@@ -98,8 +112,6 @@ public class CreateRequestController {
      */
     @FXML
     public void initialize() {
-        setupPlaceholder(serviceNameField, "Enter service name...");
-        setupPlaceholder(priceField, "Enter price...");
         setupPlaceholder(messageField, "Enter your message to the seller...");
         setupPlaceholder(imageField, "Optional image URL...");
     }

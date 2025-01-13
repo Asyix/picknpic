@@ -78,4 +78,15 @@ public class ManageServicesFacade {
         ServiceDAO serviceDAO = abstractFactory.createServiceDAO();
         return serviceDAO.updateService(id_service, name, example_image, price, description);
     }
+
+    /**
+     * Retrieves a service by its ID.
+     *
+     * @param id_service The ID of the service to retrieve.
+     * @return The {@link Service} object if found, otherwise {@code null}.
+     */
+    public Service getService(int id_service) {
+        ServiceDAO serviceDAO = abstractFactory.createServiceDAO();
+        return serviceDAO.getService(id_service);
+    }
 }
