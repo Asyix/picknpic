@@ -13,9 +13,6 @@ public class CreateServiceController {
     /** The facade for service-related operations. */
     private final ServiceFacade serviceFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     @FXML
     private TextField serviceNameField;
 
@@ -83,7 +80,7 @@ public class CreateServiceController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

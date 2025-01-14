@@ -2,7 +2,6 @@ package fr.polytech.picknpic.bl.facades.subscription;
 
 import fr.polytech.picknpic.persist.AbstractFactory;
 import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
-import fr.polytech.picknpic.bl.models.Subscription;
 
 /**
  * Facade for managing subscriptions in the system.
@@ -31,23 +30,36 @@ public class SubscriptionFacade {
     }
 
     /**
-     * Allows the current user to subscribe to a subscription offered by another user.
+     * Allows the current user to subscribe to a provider.
      *
-     * @param currentUserId                The ID of the user subscribing.
-     * @param userThatOffersSubscriptionId The ID of the user offering the subscription.
+     * @param subscriberId The ID of the user subscribing.
+     * @param providerId   The ID of the user offering the subscription.
      */
-    public void subscribe(int currentUserId, int userThatOffersSubscriptionId) {
+    public void subscribe(int subscriberId, int providerId) {
         SubscriptionDAO subscriptionDAO = abstractFactory.createSubscriptionDAO();
-        subscriptionDAO.subscribe(currentUserId, userThatOffersSubscriptionId);
+        subscriptionDAO.subscribe(subscriberId, providerId);
     }
 
     /**
-     * Retrieves a subscription by its unique identifier.
+     * Checks if a subscription exists between two users.
      *
-     * @param subscriptionId The unique identifier of the subscription to retrieve.
-     * @return The subscription with the specified ID.
+     * @param subscriberId The ID of the subscriber.
+     * @param providerId   The ID of the provider.
+     * @return `true` if the subscription exists, `false` otherwise.
      */
-    public Subscription getSubscriptionById(int subscriptionId) {
-        return abstractFactory.createSubscriptionDAO().getSubscriptionById(subscriptionId);
+    public boolean isSubscribed(int subscriberId, int providerId) {
+        SubscriptionDAO subscriptionDAO = abstractFactory.createSubscriptionDAO();
+        return subscriptionDAO.isSubscribed(subscriberId, providerId);
+    }
+
+    /**
+     * Allows the current user to unsubscribe from a provider.
+     *
+     * @param subscriberId The ID of the user unsubscribing.
+     * @param providerId   The ID of the provider.
+     */
+    public void unsubscribe(int subscriberId, int providerId) {
+        SubscriptionDAO subscriptionDAO = abstractFactory.createSubscriptionDAO();
+        subscriptionDAO.unsubscribe(subscriberId, providerId);
     }
 }

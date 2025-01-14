@@ -15,22 +15,11 @@ public class NotificationController {
     /**
      * The facade for notification-related operations.
      */
-    private NotificationFacade notificationFacade;
+    private final NotificationFacade notificationFacade;
 
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
-
-    /**
-     * The label for displaying the notification description.
-     */
     @FXML
     private Label notificationDescriptionLabel;
 
-    /**
-     * The label for displaying the notification type.
-     */
     @FXML
     private Label notificationTypeLabel;
 

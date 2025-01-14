@@ -1,10 +1,11 @@
-
 package fr.polytech.picknpic.ui.controllers.SubscriptionControllers;
 
 import fr.polytech.picknpic.bl.facades.subscription.SubscriptionFacade;
-import fr.polytech.picknpic.bl.models.Subscription;
+import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.ui.SceneManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 /**
@@ -14,31 +15,14 @@ import javafx.scene.control.Label;
 public class SubscriptionController {
 
     /**
-     * The label for displaying the subscription description.
-     */
-    @FXML
-    private Label subscriptionDescriptionLabel;
-
-    /**
-     * The label for displaying the subscription discount.
-     */
-    @FXML
-    private Label subscriptionDiscountLabel;
-
-    /**
      * The facade for subscription-related operations.
      */
     private final SubscriptionFacade subscriptionFacade;
 
     /**
-     * The subscription object to store the subscription details.
+     * The user of the current page we are navigating.
      */
-    private Subscription subscription;
-
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
+    private User currentPageUser;
 
     /**
      * Constructs a new `SubscriptionController` instance.
@@ -54,35 +38,82 @@ public class SubscriptionController {
      */
     @FXML
     public void initialize() {
-        seeBenefits();
     }
 
     /**
-     * Subscribes the current user to a subscription offered by another user.
+     * Setter method to set the current page user.
+     */
+    public void setCurrentPageUser(User user) {
+        this.currentPageUser = user;
+    }
+
+    /**
+     * Subscribes the current user to a provider's subscription.
      *
-     * @param currentUserId                The ID of the user subscribing.
-     * @param userThatOffersSubscriptionId The ID of the user offering the subscription.
+     * @param subscriberId The ID of the user subscribing.
+     * @param providerId   The ID of the user offering the subscription.
      */
-    public void subscribe(int currentUserId, int userThatOffersSubscriptionId) {
-        subscriptionFacade.subscribe(currentUserId, userThatOffersSubscriptionId);
+    public void subscribe(int subscriberId, int providerId) {
+        subscriptionFacade.subscribe(subscriberId, providerId);
+        showAlert("Subscription Successful", "You have successfully subscribed to the user's subscription!");
     }
 
     /**
-     * Displays the benefits of a specific subscription.
+     * Handles the subscription operation.
      */
-    public void seeBenefits() {
-        int subscriptionId = 1; // Temporary subscription ID
-        try {
-            // Fetch the subscription details
-            subscription = subscriptionFacade.getSubscriptionById(subscriptionId);
-            System.out.println("desc" + subscription.getDescription());
-            System.out.println("disc" + subscription.getDiscount());
+    public void handleSubscribe() {
+        int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
+        int userThatOffersSubscriptionId = this.currentPageUser.getId();
+        subscribe(currentUserId, userThatOffersSubscriptionId);
+        loadProfileScene();
+    }
 
-            // Update the labels
-            subscriptionDescriptionLabel.setText(subscription.getDescription());
-            subscriptionDiscountLabel.setText(String.valueOf(subscription.getDiscount()));
-        } catch (Exception e) {
-            System.out.println("Error while displaying subscription benefits: " + e.getMessage());
+    /**
+     * Checks if a subscription exists between two users.
+     *
+     * @param subscriberId The ID of the subscriber.
+     * @param providerId   The ID of the provider.
+     * @return `true` if the subscription exists, `false` otherwise.
+     */
+    public boolean isSubscribed(int subscriberId, int providerId) {
+        return subscriptionFacade.isSubscribed(subscriberId, providerId);
+    }
+
+    /**
+     * Handles the subscription status of the current user.
+     */
+    public void handleSubscriptionStatus(Label subscriptionStatusLabel) {
+        int currentUserId = LoginFacade.getInstance().getCurrentUser().getId();
+        int userThatOffersSubscriptionId = this.currentPageUser.getId();
+        boolean isSubscribed = isSubscribed(currentUserId, userThatOffersSubscriptionId);
+        if (isSubscribed) {
+            subscriptionStatusLabel.setText("Subscribed");
+        } else {
+            subscriptionStatusLabel.setText("Not Subscribed");
         }
     }
+
+    /**
+     * Displays an alert dialog with the specified title and message.
+     *
+     * @param title   The title of the alert.
+     * @param message The message to display in the alert.
+     */
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void loadProfileScene() {
+        try {
+            SceneManager.loadProfileScene(this.currentPageUser);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load the profile scene", e);
+        }
+    }
+
 }

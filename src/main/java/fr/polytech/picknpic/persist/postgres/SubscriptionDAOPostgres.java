@@ -1,9 +1,7 @@
-
 package fr.polytech.picknpic.persist.postgres;
 
 import fr.polytech.picknpic.persist.JDBCConnector;
 import fr.polytech.picknpic.persist.daos.SubscriptionDAO;
-import fr.polytech.picknpic.bl.models.Subscription;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,25 +10,25 @@ import java.sql.SQLException;
 
 /**
  * PostgreSQL implementation of the {@link SubscriptionDAO} interface.
- * Provides methods for subscribing to a subscription and viewing subscription benefits.
+ * Provides methods for managing subscriptions in the database.
  */
 public class SubscriptionDAOPostgres implements SubscriptionDAO {
 
     /**
      * Subscribes the current user to a subscription offered by another user.
      *
-     * @param currentUserId                The ID of the user subscribing.
-     * @param userThatOffersSubscriptionId The ID of the user offering the subscription.
+     * @param subscriberId The ID of the user subscribing.
+     * @param providerId   The ID of the user offering the subscription.
      */
     @Override
-    public void subscribe(int currentUserId, int userThatOffersSubscriptionId) {
-        String query = "INSERT INTO \"User_Subscriptions\" (subscriber_id, subscription_id) VALUES (?, ?)";
+    public void subscribe(int subscriberId, int providerId) {
+        String query = "INSERT INTO \"Subscription\" (subscriber_id, provider_id) VALUES (?, ?)";
 
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, currentUserId);
-            statement.setInt(2, userThatOffersSubscriptionId);
+            statement.setInt(1, subscriberId);
+            statement.setInt(2, providerId);
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
@@ -45,32 +43,56 @@ public class SubscriptionDAOPostgres implements SubscriptionDAO {
     }
 
     /**
-     * Retrieves a subscription by its ID.
+     * Checks if a subscription exists between two users.
      *
-     * @param subscriptionId The ID of the subscription to retrieve.
-     * @return The {@link Subscription} object with the specified ID.
+     * @param subscriberId The ID of the subscriber.
+     * @param providerId   The ID of the provider.
+     * @return `true` if the subscription exists, `false` otherwise.
      */
     @Override
-    public Subscription getSubscriptionById(int subscriptionId) {
-        String query = "SELECT provider_id, discount, description FROM \"Subscription\" WHERE subscription_id = ?";
+    public boolean isSubscribed(int subscriberId, int providerId) {
+        String query = "SELECT 1 FROM \"Subscription\" WHERE subscriber_id = ? AND provider_id = ?";
+
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, subscriptionId);
+            statement.setInt(1, subscriberId);
+            statement.setInt(2, providerId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    Subscription subscription = new Subscription(subscriptionId);
-                    subscription.setProviderId(resultSet.getInt("provider_id"));
-                    subscription.setDiscount(resultSet.getDouble("discount"));
-                    subscription.setDescription(resultSet.getString("description"));
-                    return subscription;
-                } else {
-                    throw new RuntimeException("No subscription found with ID: " + subscriptionId);
-                }
+                return resultSet.next(); // Returns true if a record exists
             }
+
         } catch (SQLException e) {
-            throw new RuntimeException("Error while retrieving subscription by ID", e);
+            throw new RuntimeException("Error while checking subscription status", e);
+        }
+    }
+
+    /**
+     * Deletes a subscription between a subscriber and a provider.
+     *
+     * @param subscriberId The ID of the subscriber.
+     * @param providerId   The ID of the provider.
+     */
+    @Override
+    public void unsubscribe(int subscriberId, int providerId) {
+        String query = "DELETE FROM \"Subscription\" WHERE subscriber_id = ? AND provider_id = ?";
+
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, subscriberId);
+            statement.setInt(2, providerId);
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Unsubscription successful.");
+            } else {
+                System.out.println("No subscription found to delete.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while unsubscribing", e);
         }
     }
 }

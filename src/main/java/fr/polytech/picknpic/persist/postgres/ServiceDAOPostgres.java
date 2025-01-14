@@ -118,4 +118,25 @@ public class ServiceDAOPostgres implements ServiceDAO {
         service.setNbBuyers(resultSet.getInt("nb_buyers"));
         return service;
     }
+
+    @Override
+    public Service getService(int serviceId) {
+        String query = "SELECT * FROM \"Service\" WHERE id_service = ?";
+
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, serviceId);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return mapResultSetToService(resultSet);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null; // Return null if no service is found
+    }
 }

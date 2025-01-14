@@ -3,8 +3,10 @@ package fr.polytech.picknpic.ui;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.bl.models.Service;
+import fr.polytech.picknpic.bl.models.Chat;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import fr.polytech.picknpic.ui.controllers.MainLayoutController;
+import fr.polytech.picknpic.ui.controllers.MessageControllers.MessageController;
 import fr.polytech.picknpic.ui.controllers.NavbarController;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.*;
 import fr.polytech.picknpic.ui.controllers.PurchaseControllers.*;
@@ -196,7 +198,37 @@ public class SceneManager {
     }
 
     public static void loadChatScene() {
-        // Implementation for loading chat scene
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Chat/displayALlChats.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void loadMessagesScene(Chat chat) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Message/displayAllMessages.fxml"));
+            Parent content = loader.load();
+
+            MessageController messageController = loader.getController();
+            messageController.setCurrentChatId(chat.getIdChat());
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void loadReportsScene() {
@@ -316,9 +348,11 @@ public class SceneManager {
      * Loads the display all services scene.
      */
     @FXML
-    public static void loadDisplayAllServicesScene() {
+    public static void loadDisplayAllServicesScene(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Service/displayAllServices.fxml"));
+            loader.setControllerFactory(param -> new DisplayAllServicesController(user)); // Pass user to the constructor
+
             Parent content = loader.load();
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
@@ -327,30 +361,11 @@ public class SceneManager {
                 throw new RuntimeException("MainLayoutController is not initialized");
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to load DisplayAllServicesScene", e);
         }
     }
 
     // The following methods are related to the Grade use-case
-
-    /**
-     * Loads the create grade scene.
-     */
-    @FXML
-    public static void loadCreateGradeScene() {
-        try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Grade/createGrade.fxml"));
-            Parent content = loader.load();
-            if (mainLayoutController != null) {
-                mainLayoutController.setContent(content);
-                primaryStage.sizeToScene();
-            } else {
-                throw new RuntimeException("MainLayoutController is not initialized");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * Loads the update grade scene.
