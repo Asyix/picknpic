@@ -43,6 +43,10 @@ public class ProfileController {
     private User currentUser;
     private User profileUser;
 
+    /**
+     * Initializes the profile view.
+     * Loads the current user's data into the form fields.
+     */
     @FXML
     private void initialize() {
         currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -53,6 +57,10 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Initializes the profile view with the given user's data.
+     * @param profileUser The user whose profile is being viewed.
+     */
     public void initializeWithUser(User profileUser) {
         this.profileUser = profileUser;
         updateProfileInfo();
@@ -60,10 +68,17 @@ public class ProfileController {
         loadPostsScene();
     }
 
+    /**
+     * Sets the profile user.
+     * @param profileUser
+     */
     public void setProfileUser(User profileUser) {
         this.profileUser = profileUser;
     }
 
+    /**
+     * Updates the profile information displayed on the view.
+     */
     private void updateProfileInfo() {
         usernameLabel.setText(profileUser.getUsername());
         followersLabel.setText(String.valueOf(profileUser.getNbFollowers()));
@@ -72,6 +87,9 @@ public class ProfileController {
         //subscribeButton.setText(currentUser.isSubscribed(profileUser) ? "Unsubscribe" : "Subscribe");
     }
 
+    /**
+     * Updates the visibility of the buttons based on the current user's relationship with the profile user.
+     */
     private void updateButtonsVisibility() {
         boolean isOwnProfile = currentUser.equals(profileUser);
         followButton.setVisible(!isOwnProfile);
@@ -82,6 +100,9 @@ public class ProfileController {
         salesButton.setVisible(isOwnProfile);
     }
 
+    /**
+     * Handles the follow button action.
+     */
     @FXML
     private void handleFollow() {
         FollowFacade followFacade = FollowFacade.getInstance();
@@ -94,7 +115,9 @@ public class ProfileController {
     }
 
 
-
+    /**
+     * Handles the subscribe button action.
+     */
     @FXML
     public void loadPostsScene() {
         try {
@@ -136,11 +159,17 @@ public class ProfileController {
     }
 
 
+    /**
+     * Handles the update button action.
+     */
     @FXML
     private void loadUpdateAccount() {
         SceneManager.loadUpdateAccountScene();
     }
 
+    /**
+     * Handles the delete button action.
+     */
     @FXML
     private void handleDeleteAccount() {
         TextInputDialog dialog = new TextInputDialog();
@@ -166,6 +195,12 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Shows an alert with the given title and message.
+     *
+     * @param title   The title of the alert.
+     * @param message The message of the alert.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

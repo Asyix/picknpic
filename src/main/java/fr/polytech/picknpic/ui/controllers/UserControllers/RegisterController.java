@@ -33,6 +33,9 @@ public class RegisterController {
 
     private final UserFacade userFacade = UserFacade.getInstance();
 
+    /**
+     * Handles the register button action.
+     */
     @FXML
     private void handleRegister() {
         String email = emailField.getText();
@@ -68,11 +71,20 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Handles the back button action.
+     */
     @FXML
     private void loadLogin() {
         SceneManager.loadLoginScene();
     }
 
+    /**
+     * Shows an alert with the given title and message.
+     *
+     * @param title   The title of the alert.
+     * @param message The message of the alert.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

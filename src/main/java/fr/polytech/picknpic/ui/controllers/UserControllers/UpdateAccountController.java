@@ -21,6 +21,10 @@ public class UpdateAccountController {
     @FXML
     private TextField phoneNumberField;
 
+    /**
+     * Initializes the update account view.
+     * Loads the current user's data into the form fields.
+     */
     private void loadUserData() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -32,6 +36,10 @@ public class UpdateAccountController {
         }
     }
 
+    /**
+     * Initializes the update account view.
+     * Loads the current user's data into the form fields.
+     */
     @FXML
     private void handleUpdateAccount() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -59,11 +67,19 @@ public class UpdateAccountController {
         }
     }
 
+    /**
+     * Initializes the update account view.
+     * Loads the current user's data into the form fields.
+     */
     @FXML
     private void loadProfile() {
         SceneManager.loadProfileScene(LoginFacade.getInstance().getCurrentUser());
     }
 
+    /**
+     * Initializes the update account view.
+     * Loads the current user's data into the form fields.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

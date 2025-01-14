@@ -18,6 +18,11 @@ public class MainController {
     @FXML
     private Label welcomeLabel;
 
+    /**
+     * Initializes the main view.
+     * Displays a welcome message with the user's first name if they are logged in.
+     * Otherwise, navigates to the login scene.
+     */
     @FXML
     private void initialize() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
