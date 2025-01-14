@@ -201,6 +201,7 @@ public class PostgresFactory extends AbstractFactory {
             postDAOPostgres = new PostDAOPostgres();
         }
         return postDAOPostgres;
+    }
       
     /**
      * Creates a PostgreSQL-specific implementation of the {@link ChatDAO}.
