@@ -46,7 +46,10 @@ public class ManageUsersController {
     private final DisplayUsersFacade displayUsersFacade = DisplayUsersFacade.getInstance();
     private final ObservableList<User> usersList = FXCollections.observableArrayList();
 
-
+    /**
+     * Initializes the manage users view.
+     * Loads the list of users into the table.
+     */
     @FXML
     private void initialize() {
         currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -66,11 +69,17 @@ public class ManageUsersController {
         }
     }
 
+    /**
+     * Loads the list of users into the table.
+     */
     private void loadUsers() {
         usersList.clear();
         usersList.setAll(displayUsersFacade.getAllUsers(LoginFacade.getInstance().getCurrentUser()));
     }
 
+    /**
+     * Handles the create user button action.
+     */
     @FXML
     private void handleCreateUser() {
         try {
@@ -93,6 +102,9 @@ public class ManageUsersController {
         }
     }
 
+    /**
+     * Handles the update user button action.
+     */
     @FXML
     private void handleUpdateUser() {
         User selectedUser = usersTable.getSelectionModel().getSelectedItem();
@@ -121,6 +133,9 @@ public class ManageUsersController {
         }
     }
 
+    /**
+     * Handles the delete user button action.
+     */
     @FXML
     private void handleDeleteUser() {
         User selectedUser = usersTable.getSelectionModel().getSelectedItem();
@@ -137,6 +152,13 @@ public class ManageUsersController {
         }
     }
 
+    /**
+     * Shows an alert dialog.
+     *
+     * @param title   The title of the alert.
+     * @param header  The header of the alert.
+     * @param content The content of the alert.
+     */
     private void showAlert(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -145,6 +167,9 @@ public class ManageUsersController {
         alert.showAndWait();
     }
 
+    /**
+     * Handles the back button action.
+     */
     @FXML
     private void handleSeeProfile() {
         User selectedUser = usersTable.getSelectionModel().getSelectedItem();

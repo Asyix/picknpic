@@ -3,6 +3,10 @@ package fr.polytech.picknpic.bl.facades.user;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.persist.AbstractFactory;
 
+/**
+ * The RegisterFacade class provides a unified interface to user registration operations.
+ * It follows the Singleton design pattern to ensure only one instance exists.
+ */
 public class RegisterFacade {
 
     /** The singleton instance of the RegisterFacade. */
@@ -10,10 +14,16 @@ public class RegisterFacade {
     /** The abstract factory used to create DAO instances. */
     private final AbstractFactory factory = AbstractFactory.getInstance();
 
+    /**
+     * Constructs a new RegisterFacade instance.
+     * Private constructor to prevent instantiation.
+     */
     private RegisterFacade() {}
+
     /**
      * Retrieves the singleton instance of the RegisterFacade.
      * Ensures that only one instance of the RegisterFacade exists throughout the application.
+     *
      * @return The singleton instance of the RegisterFacade.
      */
     public static RegisterFacade getInstance() {

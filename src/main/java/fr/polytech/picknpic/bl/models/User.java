@@ -29,11 +29,26 @@ public class User {
     /** Indicates whether the user has admin privileges. */
     private boolean admin;
 
+    /** The number of followers the user has. */
+
     private int nbFollowers;
 
+    /** The number of users the user follows. */
     private int nbFollows;
 
-
+    /**
+     * Constructs a new User instance with the specified details.
+     *
+     * @param email The user's email address.
+     * @param password The user's password.
+     * @param username The user's unique username.
+     * @param firstName The user's first name.
+     * @param lastName The user's last name.
+     * @param phoneNumber The user's phone number.
+     * @param admin Indicates whether the user has admin privileges.
+     * @param nbFollowers The number of followers the user has.
+     * @param nbFollows The number of users the user follows.
+     */
     public User(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin, int nbFollowers, int nbFollows) {
         this.email = email;
         this.password = password;
@@ -46,6 +61,18 @@ public class User {
         this.nbFollows = nbFollows;
     }
 
+    /**
+     * Constructs a new User instance with the specified details.
+     *
+     * @param id The unique identifier of the user.
+     * @param email The user's email address.
+     * @param password The user's password.
+     * @param username The user's unique username.
+     * @param firstName The user's first name.
+     * @param lastName The user's last name.
+     * @param phoneNumber The user's phone number.
+     * @param admin Indicates whether the user has admin privileges.
+     */
     public User(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
         this.id = id;
         this.email = email;
@@ -57,6 +84,20 @@ public class User {
         this.admin = admin;
     }
 
+    /**
+     * Constructs a new User instance with the specified details.
+     *
+     * @param id The unique identifier of the user.
+     * @param email The user's email address.
+     * @param password The user's password.
+     * @param username The user's unique username.
+     * @param firstName The user's first name.
+     * @param lastName The user's last name.
+     * @param phoneNumber The user's phone number.
+     * @param admin Indicates whether the user has admin privileges.
+     * @param nbFollowers The number of followers the user has.
+     * @param nbFollows The number of users the user follows.
+     */
     public User(int id, String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin, int nbFollowers, int nbFollows) {
         this.id = id;
         this.email = email;
@@ -70,6 +111,9 @@ public class User {
         this.nbFollows = nbFollows;
     }
 
+    /**
+     * Constructs a new User instance with default values.
+     */
     public User() {
         this.admin = false;
     };
@@ -209,10 +253,20 @@ public class User {
         return id;
     }
 
+    /**
+     * Gets the number of followers the user has.
+     *
+     * @return the number of followers.
+     */
     public int getNbFollowers() {
         return nbFollowers;
     }
 
+    /**
+     * Gets the number of users the user follows.
+     *
+     * @return the number of users followed.
+     */
     public int getNbFollows() {
         return nbFollows;
     }

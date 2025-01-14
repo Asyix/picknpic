@@ -50,6 +50,10 @@ public class PostsController {
         this.profileController = profileController;
     }
 
+    /**
+     * Initializes the posts view.
+     * Loads the list of posts into the table.
+     */
     @FXML
     private void initialize() {
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -94,6 +98,11 @@ public class PostsController {
         }
     }
 
+    /**
+     * Adds a post to the posts container.
+     *
+     * @param post The post to add.
+     */
     public void addPostToContainer(Post post) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Post/post.fxml"));

@@ -65,6 +65,10 @@ public class LoginController {
         }
     }
 
+    /**
+     * Handles the register button action.
+     * Navigates to the registration view.
+     */
     public void loadRegister() {
         SceneManager.loadRegisterScene();
 

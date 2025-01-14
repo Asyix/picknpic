@@ -42,6 +42,10 @@ public class CommentController {
         this.subjectId = subjectId;
     }
 
+    /**
+     * Initializes the comments view.
+     * Loads the list of comments for the given subject into the container.
+     */
     public void initialize() {
         commentFacade = CommentFacade.getInstance();
         if ("post".equals(commentType)) {
@@ -51,6 +55,11 @@ public class CommentController {
         }
     }
 
+    /**
+     * Loads the comments for a post.
+     *
+     * @param postId The ID of the post.
+     */
     private void loadPostComments(int postId) {
         List<Comment> comments = commentFacade.getPostComments(postId);
         for (Comment comment : comments) {
@@ -58,6 +67,11 @@ public class CommentController {
         }
     }
 
+    /**
+     * Loads the comments for a photo.
+     *
+     * @param photoId The ID of the photo.
+     */
     private void loadPhotoComments(int photoId) {
         List<Comment> comments = commentFacade.getPhotoComments(photoId);
         for (Comment comment : comments) {
@@ -65,6 +79,11 @@ public class CommentController {
         }
     }
 
+    /**
+     * Adds a comment to the comments container.
+     *
+     * @param comment The comment to add.
+     */
     private void addCommentToContainer(Comment comment) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Comment/comment.fxml"));
@@ -113,6 +132,12 @@ public class CommentController {
         }
     }
 
+    /**
+     * Adds a reply to the comments container.
+     *
+     * @param reply The reply to add.
+     * @param parent The parent node to add the reply after.
+     */
     private void addReplyToContainer(Comment reply, Node parent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fr/polytech/picknpic/Comment/comment.fxml"));

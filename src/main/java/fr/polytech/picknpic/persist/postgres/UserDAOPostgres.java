@@ -27,8 +27,6 @@ public class UserDAOPostgres implements UserDAO {
      * @return A {@link User} object containing the user's details if authentication is successful,
      *         or {@code null} if no match is found.
      */
-
-
     @Override
     public User login(String username, String password) {
         User user = null;
@@ -95,6 +93,19 @@ public class UserDAOPostgres implements UserDAO {
         return user;
     }
 
+    /**
+     * Creates a new user with the specified details.
+     * Inserts a new user record into the PostgreSQL database with the provided information.
+     *
+     * @param email The email address of the user.
+     * @param password The password of the user.
+     * @param username The username of the user.
+     * @param firstName The first name of the user.
+     * @param lastName The last name of the user.
+     * @param phoneNumber The phone number of the user.
+     * @param admin The admin status of the user.
+     * @return {@code true} if the user was created successfully, {@code false} otherwise.
+     */
     @Override
     public boolean createUser(String email, String password, String username, String firstName, String lastName, int phoneNumber, boolean admin) {
         String query = "INSERT INTO \"User\" (email, password, username, first_name, last_name, phone_number, admin) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -118,6 +129,13 @@ public class UserDAOPostgres implements UserDAO {
         return true;
     }
 
+    /**
+     * Retrieves a user by their unique identifier.
+     * Queries the PostgreSQL database for a user with the specified ID and returns their details.
+     *
+     * @param id The unique identifier of the user to retrieve.
+     * @return A {@link User} object containing the user's details if found, or {@code null} if no match is found.
+     */
     @Override
     public User readUser(int id) {
         User user = null;
@@ -146,6 +164,13 @@ public class UserDAOPostgres implements UserDAO {
         return user;
     }
 
+    /**
+     * Retrieves a user by their unique username.
+     * Queries the PostgreSQL database for a user with the specified username and returns their details.
+     *
+     * @param user The username of the user to retrieve.
+     * @return A {@link User} object containing the user's details if found, or {@code null} if no match is found.
+     */
     @Override
     public List<User> getAllUsers(User user) {
         List<User> users = new ArrayList<>();
@@ -171,6 +196,13 @@ public class UserDAOPostgres implements UserDAO {
         return users;
     }
 
+    /**
+     * Retrieves a user by their unique username.
+     * Queries the PostgreSQL database for a user with the specified username and returns their details.
+     *
+     * @param user The username of the user to retrieve.
+     * @return A {@link User} object containing the user's details if found, or {@code null} if no match is found.
+     */
     @Override
     public boolean updateUser(User user) {
         String query = "UPDATE \"User\" SET email = ?, password = ?, username = ?, first_name = ?, last_name = ?, phone_number = ?, admin = ? WHERE id = ?";
@@ -192,6 +224,13 @@ public class UserDAOPostgres implements UserDAO {
         return true;
     }
 
+    /**
+     * Deletes a user by their unique identifier.
+     * Removes the user record from the PostgreSQL database with the specified ID.
+     *
+     * @param id The unique identifier of the user to delete.
+     * @return {@code true} if the user was deleted successfully, {@code false} otherwise.
+     */
     @Override
     public boolean deleteUser(int id) {
         String query = "DELETE FROM \"User\" WHERE id = ?";
@@ -206,6 +245,14 @@ public class UserDAOPostgres implements UserDAO {
         return true;
     }
 
+    /**
+     * Follows a user.
+     * Inserts a follow record into the PostgreSQL database and updates the follower and followee counts.
+     *
+     * @param idFollowed The ID of the user to be followed.
+     * @param idFollower The ID of the user who is following.
+     * @return {@code true} if the follow operation was successful, {@code false} otherwise.
+     */
     @Override
     public boolean followUser(int idFollowed, int idFollower) {
         String insertFollowQuery = "INSERT INTO \"Follow\" (id_followed, id_follower) VALUES (?, ?)";
@@ -244,6 +291,14 @@ public class UserDAOPostgres implements UserDAO {
         return true;
     }
 
+    /**
+     * Unfollows a user.
+     * Deletes a follow record from the PostgreSQL database and updates the follower and followee counts.
+     *
+     * @param idFollowed The ID of the user to be unfollowed.
+     * @param idFollower The ID of the user who is unfollowing.
+     * @return {@code true} if the unfollow operation was successful, {@code false} otherwise.
+     */
     @Override
     public boolean unfollowUser(int idFollowed, int idFollower) {
         String deleteFollowQuery = "DELETE FROM \"Follow\" WHERE id_followed = ? AND id_follower = ?";
@@ -282,6 +337,14 @@ public class UserDAOPostgres implements UserDAO {
         return true;
     }
 
+    /**
+     * Deletes a user account if the provided password matches.
+     * Removes the user record from the PostgreSQL database with the specified ID and password.
+     *
+     * @param id The unique identifier of the user to delete.
+     * @param password The password of the user to delete.
+     * @return {@code true} if the account was deleted successfully, {@code false} otherwise.
+     */
     public boolean deleteAccount(int id, String password) {
         if (LoginFacade.getInstance().getCurrentUser().getId() != id) {
             return false;
@@ -302,6 +365,13 @@ public class UserDAOPostgres implements UserDAO {
 
     }
 
+    /**
+     * Updates the account details of the current user.
+     * Modifies the user record in the PostgreSQL database with the provided information.
+     *
+     * @param user The user object containing the updated details.
+     * @return {@code true} if the account was updated successfully, {@code false} otherwise.
+     */
     @Override
     public boolean updateAccount(User user) {
         if (LoginFacade.getInstance().getCurrentUser().getId() != user.getId()) {
@@ -327,6 +397,14 @@ public class UserDAOPostgres implements UserDAO {
         }
     }
 
+    /**
+     * Checks if a user is following another user.
+     * Queries the PostgreSQL database to determine if a follow record exists between the specified users.
+     *
+     * @param idFollowed The ID of the user being followed.
+     * @param idFollower The ID of the user following.
+     * @return {@code true} if the user is following, {@code false} otherwise.
+     */
     @Override
     public boolean isFollowing(int idFollowed, int idFollower) {
         String query = "SELECT * FROM \"Follow\" WHERE id_followed = ? AND id_follower = ?";
@@ -342,6 +420,13 @@ public class UserDAOPostgres implements UserDAO {
         }
     }
 
+    /**
+     * Retrieves the IDs of users followed by the specified user.
+     * Queries the PostgreSQL database for the IDs of users followed by the specified user.
+     *
+     * @param id_follower The ID of the user who is following.
+     * @return An array of user IDs that the specified user is following.
+     */
     @Override
     public int[] getFollowsIds(int id_follower) {
         int[] followsIds;

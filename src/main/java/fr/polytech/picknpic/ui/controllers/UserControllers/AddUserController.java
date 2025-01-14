@@ -30,6 +30,9 @@ public class AddUserController {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Handles the create user button action.
+     */
     @FXML
     private void handleCreateUser() {
         String email = emailField.getText();
@@ -48,6 +51,13 @@ public class AddUserController {
         }
     }
 
+    /**
+     * Shows an alert dialog with the given title and content.
+     *
+     * @param title   The title of the alert.
+     * @param header  The header of the alert.
+     * @param content The content of the alert.
+     */
     private void showAlert(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

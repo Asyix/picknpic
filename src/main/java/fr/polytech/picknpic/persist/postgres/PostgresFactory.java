@@ -187,6 +187,11 @@ public class PostgresFactory extends AbstractFactory {
         return purchaseDAOPostgres;
     }
 
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link CommentDAO}.
+     *
+     * @return A {@link CommentDAOPostgres} instance.
+     */
     @Override
     public CommentDAO createCommentDAO() {
         if (commentDAOPostgres == null) {
@@ -195,6 +200,11 @@ public class PostgresFactory extends AbstractFactory {
         return commentDAOPostgres;
     }
 
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link PostDAO}.
+     *
+     * @return A {@link PostDAOPostgres} instance.
+     */
     @Override
     public PostDAO createPostDAO() {
         if (postDAOPostgres == null) {

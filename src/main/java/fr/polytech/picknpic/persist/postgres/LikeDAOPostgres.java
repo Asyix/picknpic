@@ -10,8 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PostgreSQL implementation of the {@link LikeDAO} interface.
+ * Provides methods for managing likes by interacting with the PostgreSQL database.
+ */
 public class LikeDAOPostgres implements LikeDAO {
 
+    /**
+     * Adds a like to a post, photo, or comment in the PostgreSQL database.
+     *
+     * @param like The like to be added.
+     * @return {@code true} if the like was added successfully, {@code false} otherwise.
+     */
     @Override
     public boolean addLike(Like like) {
         String query = "INSERT INTO \"Like\" (user_id, post_id, photo_id, comment_id) " +
@@ -52,7 +62,13 @@ public class LikeDAOPostgres implements LikeDAO {
         }
     }
 
-
+    /**
+     * Removes a like from a post in the PostgreSQL database.
+     *
+     * @param user_id The ID of the user who liked the post.
+     * @param post_id The ID of the post to remove the like from.
+     * @return {@code true} if the like was removed successfully, {@code false} otherwise.
+     */
     @Override
     public boolean removeLikeOnPost(int user_id, int post_id) {
         String deleteQuery = "DELETE FROM \"Like\" WHERE user_id = ? AND post_id = ?";
@@ -86,6 +102,13 @@ public class LikeDAOPostgres implements LikeDAO {
         }
     }
 
+    /**
+     * Removes a like from a photo in the PostgreSQL database.
+     *
+     * @param user_id The ID of the user who liked the photo.
+     * @param photo_id The ID of the photo to remove the like from.
+     * @return {@code true} if the like was removed successfully, {@code false} otherwise.
+     */
     @Override
     public boolean removeLikeOnPhoto(int user_id, int photo_id) {
         String deleteQuery = "DELETE FROM \"Like\" WHERE user_id = ? AND photo_id = ?";
@@ -119,6 +142,13 @@ public class LikeDAOPostgres implements LikeDAO {
         }
     }
 
+    /**
+     * Removes a like from a comment in the PostgreSQL database.
+     *
+     * @param user_id The ID of the user who liked the comment.
+     * @param comment_id The ID of the comment to remove the like from.
+     * @return {@code true} if the like was removed successfully, {@code false} otherwise.
+     */
     @Override
     public boolean removeLikeOnComment(int user_id, int comment_id) {
         String deleteQuery = "DELETE FROM \"Like\" WHERE user_id = ? AND comment_id = ?";
@@ -152,6 +182,12 @@ public class LikeDAOPostgres implements LikeDAO {
         }
     }
 
+    /**
+     * Retrieves all likes for a specific post from the PostgreSQL database.
+     *
+     * @param idPost The ID of the post to retrieve likes for.
+     * @return A list of {@link Like} objects containing the likes for the post.
+     */
     @Override
     public List<Like> getPostLikes(int idPost) {
         List<Like> likes = new ArrayList<>();
@@ -173,6 +209,12 @@ public class LikeDAOPostgres implements LikeDAO {
 
     }
 
+    /**
+     * Retrieves all likes for a specific photo from the PostgreSQL database.
+     *
+     * @param idPhoto The ID of the photo to retrieve likes for.
+     * @return A list of {@link Like} objects containing the likes for the photo.
+     */
     @Override
     public List<Like> getPhotoLikes(int idPhoto) {
         List<Like> likes = new ArrayList<>();
@@ -193,6 +235,12 @@ public class LikeDAOPostgres implements LikeDAO {
         }
     }
 
+    /**
+     * Retrieves all likes for a specific comment from the PostgreSQL database.
+     *
+     * @param idComment The ID of the comment to retrieve likes for.
+     * @return A list of {@link Like} objects containing the likes for the comment.
+     */
     @Override
     public List<Like> getCommentLikes(int idComment) {
         List<Like> likes = new ArrayList<>();

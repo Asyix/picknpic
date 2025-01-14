@@ -55,6 +55,9 @@ public class SceneManager {
         loadLoginScene();
     }
 
+    /**
+     * Loads the main layout and initializes the {@link MainLayoutController}.
+     */
     private static void loadMainLayout() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/mainLayout.fxml"));
@@ -73,6 +76,9 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Handles the login event.
+     */
     public static void handleLogin() {
         loadMainLayout();
     }
@@ -94,6 +100,9 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Loads the register scene and initializes the {@link RegisterController}.
+     */
     public static void loadRegisterScene() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/register.fxml"));
@@ -108,6 +117,9 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Loads the main scene and initializes the {@link MainController}.
+     */
     public static void loadMainScene() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/hello.fxml"));
@@ -124,6 +136,9 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Loads the profile scene and initializes the {@link ProfileController}.
+     */
     public static void loadProfileScene(User user) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/profile.fxml"));
@@ -141,6 +156,9 @@ public class SceneManager {
         }
     }
 
+    /**
+     * Loads the manage users scene.
+     */
     public static void loadManageUsersScene() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/User/manageUsers.fxml"));
@@ -243,9 +261,6 @@ public class SceneManager {
         }
     }
 
-    /**
-     * Loads the update request scene.
-     */
     @FXML
     public static void loadChangeRequestStatusScene() {
         try {

@@ -12,7 +12,10 @@ public class NavbarController {
     @FXML
     private HBox navbar;
 
-
+    /**
+     * Initializes the navbar view.
+     * Adds the Users and Reports buttons to the navbar if the current user is an admin.
+     */
     @FXML
     private void initialize() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -27,7 +30,9 @@ public class NavbarController {
             navbar.getChildren().add(5, reportsButton); // Add after Users button
         }
     }
-
+    /**
+     * Loads the home scene.
+     */
     @FXML
     private void loadHome() {
         SceneManager.loadMainScene();
@@ -53,6 +58,9 @@ public class NavbarController {
         SceneManager.loadProfileScene(LoginFacade.getInstance().getCurrentUser());
     }
 
+    /**
+     * Logs out the current user and navigates to the login scene.
+     */
     @FXML
     private void handleLogout() {
         LoginFacade.getInstance().setCurrentUser(null);
