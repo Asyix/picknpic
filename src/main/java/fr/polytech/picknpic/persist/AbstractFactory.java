@@ -111,4 +111,20 @@ public abstract class AbstractFactory {
      */
     public abstract PurchaseDAO createPurchaseDAO();
 
+    /**
+     * Abstract method to create a {@link MessageDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link MessageDAO} instance.
+     */
+    public abstract MessageDAO createMessageDAO();
+
+    /**
+     * Abstract method to create a {@link ChatDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link ChatDAO} instance.
+     */
+    public abstract ChatDAO createChatDAO();
+
 }

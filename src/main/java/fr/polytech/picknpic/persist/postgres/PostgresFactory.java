@@ -47,6 +47,12 @@ public class PostgresFactory extends AbstractFactory {
     /** Singleton instance of the PostgreSQL-specific PurchaseDAO implementation. */
     private static PurchaseDAOPostgres purchaseDAOPostgres;
 
+    /** Singleton instance of the PostgreSQL-specific ChatDAO implementation. */
+    private static ChatDAOPostgres chatDAOPostgres;
+
+    /** Singleton instance of the PostgreSQL-specific MessageDAO implementation. */
+    private static MessageDAOPostgres messageDAOPostgres;
+
     /**
      * Private constructor to ensure controlled instantiation of the factory.
      */
@@ -174,6 +180,32 @@ public class PostgresFactory extends AbstractFactory {
             purchaseDAOPostgres = new PurchaseDAOPostgres();
         }
         return purchaseDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link ChatDAO}.
+     *
+     * @return A {@link ChatDAOPostgres} instance.
+     */
+    @Override
+    public ChatDAO createChatDAO() {
+        if (chatDAOPostgres == null) {
+            chatDAOPostgres = new ChatDAOPostgres();
+        }
+        return chatDAOPostgres;
+    }
+
+    /**
+     * Creates a PostgreSQL-specific implementation of the {@link MessageDAO}.
+     *
+     * @return A {@link MessageDAOPostgres} instance.
+     */
+    @Override
+    public MessageDAO createMessageDAO() {
+        if (messageDAOPostgres == null) {
+            messageDAOPostgres = new MessageDAOPostgres();
+        }
+        return messageDAOPostgres;
     }
 
 }

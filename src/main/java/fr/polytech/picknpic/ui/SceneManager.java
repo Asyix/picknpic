@@ -3,8 +3,10 @@ package fr.polytech.picknpic.ui;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.bl.models.Service;
+import fr.polytech.picknpic.bl.models.Chat;
 import fr.polytech.picknpic.ui.controllers.MainController;
 import fr.polytech.picknpic.ui.controllers.MainLayoutController;
+import fr.polytech.picknpic.ui.controllers.MessageControllers.MessageController;
 import fr.polytech.picknpic.ui.controllers.NavbarController;
 import fr.polytech.picknpic.ui.controllers.PhotoControllers.*;
 import fr.polytech.picknpic.ui.controllers.PurchaseControllers.*;
@@ -178,7 +180,37 @@ public class SceneManager {
     }
 
     public static void loadChatScene() {
-        // Implementation for loading chat scene
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Chat/displayALlChats.fxml"));
+            Parent content = loader.load();
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void loadMessagesScene(Chat chat) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Message/displayAllMessages.fxml"));
+            Parent content = loader.load();
+
+            MessageController messageController = loader.getController();
+            messageController.setCurrentChatId(chat.getIdChat());
+
+            if (mainLayoutController != null) {
+                mainLayoutController.setContent(content);
+                primaryStage.sizeToScene();
+            } else {
+                throw new RuntimeException("MainLayoutController is not initialized");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void loadReportsScene() {

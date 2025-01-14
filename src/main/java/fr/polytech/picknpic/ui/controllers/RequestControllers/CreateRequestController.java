@@ -2,6 +2,8 @@ package fr.polytech.picknpic.ui.controllers.RequestControllers;
 
 import fr.polytech.picknpic.bl.facades.request.RequestFacade;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.models.Chat;
+import fr.polytech.picknpic.ui.controllers.ChatControllers.ManageChatController;
 import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.bl.models.Service;
 import javafx.fxml.FXML;
@@ -18,6 +20,9 @@ public class CreateRequestController {
 
     /** The facade for managing requests. */
     private final RequestFacade requestFacade;
+
+    /** Controller for managing chat creation. */
+    private final ManageChatController manageChatController;
 
     /** The service that was clicked. */
     private Service currentService;
@@ -40,6 +45,7 @@ public class CreateRequestController {
      */
     public CreateRequestController() {
         this.requestFacade = RequestFacade.getRequestFacadeInstance();
+        this.manageChatController = new ManageChatController();
     }
 
     /**
@@ -93,14 +99,19 @@ public class CreateRequestController {
         try {
             int id_user_buyer = LoginFacade.getInstance().getCurrentUser().getId();
             int id_service = currentService.getIdService();
-            int id_chat = 1; // Placeholder for chat ID
+            int id_user_seller = currentService.getIdUserOwner(); // Assuming Service has this method
             String message = messageField.getText();
             String image = imageField.getText();
             String status = "waiting";
 
-            requestFacade.createRequest(id_user_buyer, id_service, id_chat, message, image, status);
+            // Step 1: Create a chat using ManageChatController
+            System.out.println("idUserSeller: " + id_user_seller + ", idUserBuyer: " + id_user_buyer);
+            Chat chat = manageChatController.handleManageChats(id_service, id_user_seller, id_user_buyer);
 
-            showAlert("Request Created", "Success", "Your request has been successfully created.");
+            // Step 2: Create a request with the returned chat ID
+            requestFacade.createRequest(id_user_buyer, id_service, chat.getIdChat(), message, image, status);
+
+            showAlert("Request Created", "Success", "Your request has been successfully created with a chat.");
             SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to Create Request", "Reason: " + e.getMessage());
