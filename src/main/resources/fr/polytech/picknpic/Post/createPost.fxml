@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.PostControllers.CreatePostController" spacing="10" alignment="CENTER">
+    <TextArea fx:id="postTextArea" promptText="Write your post here..."/>
+    <Button text="Publish" onAction="#handlePublish"/>
+</VBox>

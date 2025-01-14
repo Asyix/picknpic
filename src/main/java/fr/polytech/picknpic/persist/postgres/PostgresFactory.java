@@ -1,5 +1,6 @@
 package fr.polytech.picknpic.persist.postgres;
 
+import fr.polytech.picknpic.bl.facades.post.PostFacade;
 import fr.polytech.picknpic.persist.AbstractFactory;
 import fr.polytech.picknpic.persist.daos.*;
 import fr.polytech.picknpic.persist.daos.UserDAO;
@@ -47,6 +48,10 @@ public class PostgresFactory extends AbstractFactory {
     /** Singleton instance of the PostgreSQL-specific PurchaseDAO implementation. */
     private static PurchaseDAOPostgres purchaseDAOPostgres;
 
+    private static PostDAOPostgres postDAOPostgres;
+
+    private static CommentDAOPostgres commentDAOPostgres;
+  
     /** Singleton instance of the PostgreSQL-specific ChatDAO implementation. */
     private static ChatDAOPostgres chatDAOPostgres;
 
@@ -182,6 +187,21 @@ public class PostgresFactory extends AbstractFactory {
         return purchaseDAOPostgres;
     }
 
+    @Override
+    public CommentDAO createCommentDAO() {
+        if (commentDAOPostgres == null) {
+            commentDAOPostgres = new CommentDAOPostgres();
+        }
+        return commentDAOPostgres;
+    }
+
+    @Override
+    public PostDAO createPostDAO() {
+        if (postDAOPostgres == null) {
+            postDAOPostgres = new PostDAOPostgres();
+        }
+        return postDAOPostgres;
+      
     /**
      * Creates a PostgreSQL-specific implementation of the {@link ChatDAO}.
      *

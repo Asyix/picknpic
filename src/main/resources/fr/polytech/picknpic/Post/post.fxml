@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.PostControllers.PostController" spacing="10" alignment="TOP_LEFT">
+    <Text fx:id="postUser" />
+    <Text fx:id="postText" wrappingWidth="300" />
+    <Text fx:id="postDate" />
+    <HBox spacing="5">
+        <Text fx:id="postLikes" />
+        <Text fx:id="postComments" />
+        <Button fx:id="likeButton" text="Like" onAction="#handleLike" />
+        <Button fx:id="editButton" text="Edit" onAction="#handleEdit" visible="false" />
+        <Button fx:id="deleteButton" text="Delete" onAction="#handleDelete" visible="false" />
+    </HBox>
+    <VBox fx:id="commentsSection">
+        <!-- Comments section will be dynamically loaded here -->
+    </VBox>
+</VBox>

@@ -341,4 +341,27 @@ public class UserDAOPostgres implements UserDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public int[] getFollowsIds(int id_follower) {
+        int[] followsIds;
+        String query = "SELECT id_followed FROM \"Follow\" WHERE id_follower = ?";
+        try (Connection connection = JDBCConnector.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
+            statement.setInt(1, id_follower);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                resultSet.last();
+                followsIds = new int[resultSet.getRow()];
+                resultSet.beforeFirst();
+                int i = 0;
+                while (resultSet.next()) {
+                    followsIds[i] = resultSet.getInt("id_followed");
+                    i++;
+                }
+                return followsIds;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

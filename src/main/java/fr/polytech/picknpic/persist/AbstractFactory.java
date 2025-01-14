@@ -1,5 +1,6 @@
 package fr.polytech.picknpic.persist;
 
+
 import fr.polytech.picknpic.persist.daos.*;
 import fr.polytech.picknpic.persist.daos.UserDAO;
 import fr.polytech.picknpic.persist.daos.RequestDAO;
@@ -112,6 +113,22 @@ public abstract class AbstractFactory {
     public abstract PurchaseDAO createPurchaseDAO();
 
     /**
+     * Abstract method to create a {@link CommentDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link CommentDAO} instance.
+     */
+    public abstract CommentDAO createCommentDAO();
+  
+     /**
+     * Abstract method to create a {@link PostDAO}.
+     * Must be implemented by subclasses to provide a specific DAO implementation.
+     *
+     * @return A {@link PostDAO} instance.
+     */
+    public abstract PostDAO createPostDAO();
+  
+     /**
      * Abstract method to create a {@link MessageDAO}.
      * Must be implemented by subclasses to provide a specific DAO implementation.
      *

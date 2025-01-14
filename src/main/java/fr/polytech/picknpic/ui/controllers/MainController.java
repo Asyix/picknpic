@@ -15,14 +15,16 @@ import javafx.scene.control.Label;
  */
 public class MainController {
 
-    /** The button for navigating to the login scene. */
-    @FXML
-    private Button loginButton;
 
     /** The label for displaying a welcome message. */
     @FXML
     private Label welcomeLabel;
 
+    /**
+     * Initializes the main view.
+     * Displays a welcome message with the user's first name if they are logged in.
+     * Otherwise, navigates to the login scene.
+     */
     /** The ServiceFacade instance for accessing service operations. */
     private final ServiceFacade serviceFacade;
 

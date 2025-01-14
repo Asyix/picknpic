@@ -27,10 +27,20 @@ public class UpdateUserController {
     private Stage dialogStage;
     private User user;
 
+    /**
+     * Sets the dialog stage for this controller.
+     *
+     * @param dialogStage The dialog stage.
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Sets the user to be updated.
+     *
+     * @param user The user to be updated.
+     */
     public void setUser(User user) {
         this.user = user;
         emailField.setText(user.getEmail());
@@ -42,6 +52,9 @@ public class UpdateUserController {
         adminCheckBox.setSelected(user.isAdmin());
     }
 
+    /**
+     * Handles the update user button action.
+     */
     @FXML
     private void handleUpdateUser() {
         user.setEmail(emailField.getText());
@@ -59,6 +72,9 @@ public class UpdateUserController {
         }
     }
 
+    /**
+     * Handles the cancel button action.
+     */
     private void showAlert(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

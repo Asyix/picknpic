@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.CommentControllers.CommentController" spacing="10" alignment="TOP_LEFT">
+    <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="400.0" prefWidth="400.0">
+        <VBox fx:id="commentsContainer" spacing="10" alignment="TOP_LEFT">
+            <!-- Comments will be dynamically added here by the controller -->
+        </VBox>
+    </ScrollPane>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextArea fx:id="newCommentTextArea" prefHeight="50" prefWidth="300"/>
+        <Button text="Publish Comment" onAction="#handlePublishComment"/>
+    </HBox>
+</VBox>

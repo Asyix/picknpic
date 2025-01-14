@@ -7,6 +7,7 @@ import fr.polytech.picknpic.bl.facades.user.ManageAccountFacade;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.bl.facades.subscription.SubscriptionFacade;
 import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.ui.controllers.PostControllers.PostsController;
 import fr.polytech.picknpic.ui.controllers.GradeControllers.CreateGradeController;
 import fr.polytech.picknpic.ui.controllers.GradeControllers.DisplayAllGradesController;
 import fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController;
@@ -61,6 +62,8 @@ public class ProfileController {
     private User profileUser;
 
     /**
+     * Initializes the profile view.
+     * Loads the current user's data into the form fields.
      * The facade for subscription-related operations.
      */
     private final SubscriptionFacade subscriptionFacade = SubscriptionFacade.getSubscriptionFacadeInstance();
@@ -75,6 +78,10 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Initializes the profile view with the given user's data.
+     * @param profileUser The user whose profile is being viewed.
+     */
     public void initializeWithUser(User profileUser) {
         this.profileUser = profileUser;
         updateProfileInfo();
@@ -83,10 +90,17 @@ public class ProfileController {
         loadPostsScene();
     }
 
+    /**
+     * Sets the profile user.
+     * @param profileUser
+     */
     public void setProfileUser(User profileUser) {
         this.profileUser = profileUser;
     }
 
+    /**
+     * Updates the profile information displayed on the view.
+     */
     private void updateProfileInfo() {
         usernameLabel.setText(profileUser.getUsername());
         followersLabel.setText(String.valueOf(profileUser.getNbFollowers()));
@@ -95,6 +109,9 @@ public class ProfileController {
         //subscribeButton.setText(currentUser.isSubscribed(profileUser) ? "Unsubscribe" : "Subscribe");
     }
 
+    /**
+     * Updates the visibility of the buttons based on the current user's relationship with the profile user.
+     */
     private void updateButtonsVisibility() {
         boolean isOwnProfile = currentUser.equals(profileUser);
         followButton.setVisible(!isOwnProfile);
@@ -106,6 +123,8 @@ public class ProfileController {
     }
 
     /**
+     * Handles the follow button action.
+     *
      * Updates the text and action of the subscription button based on the current subscription status.
      */
     private void updateSubscriptionButton() {
@@ -141,11 +160,17 @@ public class ProfileController {
         updateProfileInfo();
     }
 
+
+    /**
+     * Handles the subscribe button action.
+     */
     @FXML
-    private void loadPostsScene() {
+    public void loadPostsScene() {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Post/posts.fxml"));
             Parent content = loader.load();
+            PostsController postsController = loader.getController();
+            postsController.setProfileController(this); // Pass the ProfileController reference
             contentPane.getChildren().clear();
             contentPane.getChildren().add(content);
         } catch (Exception e) {
@@ -266,11 +291,17 @@ public class ProfileController {
     }
 
 
+    /**
+     * Handles the update button action.
+     */
     @FXML
     private void loadUpdateAccount() {
         SceneManager.loadUpdateAccountScene();
     }
 
+    /**
+     * Handles the delete button action.
+     */
     @FXML
     private void handleDeleteAccount() {
         TextInputDialog dialog = new TextInputDialog();
@@ -296,6 +327,12 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Shows an alert with the given title and message.
+     *
+     * @param title   The title of the alert.
+     * @param message The message of the alert.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

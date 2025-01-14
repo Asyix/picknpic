@@ -14,7 +14,7 @@ public class LikeDAOPostgres implements LikeDAO {
 
     @Override
     public boolean addLike(Like like) {
-        String query = "INSERT INTO \"Like\" (id_user, id_post, id_photo, id_comment) " +
+        String query = "INSERT INTO \"Like\" (user_id, post_id, photo_id, comment_id) " +
                 "VALUES (?, ?, ?, ?)";
         String query2 = "";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
@@ -23,7 +23,7 @@ public class LikeDAOPostgres implements LikeDAO {
             statement.setInt(1, like.getUserId());
             if (like.getPostId() != -1) {
                 statement.setInt(2, like.getPostId());
-                query2 = "UPDATE \"Post\" SET nb_likes = nb_likes + 1 WHERE id = ?";
+                query2 = "UPDATE \"Posts\" SET nb_likes = nb_likes + 1 WHERE id = ?";
             } else {
                 statement.setNull(2, java.sql.Types.INTEGER);
             }
@@ -54,17 +54,17 @@ public class LikeDAOPostgres implements LikeDAO {
 
 
     @Override
-    public boolean removeLikeOnPost(int id_user, int id_post) {
-        String deleteQuery = "DELETE FROM \"Like\" WHERE id_user = ? AND id_post = ?";
-        String updateQuery = "UPDATE \"Post\" SET nb_likes = nb_likes - 1 WHERE id = ?";
+    public boolean removeLikeOnPost(int user_id, int post_id) {
+        String deleteQuery = "DELETE FROM \"Like\" WHERE user_id = ? AND post_id = ?";
+        String updateQuery = "UPDATE \"Posts\" SET nb_likes = nb_likes - 1 WHERE id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery);
                  PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
 
-                deleteStatement.setInt(1, id_user);
-                deleteStatement.setInt(2, id_post);
-                updateStatement.setInt(1, id_post);
+                deleteStatement.setInt(1, user_id);
+                deleteStatement.setInt(2, post_id);
+                updateStatement.setInt(1, post_id);
 
                 int rowsAffected = deleteStatement.executeUpdate();
                 if (rowsAffected > 0) {
@@ -87,17 +87,17 @@ public class LikeDAOPostgres implements LikeDAO {
     }
 
     @Override
-    public boolean removeLikeOnPhoto(int id_user, int id_photo) {
-        String deleteQuery = "DELETE FROM \"Like\" WHERE id_user = ? AND id_photo = ?";
+    public boolean removeLikeOnPhoto(int user_id, int photo_id) {
+        String deleteQuery = "DELETE FROM \"Like\" WHERE user_id = ? AND photo_id = ?";
         String updateQuery = "UPDATE \"Photo\" SET nb_likes = nb_likes - 1 WHERE id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery);
                  PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
 
-                deleteStatement.setInt(1, id_user);
-                deleteStatement.setInt(2, id_photo);
-                updateStatement.setInt(1, id_photo);
+                deleteStatement.setInt(1, user_id);
+                deleteStatement.setInt(2, photo_id);
+                updateStatement.setInt(1, photo_id);
 
                 int rowsAffected = deleteStatement.executeUpdate();
                 if (rowsAffected > 0) {
@@ -120,17 +120,17 @@ public class LikeDAOPostgres implements LikeDAO {
     }
 
     @Override
-    public boolean removeLikeOnComment(int id_user, int id_comment) {
-        String deleteQuery = "DELETE FROM \"Like\" WHERE id_user = ? AND id_comment = ?";
+    public boolean removeLikeOnComment(int user_id, int comment_id) {
+        String deleteQuery = "DELETE FROM \"Like\" WHERE user_id = ? AND comment_id = ?";
         String updateQuery = "UPDATE \"Comment\" SET nb_likes = nb_likes - 1 WHERE id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection()) {
             connection.setAutoCommit(false);
             try (PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery);
                  PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
 
-                deleteStatement.setInt(1, id_user);
-                deleteStatement.setInt(2, id_comment);
-                updateStatement.setInt(1, id_comment);
+                deleteStatement.setInt(1, user_id);
+                deleteStatement.setInt(2, comment_id);
+                updateStatement.setInt(1, comment_id);
 
                 int rowsAffected = deleteStatement.executeUpdate();
                 if (rowsAffected > 0) {
@@ -155,15 +155,15 @@ public class LikeDAOPostgres implements LikeDAO {
     @Override
     public List<Like> getPostLikes(int idPost) {
         List<Like> likes = new ArrayList<>();
-        String query = "SELECT * FROM \"Like\" WHERE id_post = ?";
+        String query = "SELECT * FROM \"Like\" WHERE post_id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, idPost);
             var resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int userId = resultSet.getInt("id_user");
-                int postId = resultSet.getInt("id_post");
+                int userId = resultSet.getInt("user_id");
+                int postId = resultSet.getInt("post_id");
                 likes.add(new Like(userId, postId, -1, -1));
             }
             return likes;
@@ -176,15 +176,15 @@ public class LikeDAOPostgres implements LikeDAO {
     @Override
     public List<Like> getPhotoLikes(int idPhoto) {
         List<Like> likes = new ArrayList<>();
-        String query = "SELECT * FROM \"Like\" WHERE id_photo = ?";
+        String query = "SELECT * FROM \"Like\" WHERE photo_id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, idPhoto);
             var resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int userId = resultSet.getInt("id_user");
-                int photoId = resultSet.getInt("id_photo");
+                int userId = resultSet.getInt("user_id");
+                int photoId = resultSet.getInt("photo_id");
                 likes.add(new Like(userId, -1, photoId, -1));
             }
             return likes;
@@ -196,15 +196,15 @@ public class LikeDAOPostgres implements LikeDAO {
     @Override
     public List<Like> getCommentLikes(int idComment) {
         List<Like> likes = new ArrayList<>();
-        String query = "SELECT * FROM \"Like\" WHERE id_comment = ?";
+        String query = "SELECT * FROM \"Like\" WHERE comment_id = ?";
         try (Connection connection = JDBCConnector.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, idComment);
             var resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int userId = resultSet.getInt("id_user");
-                int commentId = resultSet.getInt("id_comment");
+                int userId = resultSet.getInt("user_id");
+                int commentId = resultSet.getInt("comment_id");
                 likes.add(new Like(userId, -1, -1, commentId));
             }
             return likes;

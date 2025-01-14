@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="fr.polytech.picknpic.ui.controllers.PostControllers.ConfirmDeleteController" spacing="10" alignment="CENTER">
+    <Label text="Are you sure you want to delete this post?" />
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Yes" onAction="#handleYes" />
+        <Button text="No" onAction="#handleNo" />
+    </HBox>
+</VBox>
