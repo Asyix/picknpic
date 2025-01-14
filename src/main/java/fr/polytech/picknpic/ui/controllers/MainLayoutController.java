@@ -14,6 +14,10 @@ public class MainLayoutController {
     @FXML
     private StackPane navbarPane;
 
+    /**
+     * Initializes the main layout view.
+     * Loads the navbar into the navbarPane.
+     */
     @FXML
     public void initialize() {
         try {
@@ -26,6 +30,10 @@ public class MainLayoutController {
         }
     }
 
+    /**
+     * Sets the content of the main layout.
+     * @param content The content to set.
+     */
     public void setContent(Parent content) {
         contentPane.getChildren().clear();
         contentPane.getChildren().add(content);

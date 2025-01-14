@@ -16,7 +16,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PostgreSQL implementation of the {@link PostDAO} interface.
+ * Provides methods for managing posts by interacting with the PostgreSQL database.
+ */
 public class PostDAOPostgres implements PostDAO {
+
+    /**
+     * Creates a new post in the PostgreSQL database.
+     *
+     * @param post The post to be created.
+     * @return {@code true} if the post was created successfully, {@code false} otherwise.
+     */
     @Override
     public boolean createPost(Post post) {
         String query = "INSERT INTO \"Posts\" (id_user, text, nb_likes, nb_comments, creation_date) VALUES (?, ?, ?, ?, ?)";
@@ -34,6 +45,12 @@ public class PostDAOPostgres implements PostDAO {
         }
     }
 
+    /**
+     * Updates an existing post in the PostgreSQL database.
+     *
+     * @param post The post with updated details.
+     * @return {@code true} if the post was updated successfully, {@code false} otherwise.
+     */
     @Override
     public boolean updatePost(Post post) {
         String query = "UPDATE \"Posts\" SET text = ? WHERE id = ?";
@@ -48,6 +65,12 @@ public class PostDAOPostgres implements PostDAO {
         }
     }
 
+    /**
+     * Deletes a post from the PostgreSQL database.
+     *
+     * @param postId The unique identifier of the post to be deleted.
+     * @return {@code true} if the post was deleted successfully, {@code false} otherwise.
+     */
     @Override
     public boolean deletePost(int postId) {
         String query = "DELETE FROM \"Posts\" WHERE id = ?";
@@ -61,6 +84,12 @@ public class PostDAOPostgres implements PostDAO {
         }
     }
 
+    /**
+     * Retrieves a post by its unique identifier from the PostgreSQL database.
+     *
+     * @param postId The unique identifier of the post to retrieve.
+     * @return A {@link Post} object containing the post's details if found, or {@code null} if no match is found.
+     */
     @Override
     public Post getPost(int postId) {
         String query = "SELECT * FROM \"Posts\" WHERE id = ?";
@@ -87,6 +116,12 @@ public class PostDAOPostgres implements PostDAO {
         }
     }
 
+    /**
+     * Retrieves all posts created by a specific user from the PostgreSQL database.
+     *
+     * @param userId The unique identifier of the user whose posts are to be retrieved.
+     * @return A list of {@link Post} objects containing the user's posts.
+     */
     @Override
     public List<Post> getUserPosts(int userId) {
         List<Post> posts = new ArrayList<>();
@@ -114,6 +149,12 @@ public class PostDAOPostgres implements PostDAO {
         }
     }
 
+    /**
+     * Retrieves posts created by users followed by a specific user from the PostgreSQL database.
+     *
+     * @param userId The unique identifier of the user whose followed users' posts are to be retrieved.
+     * @return A list of {@link Post} objects containing the followed users' posts.
+     */
     @Override
     public List<Post> getFollowersPosts(int userId) {
         List<Post> posts = new ArrayList<>();

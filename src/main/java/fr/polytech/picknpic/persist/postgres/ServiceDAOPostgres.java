@@ -59,6 +59,7 @@ public class ServiceDAOPostgres implements ServiceDAO {
         return false;
     }
 
+
     @Override
     public Service updateService(int id_service, String name, String example_image, float price, String description) {
         String query = "UPDATE \"Service\" SET name = ?, example_image = ?, price = ?, description = ? WHERE id_service = ? RETURNING *";

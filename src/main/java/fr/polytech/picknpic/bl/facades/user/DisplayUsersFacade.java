@@ -5,11 +5,22 @@ import fr.polytech.picknpic.persist.AbstractFactory;
 
 import java.util.List;
 
+/**
+ * The DisplayUsersFacade class provides a unified interface to user display operations
+ * such as retrieving user details and listing all users.
+ * It follows the Singleton design pattern to ensure only one instance exists.
+ */
 public class DisplayUsersFacade {
+    /** The singleton instance of the DisplayUsersFacade. */
     private static DisplayUsersFacade instance;
 
+    /** The abstract factory used to create DAO instances. */
     private final AbstractFactory abstractFactory;
 
+    /**
+     * Constructs a new DisplayUsersFacade instance.
+     * Private constructor to prevent instantiation.
+     */
     private DisplayUsersFacade() {
         this.abstractFactory = AbstractFactory.getInstance();
     }
@@ -17,6 +28,7 @@ public class DisplayUsersFacade {
     /**
      * Retrieves the singleton instance of the DisplayUsersFacade.
      * Ensures that only one instance of the DisplayUsersFacade exists throughout the application.
+     *
      * @return The singleton instance of the DisplayUsersFacade.
      */
     public static DisplayUsersFacade getInstance() {
@@ -47,6 +59,12 @@ public class DisplayUsersFacade {
         return abstractFactory.createUserDAO().getAllUsers(user);
     }
 
+    /**
+     * Updates the details of an existing user.
+     * Delegates the update process to the DAO layer.
+     *
+     * @param user The {@link User} object containing the updated user details.
+     */
     public void updateUser(User user) {
         abstractFactory.createUserDAO().updateUser(user);
     }

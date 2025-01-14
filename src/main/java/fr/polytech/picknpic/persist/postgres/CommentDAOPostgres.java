@@ -11,8 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PostgreSQL implementation of the {@link CommentDAO} interface.
+ * Provides methods for managing comments by interacting with the PostgreSQL database.
+ */
 public class CommentDAOPostgres implements CommentDAO {
 
+    /**
+     * Retrieves all comments for a specific post from the PostgreSQL database.
+     *
+     * @param postId The ID of the post to retrieve comments for.
+     * @return A list of {@link Comment} objects containing the comments for the post.
+     */
     @Override
     public List<Comment> getPostComments(int postId) {
         List<Comment> comments = new ArrayList<>();
@@ -40,6 +50,12 @@ public class CommentDAOPostgres implements CommentDAO {
         }
     }
 
+    /**
+     * Retrieves all comments for a specific photo from the PostgreSQL database.
+     *
+     * @param photoId The ID of the photo to retrieve comments for.
+     * @return A list of {@link Comment} objects containing the comments for the photo.
+     */
     @Override
     public List<Comment> getPhotoComments(int photoId) {
         List<Comment> comments = new ArrayList<>();
@@ -67,6 +83,12 @@ public class CommentDAOPostgres implements CommentDAO {
         }
     }
 
+    /**
+     * Retrieves all replies for a specific comment from the PostgreSQL database.
+     *
+     * @param commentId The ID of the comment to retrieve replies for.
+     * @return A list of {@link Comment} objects containing the replies for the comment.
+     */
     @Override
     public List<Comment> getCommentReplies(int commentId) {
         List<Comment> comments = new ArrayList<>();
@@ -92,6 +114,12 @@ public class CommentDAOPostgres implements CommentDAO {
         }
     }
 
+    /**
+     * Creates a new comment in the PostgreSQL database.
+     *
+     * @param comment The comment to be created.
+     * @return {@code true} if the comment was created successfully, {@code false} otherwise.
+     */
     @Override
     public boolean createComment(Comment comment) {
         String query = "INSERT INTO \"Comment\" (id_user, id_post, id_photo, id_comment, text, nb_likes, creation_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -141,6 +169,12 @@ public class CommentDAOPostgres implements CommentDAO {
         }
     }
 
+    /**
+     * Updates an existing comment in the PostgreSQL database.
+     *
+     * @param comment The comment with updated details.
+     * @return {@code true} if the comment was updated successfully, {@code false} otherwise.
+     */
     @Override
     public boolean updateComment(Comment comment) {
         String query = "UPDATE \"Comment\" SET text = ? WHERE id = ?";
@@ -154,6 +188,12 @@ public class CommentDAOPostgres implements CommentDAO {
         }
     }
 
+    /**
+     * Deletes a comment from the PostgreSQL database.
+     *
+     * @param commentId The unique identifier of the comment to be deleted.
+     * @return {@code true} if the comment was deleted successfully, {@code false} otherwise.
+     */
     @Override
     public boolean deleteComment(int commentId) {
         String deleteQuery = "DELETE FROM \"Comment\" WHERE id = ?";

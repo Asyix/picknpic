@@ -62,6 +62,11 @@ public class LoginFacade {
     public User getCurrentUser() {
         return currentUser;
     }
+
+    /**
+     * Sets the authenticated user.
+     * @param user The user to set as the authenticated user.
+     */
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
