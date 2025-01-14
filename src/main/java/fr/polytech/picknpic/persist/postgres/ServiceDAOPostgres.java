@@ -14,6 +14,17 @@ import java.util.List;
  */
 public class ServiceDAOPostgres implements ServiceDAO {
 
+    /**
+     * Creates a new service.
+     *
+     * @param id_user_owner The ID of the user who owns the service.
+     * @param name The name of the service.
+     * @param example_image The example image of the service.
+     * @param price The price of the service.
+     * @param description The description of the service.
+     * @param nb_buyers The number of buyers of the service.
+     * @return A {@link Service} object if the service was created successfully, or {@code null} if the creation failed.
+     */
     @Override
     public Service createService(int id_user_owner, String name, String example_image, float price, String description, int nb_buyers) {
         String query = "INSERT INTO \"Service\" (id_user_owner, name, example_image, price, description, nb_buyers) " +
@@ -41,6 +52,12 @@ public class ServiceDAOPostgres implements ServiceDAO {
         return null;
     }
 
+    /**
+     * Deletes a service by its ID.
+     *
+     * @param id_service The ID of the service to delete.
+     * @return {@code true} if the service was deleted successfully, {@code false} otherwise.
+     */
     @Override
     public boolean deleteService(int id_service) {
         String query = "DELETE FROM \"Service\" WHERE id_service = ?";
@@ -59,7 +76,16 @@ public class ServiceDAOPostgres implements ServiceDAO {
         return false;
     }
 
-
+    /**
+     * Updates an existing service.
+     *
+     * @param id_service The ID of the service to update.
+     * @param name The new name of the service.
+     * @param example_image The new example image of the service.
+     * @param price The new price of the service.
+     * @param description The new description of the service.
+     * @return A {@link Service} object if the service was updated successfully, or {@code null} if the update failed.
+     */
     @Override
     public Service updateService(int id_service, String name, String example_image, float price, String description) {
         String query = "UPDATE \"Service\" SET name = ?, example_image = ?, price = ?, description = ? WHERE id_service = ? RETURNING *";
@@ -85,6 +111,12 @@ public class ServiceDAOPostgres implements ServiceDAO {
         return null;
     }
 
+    /**
+     * Retrieves all services owned by a specific user.
+     *
+     * @param id_user_owner The ID of the user who owns the services.
+     * @return A list of {@link Service} objects containing the details of the services.
+     */
     @Override
     public List<Service> getAllServices(int id_user_owner) {
         String query = "SELECT * FROM \"Service\" WHERE id_user_owner = ?";
@@ -107,6 +139,13 @@ public class ServiceDAOPostgres implements ServiceDAO {
         return services;
     }
 
+    /**
+     * Maps a {@link ResultSet} to a {@link Service} object.
+     *
+     * @param resultSet The {@link ResultSet} to map.
+     * @return A {@link Service} object containing the details from the {@link ResultSet}.
+     * @throws SQLException If an SQL error occurs while mapping the {@link ResultSet}.
+     */
     private Service mapResultSetToService(ResultSet resultSet) throws SQLException {
         Service service = new Service();
         service.setIdService(resultSet.getInt("id_service"));
@@ -119,6 +158,12 @@ public class ServiceDAOPostgres implements ServiceDAO {
         return service;
     }
 
+    /**
+     * Retrieves a service by its ID.
+     *
+     * @param serviceId The ID of the service to retrieve.
+     * @return A {@link Service} object containing the service details, or {@code null} if no service is found.
+     */
     @Override
     public Service getService(int serviceId) {
         String query = "SELECT * FROM \"Service\" WHERE id_service = ?";

@@ -20,11 +20,6 @@ public class MainController {
     @FXML
     private Label welcomeLabel;
 
-    /**
-     * Initializes the main view.
-     * Displays a welcome message with the user's first name if they are logged in.
-     * Otherwise, navigates to the login scene.
-     */
     /** The ServiceFacade instance for accessing service operations. */
     private final ServiceFacade serviceFacade;
 
@@ -35,6 +30,11 @@ public class MainController {
         this.serviceFacade = ServiceFacade.getServiceFacadeInstance();
     }
 
+    /**
+     * Initializes the main view.
+     * Displays a welcome message with the user's first name if they are logged in.
+     * Otherwise, navigates to the login scene.
+     */
     @FXML
     private void initialize() {
         User currentUser = LoginFacade.getInstance().getCurrentUser();
@@ -54,7 +54,7 @@ public class MainController {
             Service service = serviceFacade.getService(serviceId);
             SceneManager.loadCreateRequestScene(service);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,5 +77,4 @@ public class MainController {
     public void handleDisplayPhotos() {
         SceneManager.loadDisplayPhotosScene();
     }
-
 }

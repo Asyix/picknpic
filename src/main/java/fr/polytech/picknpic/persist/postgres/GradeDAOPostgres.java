@@ -87,10 +87,10 @@ public class GradeDAOPostgres implements GradeDAO {
      * Retrieves all grades for a specific user from the database.
      *
      * @param id_user The ID of the user whose grades are to be retrieved.
-     * @return A {@link Grade} object containing the user's grades, or {@code null} if no grades were found.
+     * @return A list of {@link Grade} objects containing the user's grades.
      */
     @Override
-    public List<Grade> getAllGrades(int id_user) { // Corrected to return a list
+    public List<Grade> getAllGrades(int id_user) {
         List<Grade> grades = new ArrayList<>();
         try (Connection connection = JDBCConnector.getInstance().getConnection()) {
             String query = "SELECT * FROM \"Grade\" WHERE id_user_graded = ?";
@@ -107,6 +107,13 @@ public class GradeDAOPostgres implements GradeDAO {
         return grades;
     }
 
+    /**
+     * Maps a {@link ResultSet} to a {@link Grade} object.
+     *
+     * @param resultSet The {@link ResultSet} to map.
+     * @return A {@link Grade} object containing the details from the {@link ResultSet}.
+     * @throws SQLException If an SQL error occurs while mapping the {@link ResultSet}.
+     */
     private Grade mapResultSetToGrade(ResultSet resultSet) throws SQLException {
         Grade grade = new Grade();
         grade.setIdGrade(resultSet.getInt("id_grade"));
@@ -118,5 +125,4 @@ public class GradeDAOPostgres implements GradeDAO {
         grade.setAvgGrade(resultSet.getFloat("avg_grade"));
         return grade;
     }
-
 }

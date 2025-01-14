@@ -9,12 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * PostgreSQL implementation of ChatDAO.
+ * PostgreSQL implementation of the {@link ChatDAO} interface.
+ * Provides methods for creating and retrieving chats in the PostgreSQL database.
  */
 public class ChatDAOPostgres implements ChatDAO {
 
     private final JDBCConnector jdbcConnector = JDBCConnector.getInstance();
 
+    /**
+     * Creates a new chat in the database.
+     *
+     * @param idRequest   The ID of the request associated with the chat.
+     * @param idUserSeller The ID of the user who is the seller in the chat.
+     * @param idUserBuyer  The ID of the user who is the buyer in the chat.
+     * @return The created {@link Chat} object, or {@code null} if creation failed.
+     */
     @Override
     public Chat createChat(int idRequest, int idUserSeller, int idUserBuyer) {
         String query = "INSERT INTO \"Chat\" (id_request, id_user_seller, id_user_buyer) VALUES (?, ?, ?) RETURNING id_chat";
@@ -41,6 +50,12 @@ public class ChatDAOPostgres implements ChatDAO {
         }
     }
 
+    /**
+     * Retrieves all chats for a specific user from the database.
+     *
+     * @param idUser The ID of the user whose chats are to be retrieved.
+     * @return A list of {@link Chat} objects containing the user's chats.
+     */
     @Override
     public List<Chat> getAllChats(int idUser) {
         String query = "SELECT * FROM \"Chat\" WHERE id_user_seller = ? OR id_user_buyer = ?";
