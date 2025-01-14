@@ -34,8 +34,6 @@ public class ManageMessagesFacade {
 
     /**
      * Creates a new message.
-     *
-     * @param idMessage   The ID of the message.
      * @param idUserSender The ID of the user sending the message.
      * @param idChat       The ID of the chat the message belongs to.
      * @param content      The content of the message.
