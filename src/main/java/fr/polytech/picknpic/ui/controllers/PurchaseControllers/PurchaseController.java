@@ -2,7 +2,6 @@
 package fr.polytech.picknpic.ui.controllers.PurchaseControllers;
 
 import fr.polytech.picknpic.bl.facades.purchase.PurchaseFacade;
-import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayUniquePhotoController;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
 import fr.polytech.picknpic.bl.models.Photo;
 import fr.polytech.picknpic.ui.SceneManager;
@@ -21,23 +20,10 @@ public class PurchaseController {
     private final PurchaseFacade purchaseFacade;
 
     /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
-
-    /**
      * The current photo to be purchased.
      */
     private Photo currentPhoto;
 
-    /**
-     * The controller for displaying unique photo details.
-     */
-    private DisplayUniquePhotoController displayUniquePhotoController;
-
-    /**
-     * The label for displaying the purchase confirmation message.
-     */
     @FXML
     private Label confirmationLabel;
 
@@ -64,6 +50,7 @@ public class PurchaseController {
      */
     public void setPhoto(Photo photo) {
         this.currentPhoto = photo;
+        updateConfirmationLabel();
     }
 
     /**
@@ -76,8 +63,6 @@ public class PurchaseController {
             } else {
                 confirmationLabel.setText("No photo selected.");
             }
-        } else {
-            System.err.println("Error: confirmationLabel is null in updateConfirmationLabel.");
         }
     }
 
@@ -87,7 +72,7 @@ public class PurchaseController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

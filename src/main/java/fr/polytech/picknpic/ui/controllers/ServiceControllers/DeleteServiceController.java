@@ -19,8 +19,6 @@ public class DeleteServiceController {
     /** The service that was clicked. */
     private Service currentService;
 
-    private SceneManager sceneManager;
-
     @FXML
     private Label confirmationLabel;
 
@@ -74,7 +72,7 @@ public class DeleteServiceController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

@@ -40,7 +40,6 @@ public class ManageGradesFacade {
     /**
      * Creates a new grade in the system.
      *
-     * @param id_grade The ID of the grade.
      * @param id_user_graded The ID of the user being graded.
      * @param id_service_graded The ID of the service being graded.
      * @param friendliness The friendliness rating.
@@ -49,9 +48,9 @@ public class ManageGradesFacade {
      * @param avg_grade The average grade calculated from the ratings.
      * @return The created Grade object.
      */
-    public Grade createGrade(int id_grade, int id_user_graded, int id_service_graded, int friendliness, int rapidity, int quality, float avg_grade) {
+    public Grade createGrade(int id_user_graded, int id_service_graded, int friendliness, int rapidity, int quality, float avg_grade) {
         GradeDAO gradeDAO = abstractFactory.createGradeDAO();
-        return gradeDAO.createGrade(id_grade, id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
+        return gradeDAO.createGrade(id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
     }
 
     /**

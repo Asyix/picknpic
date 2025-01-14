@@ -14,9 +14,6 @@ public class DeleteGradeController {
     /** Facade for grade-related operations. */
     private final GradeFacade gradeFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
     /**
      * Constructs a new `DeleteGradeController` instance.
      * Initializes the {@link GradeFacade} singleton.
@@ -50,7 +47,7 @@ public class DeleteGradeController {
         try {
             gradeFacade.deleteGrade(id_grade);
             showAlert("Grade Deleted", "Grade successfully deleted", "The grade has been deleted successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to delete grade", "An error occurred while deleting the grade.");
         }
@@ -62,6 +59,6 @@ public class DeleteGradeController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 }

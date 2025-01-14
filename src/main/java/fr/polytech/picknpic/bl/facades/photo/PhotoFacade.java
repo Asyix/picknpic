@@ -93,7 +93,7 @@ public class PhotoFacade {
      * @param title       The updated title of the photo.
      * @param description The updated description of the photo.
      * @param price       The updated price of the photo.
-     * @param filePath    The updated file path of the photo.
+     * @param url    The updated file path of the photo.
      */
     public void updatePhoto(int photoId, String title, String description, int price, String url) {
         Photo photo = getPhotoById(photoId);
@@ -114,5 +114,16 @@ public class PhotoFacade {
     public void deletePhoto(int photoId) {
         PhotoDAO photoDAO = abstractFactory.createPhotoDAO();
         photoDAO.deletePhoto(photoId);
+    }
+
+    /**
+     * Retrieves all photos for a specific user by their ID.
+     *
+     * @param userId The ID of the user whose photos are to be retrieved.
+     * @return A list of photos uploaded by the specified user.
+     */
+    public List<Photo> getAllPhotosByUserId(int userId) {
+        PhotoDAO photoDAO = abstractFactory.createPhotoDAO();
+        return photoDAO.getAllPhotosByUserId(userId);
     }
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21.0.0-ea"
+            fx:controller="fr.polytech.picknpic.ui.controllers.ChatControllers.DisplayAllChatsController">
+    <children>
+        <VBox spacing="10" alignment="TOP_CENTER" prefWidth="600" prefHeight="400">
+
+            <!-- Title -->
+            <Label text="All Chats" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+
+            <!-- TableView for displaying chats -->
+            <TableView fx:id="chatTable" prefWidth="580" prefHeight="300">
+                <columns>
+                    <!-- Chat ID Column -->
+                    <TableColumn text="Chat ID" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idChat"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <!-- Request ID Column -->
+                    <TableColumn text="Request ID" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idRequest"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <!-- Seller ID Column -->
+                    <TableColumn text="Seller ID" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idUserSeller"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <!-- Buyer ID Column -->
+                    <TableColumn text="Buyer ID" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idUserBuyer"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <!-- Back Button -->
+            <Button text="Back" onAction="#loadMainScene" style="-fx-font-size: 14;"/>
+        </VBox>
+    </children>
+</AnchorPane>

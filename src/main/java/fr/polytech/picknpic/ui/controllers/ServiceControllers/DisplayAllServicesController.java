@@ -22,19 +22,16 @@ public class DisplayAllServicesController {
     /** The service facade for fetching service data. */
     private final ServiceFacade serviceFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
-
-    /** The current logged-in user. */
-    private final User currentUser;
+    /** The current page user (the profile's user). */
+    private User currentPageUser;
 
     @FXML
     private VBox servicesContainer;
 
     /** Constructs a new DisplayAllServicesController instance. */
-    public DisplayAllServicesController() {
+    public DisplayAllServicesController(User currentPageUser) {
         this.serviceFacade = ServiceFacade.getServiceFacadeInstance();
-        this.currentUser = LoginFacade.getInstance().getCurrentUser(); // Fetch the current user
+        this.currentPageUser = currentPageUser;
     }
 
     /**
@@ -42,16 +39,30 @@ public class DisplayAllServicesController {
      */
     @FXML
     public void initialize() {
+        if (currentPageUser == null) {
+            System.err.println("Error: CurrentPageUser must be set before initialization.");
+            return;
+        }
         handleGetAllServices();
+    }
+
+    public User getCurrentPageUser() {
+        return this.currentPageUser;
     }
 
     /**
      * Fetches all services and populates the container with service panes.
      */
     public void handleGetAllServices() {
+
+        if (currentPageUser == null) {
+            System.err.println("Error: CurrentPageUser is not initialized.");
+            return; // Or handle the error as needed
+        }
+
         try {
-            int id_user_owner = 1 ; //currentUser.getId();
-            List<Service> services = serviceFacade.getAllServices(id_user_owner); // Fetch all services
+            int currentPageUserId = getCurrentPageUser().getId();
+            List<Service> services = serviceFacade.getAllServices(currentPageUserId); // Fetch all services
 
             servicesContainer.getChildren().clear();
 
@@ -89,6 +100,9 @@ public class DisplayAllServicesController {
         descriptionLabel.setLayoutX(10);
         descriptionLabel.setLayoutY(50);
         descriptionLabel.setStyle("-fx-text-fill: white;");
+
+        // Current user
+        User currentUser = LoginFacade.getInstance().getCurrentUser();
 
         if (currentUser.isAdmin()) {
             // Admin-specific buttons
@@ -141,7 +155,7 @@ public class DisplayAllServicesController {
      */
     private void handleDeleteService(Service service) {
         try {
-            sceneManager.loadDeleteServiceScene(service);
+            SceneManager.loadDeleteServiceScene(service);
         } catch (Exception e) {
             System.err.println("Failed to delete service: " + e.getMessage());
         }
@@ -154,7 +168,7 @@ public class DisplayAllServicesController {
      */
     private void handleUpdateService(Service service) {
         try {
-            sceneManager.loadUpdateServiceScene(service);
+            SceneManager.loadUpdateServiceScene(service);
         } catch (Exception e) {
             System.err.println("Failed to navigate to update service scene: " + e.getMessage());
         }
@@ -167,7 +181,7 @@ public class DisplayAllServicesController {
      */
     private void handleRequestService(Service service) {
         try {
-            sceneManager.loadCreateRequestScene(service);
+            SceneManager.loadCreateRequestScene(service);
             System.out.println("passed");
         } catch (Exception e) {
             System.err.println("Failed to navigate to update service scene: " + e.getMessage());

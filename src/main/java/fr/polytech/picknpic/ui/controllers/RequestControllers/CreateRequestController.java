@@ -2,12 +2,15 @@ package fr.polytech.picknpic.ui.controllers.RequestControllers;
 
 import fr.polytech.picknpic.bl.facades.request.RequestFacade;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
+import fr.polytech.picknpic.bl.models.Chat;
+import fr.polytech.picknpic.ui.controllers.ChatControllers.ManageChatController;
 import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.bl.models.Service;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 /**
  * Controller for creating requests.
@@ -18,17 +21,17 @@ public class CreateRequestController {
     /** The facade for managing requests. */
     private final RequestFacade requestFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
+    /** Controller for managing chat creation. */
+    private final ManageChatController manageChatController;
 
     /** The service that was clicked. */
     private Service currentService;
 
     @FXML
-    private TextField serviceNameField;
+    private Label serviceNameLabel;
 
     @FXML
-    private TextField priceField;
+    private Label priceLabel;
 
     @FXML
     private TextArea messageField;
@@ -42,6 +45,7 @@ public class CreateRequestController {
      */
     public CreateRequestController() {
         this.requestFacade = RequestFacade.getRequestFacadeInstance();
+        this.manageChatController = new ManageChatController();
     }
 
     /**
@@ -52,12 +56,25 @@ public class CreateRequestController {
     public void setService(Service service) {
         this.currentService = service;
 
-        // Populate fields with the service details
-        if (serviceNameField != null) serviceNameField.setText(service.getName());
-        if (priceField != null) priceField.setText(String.format("%.2f", service.getPrice()));
-        if (messageField != null) messageField.setText("Enter your message to the seller...");
-        if (imageField != null) imageField.setText("Optional image URL...");
+        // Debugging: Ensure service data is correct
+        System.out.println("Service ID: " + currentService.getIdService() +
+                ", Service name: " + currentService.getName() +
+                ", Service price: " + currentService.getPrice());
+
+        // Set the labels to display the service name and price
+        if (serviceNameLabel != null) {
+            serviceNameLabel.setText(service.getName());
+        } else {
+            System.out.println("serviceNameLabel is null");
+        }
+
+        if (priceLabel != null) {
+            priceLabel.setText(String.format("%.2f", service.getPrice()));
+        } else {
+            System.out.println("priceLabel is null");
+        }
     }
+
 
     /**
      * Displays an alert dialog with the provided message.
@@ -82,15 +99,20 @@ public class CreateRequestController {
         try {
             int id_user_buyer = LoginFacade.getInstance().getCurrentUser().getId();
             int id_service = currentService.getIdService();
-            int id_chat = 1; // Placeholder for chat ID
+            int id_user_seller = currentService.getIdUserOwner(); // Assuming Service has this method
             String message = messageField.getText();
             String image = imageField.getText();
             String status = "waiting";
 
-            requestFacade.createRequest(id_user_buyer, id_service, id_chat, message, image, status);
+            // Step 1: Create a chat using ManageChatController
+            System.out.println("idUserSeller: " + id_user_seller + ", idUserBuyer: " + id_user_buyer);
+            Chat chat = manageChatController.handleManageChats(id_service, id_user_seller, id_user_buyer);
 
-            showAlert("Request Created", "Success", "Your request has been successfully created.");
-            sceneManager.loadMainScene();
+            // Step 2: Create a request with the returned chat ID
+            requestFacade.createRequest(id_user_buyer, id_service, chat.getIdChat(), message, image, status);
+
+            showAlert("Request Created", "Success", "Your request has been successfully created with a chat.");
+            SceneManager.loadMainScene();
         } catch (Exception e) {
             showAlert("Error", "Failed to Create Request", "Reason: " + e.getMessage());
         }
@@ -101,8 +123,6 @@ public class CreateRequestController {
      */
     @FXML
     public void initialize() {
-        setupPlaceholder(serviceNameField, "Enter service name...");
-        setupPlaceholder(priceField, "Enter price...");
         setupPlaceholder(messageField, "Enter your message to the seller...");
         setupPlaceholder(imageField, "Optional image URL...");
     }

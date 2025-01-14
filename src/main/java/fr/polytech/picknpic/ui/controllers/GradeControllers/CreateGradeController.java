@@ -2,6 +2,7 @@ package fr.polytech.picknpic.ui.controllers.GradeControllers;
 
 import fr.polytech.picknpic.bl.facades.grade.GradeFacade;
 import fr.polytech.picknpic.ui.SceneManager;
+import fr.polytech.picknpic.bl.models.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -15,8 +16,8 @@ public class CreateGradeController {
     /** Facade for grade-related operations. */
     private final GradeFacade gradeFacade;
 
-    /** The scene manager for managing scene transitions. */
-    private SceneManager sceneManager;
+    /** The current page user. */
+    private User currentPageUser;
 
     @FXML
     private TextField friendlinessField;
@@ -51,6 +52,14 @@ public class CreateGradeController {
     }
 
     /**
+     * Sets the current page user.
+     * @param user The current page user.
+     */
+    public void setCurrentPageUser(User user) {
+        this.currentPageUser = user;
+    }
+
+    /**
      * Handles user interaction for creating a grade.
      */
     @FXML
@@ -64,20 +73,28 @@ public class CreateGradeController {
             // Calculate average grade
             float avg_grade = (friendliness + rapidity + quality) / 3.0f;
 
-            // Hardcoded IDs for now (replace with dynamic values as needed)
-            int id_user_graded = 1;
+            // Ensure currentPageUser is not null
+            if (currentPageUser == null) {
+                throw new IllegalStateException("Current page user is not set.");
+            }
+
+            int id_user_graded = currentPageUser.getId();
             int id_service_graded = 1;
 
             // Create the grade
             gradeFacade.createGrade(id_user_graded, id_service_graded, friendliness, rapidity, quality, avg_grade);
+
+            // Show success alert and navigate to the main scene
             showAlert("Grade Created", "Grade successfully created", "The grade has been added successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (IllegalArgumentException e) {
             showAlert("Invalid Input", "Input Error", e.getMessage());
         } catch (Exception e) {
-            showAlert("Error", "Failed to create grade", "An error occurred while creating the grade.");
+            e.printStackTrace(); // Print stack trace for debugging
+            showAlert("Error", "Failed to create grade", "An error occurred while creating the grade: " + e.getMessage());
         }
     }
+
 
     /**
      * Validates the input for a rating field.
@@ -105,7 +122,7 @@ public class CreateGradeController {
      */
     @FXML
     public void loadMainScene() throws Exception {
-        sceneManager.loadMainScene();
+        SceneManager.loadMainScene();
     }
 
     /**

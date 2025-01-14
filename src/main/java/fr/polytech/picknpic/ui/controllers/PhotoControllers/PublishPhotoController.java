@@ -21,44 +21,21 @@ public class PublishPhotoController {
      */
     private final PhotoFacade photoFacade;
 
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
-
-    /**
-     * The text field for entering the photo name.
-     */
     @FXML
     private TextField photoNameTextField;
 
-    /**
-     * The text field for entering the price of the photo.
-     */
     @FXML
     private TextField priceTextField;
 
-    /**
-     * The text field for entering the photo URL.
-     */
     @FXML
     private TextField photoUrlTextField;
 
-    /**
-     * The text area for entering the photo description.
-     */
     @FXML
     private TextArea descriptionTextArea;
 
-    /**
-     * The check box for setting the photo as for sale.
-     */
     @FXML
     private CheckBox isForSaleCheckBox;
 
-    /**
-     * The check box for setting the photo as for subscribers only.
-     */
     @FXML
     private CheckBox isForSubscribersOnlyCheckBox;
 
@@ -148,7 +125,7 @@ public class PublishPhotoController {
             int price = priceText.isEmpty() ? 0 : Integer.parseInt(priceText); // Default to 0 if empty
             photoFacade.publishPhoto(photoName, description, price, photoUrl, currentUserId, isForSale, isForSubscribersOnly, 0);
             showAlert("Photo Published", "Photo successfully published", "The photo has been published successfully.");
-            sceneManager.loadMainScene();
+            SceneManager.loadMainScene();
         } catch (NumberFormatException e) {
             System.out.println("Invalid price format.");
         } catch (Exception e) {

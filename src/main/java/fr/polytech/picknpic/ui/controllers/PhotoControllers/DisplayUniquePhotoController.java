@@ -3,8 +3,6 @@ package fr.polytech.picknpic.ui.controllers.PhotoControllers;
 
 import fr.polytech.picknpic.ui.SceneManager;
 import fr.polytech.picknpic.bl.facades.user.LoginFacade;
-import fr.polytech.picknpic.ui.controllers.PurchaseControllers.PurchaseController;
-import fr.polytech.picknpic.ui.controllers.PhotoControllers.DisplayAllPhotosController;
 import fr.polytech.picknpic.bl.models.User;
 import fr.polytech.picknpic.bl.models.Photo;
 import javafx.fxml.FXML;
@@ -12,41 +10,23 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.Alert;
 
 /**
  * Controller for displaying details of a unique photo.
  */
 public class DisplayUniquePhotoController {
 
-    /**
-     * The container for displaying the photo.
-     */
     @FXML
     private Pane imagePane;
 
-    /**
-     * The buttons for performing actions on the photo.
-     */
     @FXML
     private Button deleteButton;
 
-    /**
-     * The buttons for performing actions on the photo.
-     */
     @FXML
     private Button updateButton;
 
-    /**
-     * The buttons for performing actions on the photo.
-     */
     @FXML
     private Button buyButton;
-
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
 
     /**
      * The current photo that was clicked from DisplayAllPhotosController.
@@ -129,28 +109,28 @@ public class DisplayUniquePhotoController {
      * Handles the action of buying the displayed photo.
      */
     public void navigateToBuyPhoto() {
-        sceneManager.loadPurchasePhotoScene(currentPhoto);
+        SceneManager.loadPurchasePhotoScene(currentPhoto);
     }
 
     /**
      * Handles the action of deleting the displayed photo.
      */
     public void navigateToDeletePhotoScene() {
-        sceneManager.loadDeletePhotoScene(currentPhoto);
+        SceneManager.loadDeletePhotoScene(currentPhoto);
     }
 
     /**
      * Handles the action of updating the displayed photo.
      */
     public void navigateToUpdatePhotoScene() {
-        sceneManager.loadUpdatePhotoDetailsScene(currentPhoto);
+        SceneManager.loadUpdatePhotoDetailsScene(currentPhoto);
     }
 
     /**
      * Handles the action of navigating to the unique photo details scene.
      */
     public void navigateToUniquePhotoDetailsScene() {
-        sceneManager.loadUniquePhotoDetailsScene(currentPhoto);
+        SceneManager.loadUniquePhotoDetailsScene(currentPhoto);
     }
 
 }

@@ -28,16 +28,8 @@ public class DisplayAllPhotosController {
     // Property to store the clicked photo ID
     private final SimpleIntegerProperty clickedPhotoId = new SimpleIntegerProperty();
 
-    /**
-     * The container for displaying photos.
-     */
     @FXML
     private VBox photosContainer;
-
-    /**
-     * The scene manager for loading different scenes.
-     */
-    private SceneManager sceneManager;
 
     public DisplayAllPhotosController() {
         this.photoFacade = PhotoFacade.getPhotoFacadeInstance();
@@ -132,7 +124,7 @@ public class DisplayAllPhotosController {
         clickedPhotoId.set(photo.getPhotoId());
         Photo clickedPhoto = photoFacade.getPhotoById(photo.getPhotoId());
         if (clickedPhoto != null) {
-            sceneManager.loadUniquePhotoDetailsScene(photo);
+            SceneManager.loadUniquePhotoDetailsScene(photo);
         } else {
             System.err.println("Photo not found for ID: " + photo.getPhotoId());
         }

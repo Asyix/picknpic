@@ -2,8 +2,10 @@
 
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.polytech.picknpic.ui.controllers.ServiceControllers.DisplayAllServicesController">
    <children>
-      <VBox fx:id="servicesContainer" layoutX="50.0" layoutY="50.0" prefWidth="500.0" spacing="10.0" />
+      <VBox fx:id="servicesContainer" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+            AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0" spacing="10.0" />
    </children>
 </AnchorPane>
