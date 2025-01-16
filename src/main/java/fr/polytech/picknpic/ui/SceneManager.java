@@ -199,7 +199,7 @@ public class SceneManager {
 
     public static void loadChatScene() {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Chat/displayALlChats.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/fr/polytech/picknpic/Chat/displayAllChats.fxml"));
             Parent content = loader.load();
             if (mainLayoutController != null) {
                 mainLayoutController.setContent(content);
