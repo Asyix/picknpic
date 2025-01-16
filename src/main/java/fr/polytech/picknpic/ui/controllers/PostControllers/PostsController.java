@@ -103,7 +103,6 @@ public class PostsController {
             postController.setPostsContainer(postsContainer);
             postController.setProfileController(profileController); // Set the ProfileController reference
             postsContainer.getChildren().add(postBox);
-            System.out.println("Post added to container: " + post.getText());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
